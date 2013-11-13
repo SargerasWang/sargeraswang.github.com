@@ -15,6 +15,7 @@ categories:
 ```
 
 以下摘自[octopress的官网](http://octopress.org/docs/plugins/image-tag/)中关于Image Tag 的介绍
+<!-- more -->
 ###语法格式
 
 ```
