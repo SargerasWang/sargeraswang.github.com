@@ -21,7 +21,7 @@ categories:
 之后点击[创建].
 
 ###二. 添加代码
-
+<!--more-->
 注册之后，会跳转到通用代码的页面。
 其中，只需要用到的是short_name的值，像我就是sageraswang
 {% codeblock lang:js %}

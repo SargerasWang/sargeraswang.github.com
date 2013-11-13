@@ -23,6 +23,7 @@ $ ruby -v
 ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]
 {% endcodeblock %}
 ####安装Octopress
+<!--more-->
 这步的时候，已经有了先前的经验，我知道自己已经有git了，
 {% codeblock lang:bash %}
 $ git clone git://github.com/imathis/octopress.git octopress
