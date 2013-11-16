@@ -1,18 +1,62 @@
+---
+layout: post
+title: "配置每次new_post后自动用Mou打开文章"
+date: 2013-11-16 11:25
+comments: true
+categories: 
+---
+{% img /images/blog_img/automou.png %}
+
+每次new_post完都要自己找到那个文件，再打开，实在是太呆了。
+
+今天看到了[这篇文章](http://xoyo.name/2012/02/migrate-to-octopress/)就照着做了一下，过程记录在这里。
+
+原文作者说：
+>我平时一般用的是 Emacs，加上这个扩展函数之后可以直接在 Emacs 里创建博文和部署网站。**我修改过 Rakefile 里的new_post和new_page任务，让它们自动打开 Mou 编辑新建页面**；而在 Emacs 里执行这两个任务的时候就不需要自动打开 Mou，所以在调用rake new_post和rake new_page的时候还需要加个开关参数，这是我修改后的扩展。
+
+Emacs是我打算下一个要学习的东西，或许就在下一篇文章。这篇先搞定Rakefile。
+
+找到Octopress下的Rakefile文件，打开。作者给出的源码在https://github.com/xoyowade/octopress/blob/master/Rakefile
+
+我并不打算整份盖掉我的配置，而是学习一下，添加到自己的配置中。一共有以下三处要添加
+<!-- more -->
+##以下内容不是我希望的排版，因为我的codeblock的start不好用，正在找解决方法
+
+###第一. 添加变量
+
+``` ruby
+## -- My Configs -- ##
+editor                        = "/Applications/Mou.app/Contents/MacOS/Mou"        # default editor for new_post/new_page
+
+```
+
+###第二. 在new_post后添加命令
+``` ruby
+`#{editor} #{filename}`
+```
+
+###第三. 在new_page后添加同样的命令
+``` ruby
+`#{editor} #{filename}`
+```
+
+###最后完整的像这样
+
+```
 require "rubygems"
 require "bundler/setup"
 require "stringex"
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
-ssh_user       = "user@domain.com"
+ssh_user       = "xoyo@xoyo.name"
 ssh_port       = "22"
-document_root  = "~/website.com/"
-rsync_delete   = false
-rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "push"
+document_root  = "/var/www/xoyo.name"
+rsync_delete   = true
+deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "master"
+deploy_branch  = "gh-pages"
 
 ## -- Misc Configs -- ##
 
@@ -23,8 +67,8 @@ deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
-new_post_ext    = "markdown"  # default new post file extension when using the new_post task
-new_page_ext    = "markdown"  # default new page file extension when using the new_page task
+new_post_ext    = "md"            # default new post file extension when using the new_post task
+new_page_ext    = "md"            # default new page file extension when using the new_page task
 server_port     = "4000"      # port for preview server eg. localhost:4000
 
 ## -- My Configs -- ##
@@ -93,14 +137,12 @@ end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
-task :new_post, :title do |t, args|
-  if args.title
-    title = args.title
-  else
-    title = get_stdin("Enter a title for your post: ")
-  end
+task :new_post, :title, :later do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
+  args.with_defaults(:title => 'new-post', :later => false)
+  title = args.title
+  open = !args.later
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
   if File.exist?(filename)
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
@@ -115,18 +157,21 @@ task :new_post, :title do |t, args|
     post.puts "categories: "
     post.puts "---"
   end
-  `#{editor} #{filename}`
+  if open
+     `#{editor} #{filename}`
+  end
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
 desc "Create a new page in #{source_dir}/(filename)/index.#{new_page_ext}"
-task :new_page, :filename do |t, args|
+task :new_page, :filename, :later do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
-  args.with_defaults(:filename => 'new-page')
+  args.with_defaults(:filename => 'new-page', :later => false)
   page_dir = [source_dir]
   if args.filename.downcase =~ /(^.+\/)?(.+)/
     filename, dot, extension = $2.rpartition('.').reject(&:empty?)         # Get filename and extension
     title = filename
+    open = !args.later
     page_dir.concat($1.downcase.sub(/^\//, '').split('/')) unless $1.nil?  # Add path to page_dir Array
     if extension.nil?
       page_dir << filename
@@ -152,14 +197,16 @@ task :new_page, :filename do |t, args|
       page.puts "footer: true"
       page.puts "---"
     end
-    `#{editor} #{filename}`
+    if open
+          `#{editor} #{file}`
+    end
   else
     puts "Syntax error: #{args.filename} contains unsupported characters"
   end
 end
 
 # usage rake isolate[my-post]
-desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much more quickly."
+desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much quicker."
 task :isolate, :filename do |t, args|
   stash_dir = "#{source_dir}/#{stash_dir}"
   FileUtils.mkdir(stash_dir) unless File.exist?(stash_dir)
@@ -245,27 +292,24 @@ task :rsync do
     exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
   end
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"
 multitask :push do
   puts "## Deploying branch to Github Pages "
-  puts "## Pulling any updates from Github Pages "
-  cd "#{deploy_dir}" do 
-    system "git pull"
-  end
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
-  puts "\n## Copying #{public_dir} to #{deploy_dir}"
+  puts "\n## copying #{public_dir} to #{deploy_dir}"
   cp_r "#{public_dir}/.", deploy_dir
   cd "#{deploy_dir}" do
-    system "git add -A"
+    system "git add ."
+    system "git add -u"
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
     message = "Site updated at #{Time.now.utc}"
     system "git commit -m \"#{message}\""
     puts "\n## Pushing generated #{deploy_dir} website"
-    system "git push origin #{deploy_branch}"
+    system "git push origin #{deploy_branch} --force"
     puts "\n## Github Pages deploy complete"
   end
 end
@@ -310,20 +354,12 @@ task :setup_github_pages, :repo do |t, args|
   if args.repo
     repo_url = args.repo
   else
-    puts "Enter the read/write url for your repository"
-    puts "(For example, 'git@github.com:your_username/your_username.github.io.git)"
-    puts "           or 'https://github.com/your_username/your_username.github.io')"
-    repo_url = get_stdin("Repository url: ")
+    repo_url = get_stdin("Enter the read/write url for your repository: ")
   end
-  protocol = (repo_url.match(/(^git)@/).nil?) ? 'https' : 'git'
-  if protocol == 'git'
-    user = repo_url.match(/:([^\/]+)/)[1]
-  else
-    user = repo_url.match(/github\.com\/([^\/]+)/)[1]
-  end
-  branch = (repo_url.match(/\/[\w-]+\.github\.(?:io|com)/).nil?) ? 'gh-pages' : 'master'
+  user = repo_url.match(/:([^\/]+)/)[1]
+  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? 'gh-pages' : 'master'
   project = (branch == 'gh-pages') ? repo_url.match(/\/([^\.]+)/)[1] : ''
-  unless (`git remote -v` =~ /origin.+?octopress(?:\.git)?/).nil?
+  unless `git remote -v`.match(/origin.+?octopress.git/).nil?
     # If octopress is still the origin remote (from cloning) rename it to octopress
     system "git remote rename origin octopress"
     if branch == 'master'
@@ -341,8 +377,10 @@ task :setup_github_pages, :repo do |t, args|
       end
     end
   end
+  url = "http://#{user}.github.com"
+  url += "/#{project}" unless project == ''
   jekyll_config = IO.read('_config.yml')
-  jekyll_config.sub!(/^url:.*$/, "url: #{blog_url(user, project)}")
+  jekyll_config.sub!(/^url:.*$/, "url: #{url}")
   File.open('_config.yml', 'w') do |f|
     f.write jekyll_config
   end
@@ -362,7 +400,7 @@ task :setup_github_pages, :repo do |t, args|
       f.write rakefile
     end
   end
-  puts "\n---\n## Now you can deploy to #{repo_url} with `rake deploy` ##"
+  puts "\n---\n## Now you can deploy to #{url} with `rake deploy` ##"
 end
 
 def ok_failed(condition)
@@ -387,18 +425,11 @@ def ask(message, valid_options)
   answer
 end
 
-def blog_url(user, project)
-  url = if File.exists?('source/CNAME')
-    "http://#{IO.read('source/CNAME').strip}"
-  else
-    "http://#{user}.github.io"
-  end
-  url += "/#{project}" unless project == ''
-  url
-end
-
 desc "list tasks"
 task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
   puts "(type rake -T for more detail)\n\n"
 end
+```
+
+####ok了，当执行 rake new_post,或者 rake new_page之后，会自动用Mou打开。
