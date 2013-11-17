@@ -272,6 +272,53 @@ id标签可以有字母、数字、空白和标点符号，但是忽略大小写
 目前MarkDown不支持设置图片宽高，如果必须设置，请使用`<img>`标签。
 
 ##其它
+###注脚
+```
+That's some text with a footnote.[^1]
+
+[^1]: And that's the footnote.
+```
+效果要点这句话最后的小1：  
+That's some text with a footnote.[^1]
+
+[^1]: And that's the footnote.
+###删除线
+```
+有些话说的影响和谐，就要~~~被删除~~~
+```
+效果如下：  
+有些话说的影响和谐，就要~~~被删除~~~
+###表格(在Octopress中并没有画出线，后续解决)
+```
+First Header | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+
+| First Header | Second Header | Third Header |
+| ------------ | ------------- | ------------ |
+| Content Cell | Content Cell  | Content Cell |
+| Content Cell | Content Cell  | Content Cell |
+
+First Header | Second Header | Third Header
+:----------- | :-----------: | -----------:
+Left         | Center        | Right
+Left         | Center        | Right
+```
+First Header | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+
+| First Header | Second Header | Third Header |
+| ------------ | ------------- | ------------ |
+| Content Cell | Content Cell  | Content Cell |
+| Content Cell | Content Cell  | Content Cell |
+
+First Header | Second Header | Third Header
+:----------- | :-----------: | -----------:
+Left         | Center        | Right
+Left         | Center        | Right
 ###自动连接
 尖括号内会自动转换为链接
 ```
