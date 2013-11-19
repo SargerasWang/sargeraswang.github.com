@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Emacs使用手册"
+title: "Emacs使用手册(一) 基本操作"
 date: 2013-11-17 15:07
 comments: true
-published: false
+published: true
 categories: 
 ---
 >我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。
