@@ -98,3 +98,8 @@ facebook_like: false
 # duoshuo comments
 duoshuo_comments: true
 duoshuo_short_name: sageraswang
+
+# qq weibo
+qq_weibo: true
+qq_weibo_key: 801445389
+qq_weibo_data_pos: right
