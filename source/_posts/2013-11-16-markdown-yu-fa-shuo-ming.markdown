@@ -4,6 +4,7 @@ title: "Markdown 语法说明"
 date: 2013-11-16 19:08
 comments: true
 categories: 
+styles: [data-table]
 ---
 #区块元素
 ##段落和换行
@@ -288,7 +289,7 @@ That's some text with a footnote.[^1]
 ```
 效果如下：  
 有些话说的影响和谐，就要~~~被删除~~~
-###表格(在Octopress中并没有画出线，后续解决)
+###表格(在Octopress中并没有画出线，后续解决(2013-12-09，[问题已解决]({{site.url}}/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/)))
 ```
 First Header | Second Header | Third Header
 ------------ | ------------- | ------------
