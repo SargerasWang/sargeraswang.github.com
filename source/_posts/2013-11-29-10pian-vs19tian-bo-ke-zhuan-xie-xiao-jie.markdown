@@ -36,23 +36,30 @@ categories: 博客
 
 {% img /images/blog_img/rawtag.png %}
 
-* 在写完[配置每次new_post后自动用Mou打开文章]({{ site.url }}/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/)之后，我一直用到现在，问题也就出现了，自动用Mou打开文章后，终端就一直在等Mou关闭才能继续；而且一旦关闭终端，Mou也会被关闭，<font color="red">这个待解决</font>。  
+* 在写完[配置每次new_post后自动用Mou打开文章]({{ site.url }}/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/)之后，我一直用到现在，问题也就出现了，自动用Mou打开文章后，终端就一直在等Mou关闭才能继续；而且一旦关闭终端，Mou也会被关闭，
+<font color="red">这个待解决</font>。  
 {% img /images/blog_img/shellWaitMou.png %}
 
-* 在[MarkDown 语法说明]({{ site.url }}/blog/2013/11/16/markdown-yu-fa-shuo-ming/)一文中，有说道“表格(在Octopress中并没有画出线，后续解决)”,后来有查过解决方案，是修改css，但是一直没有动手改，<font color="green">这个已解决[链接]({{site.url}}/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/)</font>。
+* 在[MarkDown 语法说明]({{ site.url }}/blog/2013/11/16/markdown-yu-fa-shuo-ming/)一文中，有说道“表格(在Octopress中并没有画出线，后续解决)”,后来有查过解决方案，是修改css，但是一直没有动手改，
+<font color="green">这个已解决[链接]({{site.url}}/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/)</font>。
 
-* 关于在[Emacs使用手册(一) 基本操作]({{ site.url }}/blog/2013/11/17/emacsshi-yong-shou-ce/)中我说要学习Emacs的原因是eclipse有这个键位支持方案，后来我有坚持使用一周这个方案，最终放弃了，原因是eclipse的默认emacs方案并没有支持所有按键（我最不能忍受的是系统自动提示的时候，Ctrl+N并不能当做↓来使用），Google了一下，发现一个eclipse的emacs插件（[Emacs+ Eclipse Plug-in](http://www.mulgasoft.com/)）,但是作者已经不维护了，新版Eclipse中使用会报错，所以现在我还忍受着手要离开主键盘去按上下左右的痛苦，<font color="red">这个待解决</font>。  
+* 关于在[Emacs使用手册(一) 基本操作]({{ site.url }}/blog/2013/11/17/emacsshi-yong-shou-ce/)中我说要学习Emacs的原因是eclipse有这个键位支持方案，后来我有坚持使用一周这个方案，最终放弃了，原因是eclipse的默认emacs方案并没有支持所有按键（我最不能忍受的是系统自动提示的时候，Ctrl+N并不能当做↓来使用），Google了一下，发现一个eclipse的emacs插件（[Emacs+ Eclipse Plug-in](http://www.mulgasoft.com/)）,但是作者已经不维护了，新版Eclipse中使用会报错，所以现在我还忍受着手要离开主键盘去按上下左右的痛苦，
+<font color="red">这个待解决</font>。  
 {% img /images/blog_img/emacsPlus.png %}
 
-* 既然是叫做“Emacs使用手册(一) 基本操作”，就说明至少还应该有“二”，不能假装忘记，<font color="red">这个待解决</font>。
+* 既然是叫做“Emacs使用手册(一) 基本操作”，就说明至少还应该有“二”，不能假装忘记，
+<font color="red">这个待解决</font>。
 
-* 在[在Octopress中添加腾讯微博一键分享功能]({{ site.url }}/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/) 最后，有提出两点"不尽人意之处"，<font color="red">这个待解决</font>。
+* 在[在Octopress中添加腾讯微博一键分享功能]({{ site.url }}/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/) 最后，有提出两点"不尽人意之处"，
+<font color="green">2013-12-10 这个已解决[链接]({{site.url}}/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/)</font>。
 
-* 在[Appfuse搭建SSH的问题与解决]({{ site.url }}/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/)写完之后，我有大概看过整个生成的项目，其中除了我想要的Spring+Struts2+Hibernate之外，有太多太多的其他东西。所以不适用，后来我又试了简易版的Light版，好像有好一些，但总是觉得不如从头自己搭建一个来的舒心，吃的放心，就这么定了，自己搭建一个，然后过程记录在博客里，<font color="red">这个待解决</font>。
+* 在[Appfuse搭建SSH的问题与解决]({{ site.url }}/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/)写完之后，我有大概看过整个生成的项目，其中除了我想要的Spring+Struts2+Hibernate之外，有太多太多的其他东西。所以不适用，后来我又试了简易版的Light版，好像有好一些，但总是觉得不如从头自己搭建一个来的舒心，吃的放心，就这么定了，自己搭建一个，然后过程记录在博客里，
+<font color="red">这个待解决</font>。
 
 ###惊人
 一共11篇博客，就有6个待办事项，我的大脑在20:00的时候还很痛苦于“到底应该写一篇什么呢，没有题材啊！”,这完全是在给自己不想动手而找借口。
 
-* 还有一个才对，搜索引擎收录的问题，百度已经解决了，但是Google为何没有收录，还没有找到原因，<font color="red">这个待解决</font>。
+* 还有一个才对，搜索引擎收录的问题，百度已经解决了，但是Google为何没有收录，还没有找到原因，
+<font color="green">这个已解决[链接]({{site.url}}/blog/2013/12/06/googleyi-jing-shou-lu-liao/)</font>。
 
 {% img /images/blog_img/baidu.png %}

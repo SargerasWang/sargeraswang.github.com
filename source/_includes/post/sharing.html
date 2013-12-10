@@ -9,14 +9,28 @@
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   {% endif %}
   {% if site.qq_weibo %} 
+{% capture carriage_return %}
+{% endcapture %}
+  	{% if page.images %}
+  		{% capture weiboImg %}
+			{% for item in page.images %}
+				{{ site.url | append: item | append: '|' }}
+			{% endfor %}
+		{% endcapture %}
+	{% else %}
+		{% capture weiboImg %}
+			{{site.url}}/images/blog-title.png
+		{% endcapture %}
+	{% endif %}
     <table width="100%">
-<tr>
-<td>&nbsp;</td>
-<td width="62px">
-    <div id="qqwb_share__" data-appkey="{{site.qq_weibo_key}}" data-icon="1" data-counter="0" data-counter_pos="{{qq_weibo_data_pos}}" data-content="{{page.title}}" data-pic="{{site.url}}/images/blog-title.png"></div>
-</td>
-<td>&nbsp;</td>
-</tr>
-</table>
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="{{site.qq_weibo_key}}" data-icon="1" data-counter="0" data-counter_pos="{{qq_weibo_data_pos}}" data-content="{{page.title}}" data-pic="{{weiboImg| remove: ' ' | remove: '	'| remove: carriage_return }}">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
   {% endif %}
 </div>

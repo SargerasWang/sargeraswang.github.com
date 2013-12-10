@@ -93,3 +93,4 @@ Div上被加了`style="textalign:left;"`的属性，那段JavaScript一定是凶
 ###不尽人意之处
 1. image应该可以读取文章中的所有图片才对，后续研究后补到这里。
 2. 最后用table定位居中的方式蠢了一些，后续有更好的解决办法再补到这里。
+<font color="green">@2013-12-10 这个已解决[链接]({{site.url}}/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/)</font>
