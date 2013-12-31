@@ -48,6 +48,7 @@ images: [/images/blog_img/naruto/Naruto.jpg,
 ```
 这样的话，`images`就是一个Array类型对象了
 ####图片声明方式改为参考式写法，如下
+{% raw %}
 ```
 [Raruto]: {{page.images[0]}}
 [Rin]: {{page.images[1]}}
@@ -55,6 +56,7 @@ images: [/images/blog_img/naruto/Naruto.jpg,
 ![鸣人][Raruto]
 ![琳][Rin]
 ```
+{% endraw %}
 效果如：  
 ![鸣人][Raruto]
 ![琳][Rin]	
