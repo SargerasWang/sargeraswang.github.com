@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Emacs使用手册(一) 基本操作 - 程序员小刚</title>
+  <meta name="author" content="Sageras">
+
+  
+  <meta name="description" content="我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。 1
+2
+本文中的Ctrl+x,指的是按住Ctrl按x键
+Esc+x,指的是先按一下Esc，再按下x键 Emacs启动， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2013/11/17/emacsshi-yong-shou-ce/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:SargerasWang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Emacs使用手册(一) 基本操作</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T15:07:00+08:00" pubdate data-updated="true">2013-11-17</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。
+<img src="/images/blog_img/emacs/eclipseKeys.png"></p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>本文中的Ctrl+x,指的是按住Ctrl按x键
+</span><span class='line'>Esc+x,指的是先按一下Esc，再按下x键</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<!-- more -->
+
+
+<ul>
+<li>Emacs启动，直接在终端中直接打<code>emacs</code>。
+<img src="/images/blog_img/emacs/start.png"></li>
+<li>结束Emacs：<code>Ctrl+x Ctrl+c</code>,其实就是按住<code>Ctrl</code>然后<code>x</code>，然后<code>c</code>。</li>
+<li>取消（终止）执行：<code>Ctrl+g</code>
+
+<ul>
+<li>有些命令会跑很久，可以用这个命令中断</li>
+<li>按错键也可以用这个命令取消</li>
+</ul>
+</li>
+<li><p>移动光标</p>
+
+<ul>
+<li>向上（previous line）<code>Ctrl+p</code></li>
+<li>向下（next line）<code>Ctrl+n</code></li>
+<li>向左（backward）<code>Ctrl+b</code></li>
+<li>向右（forward）<code>Ctrl+f</code></li>
+<li>行首 <code>Ctrl+a</code></li>
+<li>行尾 <code>Ctrl+e</code></li>
+<li>句首 <code>Esc+a</code> 以<code>。</code>为基准</li>
+<li>句尾 <code>Esc+e</code></li>
+<li>文档开头 <code>Esc+&lt;</code></li>
+<li>文档结束 <code>Esc+&gt;</code></li>
+</ul>
+
+
+<p><pre>
+  Esc+&lt;               Ctrl+p
+  Ctrl+a      Ctrl+b    原点        Ctrl+f      Ctrl+e
+                      Ctrl+n                      Esc+>
+  xxxxxxxxx。[Esc+a]xxxxxx原点xxxxxx。[Esc+e]xxxxxx
+</pre></p></li>
+<li><p>翻页</p>
+
+<ul>
+<li>上一页 <code>Esc+v</code></li>
+<li>下一页 <code>Ctrl+v</code>
+
+<blockquote><p>翻页时，上一页末尾会留一点在荧幕最上面，以维持连续性
+在光标接近荧幕最下方时会自动跳半页，把档案往前挪一点，方便阅读。</p></blockquote></li>
+<li>重画荧幕 <code>Ctrl+l</code> 会以当前光标为中心，重画屏幕</li>
+</ul>
+</li>
+<li><p>删除</p>
+
+<ul>
+<li>删除光标后面的一个字符 <code>Ctrl+d</code> <em>(相当于Mac键盘下按<code>fn+delete</code>)</em>。</li>
+<li>删除光标前面的一个字符 <code>delete</code>。<em>(Windows下的<code>Backapace</code>=<code>Ctrl+h</code>,是help的意思)</em></li>
+<li>删除光标后面的一个单词 <code>Esc+d</code></li>
+<li>删除光标前面的一个单词 <code>Esc+delete</code></li>
+<li>(kill)删除至行尾 <code>Ctrl+k</code></li>
+<li>(kill)删除至句尾 <code>Esc+k</code> <em>(包含句号本身)</em>
+
+<blockquote><p>kill掉的东西会被emacs放到一个叫kill ring中去,类似一个暂存的地方，之后可以用yank让他吐出来。</p></blockquote></li>
+</ul>
+</li>
+<li><p>撤销 <code>Ctrl+x u</code>或者<code>Ctrl + -</code></p></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sageras</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T15:07:00+08:00" pubdate data-updated="true">2013-11-17</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+		
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Emacs使用手册(一) 基本操作" data-pic="http://SargerasWang.github.io/images/blog-title.png">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2013/11/16/markdown-yu-fa-shuo-ming/" title="Previous Post: Markdown 语法说明">&laquo; Markdown 语法说明</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/" title="Next Post: 在Octopress中添加腾讯微博一键分享功能">在Octopress中添加腾讯微博一键分享功能 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/04/zong-jie-he-zhan-wang/">总结和展望</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">配置每次new_post后自动用Mou打开文章(续)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">Octopress添加腾讯微博分享中图片的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">解决Octopress的表格样式问题</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>About Me</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Sageras -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>

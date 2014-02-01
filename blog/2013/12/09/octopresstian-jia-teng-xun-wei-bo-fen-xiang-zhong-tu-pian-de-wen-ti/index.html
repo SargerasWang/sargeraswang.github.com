@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopress添加腾讯微博分享中图片的问题 - 程序员小刚</title>
+  <meta name="author" content="Sageras">
+
+  
+  <meta name="description" content="这篇又是来收拾残局的，之前在Octopress中添加腾讯微博一键分享功能最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。 在source/_includes/post/sharing. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:SargerasWang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Octopress添加腾讯微博分享中图片的问题</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-09T22:44:00+08:00" pubdate data-updated="true">2013-12-09</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>这篇又是来收拾残局的，之前<a href="http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a>最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。</p></blockquote>
+
+<!-- more -->
+
+
+<h4>在<code>source/_includes/post/sharing.html</code>添加微博分享处添加</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% if page.images %}
+</span><span class='line'>{% capture carriage_return %}
+</span><span class='line'>{% endcapture %}
+</span><span class='line'>  {% capture weiboImg %}
+</span><span class='line'>      {% for item in page.images %}
+</span><span class='line'>          {{ site.url | append: item | append: '|' }}
+</span><span class='line'>      {% endfor %}
+</span><span class='line'>  {% endcapture %}
+</span><span class='line'>{% else %}
+</span><span class='line'>  {% capture weiboImg %}
+</span><span class='line'>      {{site.url}}/images/blog-title.png 【这是备用图片路径，就是当博客图片为空时使用这张】
+</span><span class='line'>  {% endcapture %}
+</span><span class='line'>{% endif %}</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>原先的Div的data-pic修改为</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>data-pic="{{weiboImg| remove: ' ' | remove: '    '| remove: carriage_return }}"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面那些<code>remove</code>是因为在测试中发现，太多的空格和tab和换行，会导致出现的图片变少</p>
+
+<h4>博客中的图片声明在MarkDown文件的<a href="http://jekyllrb.com/docs/frontmatter/">frontmatter</a>处，如下写法</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>images: [/images/blog_img/naruto/Naruto.jpg,
+</span><span class='line'>      /images/blog_img/naruto/Rin.jpg]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样的话，<code>images</code>就是一个Array类型对象了</p>
+
+<h4>图片声明方式改为参考式写法，如下</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[Raruto]: {{page.images[0]}}
+</span><span class='line'>[Rin]: {{page.images[1]}}
+</span><span class='line'>随便别的文字
+</span><span class='line'>![鸣人][Raruto]
+</span><span class='line'>![琳][Rin]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如：<br/>
+<img src="/images/blog_img/naruto/Naruto.jpg" alt="鸣人" />
+<img src="/images/blog_img/naruto/Rin.jpg" alt="琳" /></p>
+
+<p>点击【转播】按钮，后的效果图如：</p>
+
+<p><img src="/images/blog_img/naruto/success.png" alt="" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sageras</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-09T22:44:00+08:00" pubdate data-updated="true">2013-12-09</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+  		
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Octopress添加腾讯微博分享中图片的问题" data-pic="http://SargerasWang.github.io/images/blog_img/naruto/Naruto.jpg|http://SargerasWang.github.io/images/blog_img/naruto/Rin.jpg|http://SargerasWang.github.io/images/blog_img/naruto/success.png|">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/" title="Previous Post: 解决Octopress的表格样式问题">&laquo; 解决Octopress的表格样式问题</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/" title="Next Post: 配置每次new_post后自动用Mou打开文章(续)">配置每次new_post后自动用Mou打开文章(续) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/04/zong-jie-he-zhan-wang/">总结和展望</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">配置每次new_post后自动用Mou打开文章(续)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">Octopress添加腾讯微博分享中图片的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">解决Octopress的表格样式问题</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>About Me</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Sageras -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>
