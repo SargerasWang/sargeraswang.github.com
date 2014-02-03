@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 深入理解java虚拟机 | 程序员小刚]]></title>
   <link href="http://SargerasWang.github.io/blog/categories/shen-ru-li-jie-javaxu-ni-ji/atom.xml" rel="self"/>
   <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-01-28T22:34:45+08:00</updated>
+  <updated>2014-02-03T16:32:51+08:00</updated>
   <id>http://SargerasWang.github.io/</id>
   <author>
     <name><![CDATA[Sageras]]></name>
@@ -18,7 +18,9 @@
     <link href="http://SargerasWang.github.io/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/"/>
     <updated>2014-01-28T14:31:00+08:00</updated>
     <id>http://SargerasWang.github.io/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang</id>
-    <content type="html"><![CDATA[<h1>运行时数据区</h1>
+    <content type="html"><![CDATA[<blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。</p></blockquote>
+
+<h1>运行时数据区</h1>
 
 <ol>
 <li>线程共享
@@ -313,9 +315,118 @@ at io.github.sageraswang.test.RuntimeConstantPoolOOM.main(RuntimeConstantPoolOOM
 <p><code>``
 其中</code>PermGen space`说明运行时常量池属于方法区（HotSpot虚拟机中的永久代）的一部分</p>
 
-<p><font color="red">JDK1.7 的尝试，要等有网络之后，下载JDK1.7</font></p>
+<h4>String.Intern()返回引用的测试</h4>
 
-<p>String.Intern()返回引用的测试</p>
+<p>``` java
+public class RuntimeConstantPoolOOM2 {</p>
+
+<pre><code>public static void main(String[] args) {
+    String str1 = new StringBuilder("计算机").append("软件").toString();
+    System.out.println(str1.intern() == str1);
+
+    String str2 = new StringBuilder("ja").append("va").toString();
+    System.out.println(str2.intern() == str2);
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<blockquote><p>JDK1.6执行结果为两个<code>false</code>,JDK1.7中执行结果为一个<code>true</code>一个<code>false</code>.
+因为在JDK1.6中，intern()方法会把首次遇到的字符串实例复制到永久代中，返回的也是这个字符串实例的引用，而由StringBuilder创建的字符串实例在Java堆上，所以必然不是同一个引用</p>
+
+<p>而在JDK1.7中的intern()实现不会再复制实例，只是在常量池中记录首次出现的实例引用，因此intern()返回的引用和StringBuilder创建的那个字符串实例是同一个。对<code>str2</code>比较返回<code>false</code>是因为“java”这个字符串在执行<code>StringBuilder.toString()</code>之前已经出现过，字符串常量中已经出现它的引用了，不符合首次出现的原则。</p></blockquote>
+
+<h4>借助CGLib使方法区出现内存溢出异常</h4>
+
+<p>``` java
+/<em>*
+ * VM Args: -XX:PermSize=10M -XX:MaxPermSize=10M
+ </em>/
+public class JavaMethodAreaOOM {</p>
+
+<pre><code>public static void main(String[] args) {
+    while (true) {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(OOMObject.class);
+        enhancer.setUseCache(false);
+        enhancer.setCallback(new MethodInterceptor() {
+
+            @Override
+            public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy)
+                    throws Throwable {
+                return proxy.invoke(obj, args);
+            }
+        });
+        enhancer.create();
+    }
+}
+
+static class OOMObject {
+}
+</code></pre>
+
+<p>}
+<code>
+运行结果：
+</code>
+Exception in thread &ldquo;main&rdquo; net.sf.cglib.core.CodeGenerationException: java.lang.reflect.InvocationTargetException&mdash;>null</p>
+
+<pre><code>at net.sf.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:237)
+at net.sf.cglib.proxy.Enhancer.createHelper(Enhancer.java:377)
+at net.sf.cglib.proxy.Enhancer.create(Enhancer.java:285)
+at io.github.sageraswang.test.JavaMethodAreaOOM.main(JavaMethodAreaOOM.java:29)
+</code></pre>
+
+<p>Caused by: java.lang.reflect.InvocationTargetException</p>
+
+<pre><code>at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at net.sf.cglib.core.ReflectUtils.defineClass(ReflectUtils.java:384)
+at net.sf.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:219)
+... 3 more
+</code></pre>
+
+<p>Caused by: java.lang.OutOfMemoryError: PermGen space</p>
+
+<pre><code>at java.lang.ClassLoader.defineClass1(Native Method)
+at java.lang.ClassLoader.defineClassCond(ClassLoader.java:637)
+at java.lang.ClassLoader.defineClass(ClassLoader.java:621)
+... 8 more
+</code></pre>
+
+<p>```</p>
+
+<blockquote><p><strong>在经常动态生成大量Class的应用中，需要特别注意类的回收状况</strong></p></blockquote>
+
+<h3>本机直接内存溢出</h3>
+
+<p>``` java
+import sun.misc.Unsafe;</p>
+
+<p>/<em>*
+ * VM Args: -Xmx20M -XX:MaxDirectMemorySize=10M
+ </em>/
+public class DirectMemoryOOM {</p>
+
+<pre><code>private static final int _1MB = 1024 * 1024;
+
+public static void main(String[] args) throws Exception {
+    Field unsafeField = Unsafe.class.getDeclaredFields()[0];
+    unsafeField.setAccessible(true);
+    Unsafe unsafe = (Unsafe) unsafeField.get(null);
+    while (true) {
+        unsafe.allocateMemory(_1MB);
+    }
+}
+</code></pre>
+
+<p>}
+```
+<font color='red'>运行10分钟，没有出现异常，待解决。</font></p>
+
+<blockquote><p>由DirectMemory导致的内存溢出，Heap Dump 文件没有明显的异常</p></blockquote>
 ]]></content>
   </entry>
   
