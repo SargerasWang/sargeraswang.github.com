@@ -9,10 +9,10 @@
   <meta name="author" content="Sageras">
 
   
-  <meta name="description" content="抱歉，你要访问的网页不存在 看一下下面是否有你要找的东东？ Java内存区域与内存溢出异常
+  <meta name="description" content="抱歉，你要访问的网页不存在 看一下下面是否有你要找的东东？ 第3章 垃圾收集器与内存分配策略
+Feb 03 2014 posted in 深入理解java虚拟机 第2章 Java内存区域与内存溢出异常
 Jan 28 2014 posted in 深入理解java虚拟机 总结和展望
-Jan 04 2014 配置每次new_post后自动用Mou打开文章(续)
-Dec 19 2013 &hellip;">
+Jan 04 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -34,6 +34,26 @@ Dec 19 2013 &hellip;">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 
 <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
 
 
   
@@ -90,7 +110,19 @@ Dec 19 2013 &hellip;">
 
 <article>
   
-<h1><a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a></h1>
+<h1><a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a></h1>
+<time datetime="2014-02-03T16:40:00+08:00" pubdate><span class='month'>Feb</span> <span class='day'>03</span> <span class='year'>2014</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/shen-ru-li-jie-javaxu-ni-ji/'>深入理解java虚拟机</a></span>
+</footer>
+
+
+</article>
+
+<article>
+  
+<h1><a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a></h1>
 <time datetime="2014-01-28T14:31:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>28</span> <span class='year'>2014</span></time>
 
 <footer>
@@ -168,14 +200,6 @@ Dec 19 2013 &hellip;">
 
 </article>
 
-<article>
-  
-<h1><a href="/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a></h1>
-<time datetime="2013-11-17T15:07:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>17</span> <span class='year'>2013</span></time>
-
-
-</article>
-
 </div><!-- Duoshuo Comment BEGIN -->
 <div class="ds-thread"></div>
 <script type="text/javascript">
@@ -203,7 +227,11 @@ Dec 19 2013 &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a>
+        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
       </li>
     
       <li class="post">
@@ -216,10 +244,6 @@ Dec 19 2013 &hellip;">
     
       <li class="post">
         <a href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">Octopress添加腾讯微博分享中图片的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">解决Octopress的表格样式问题</a>
       </li>
     
   </ul>

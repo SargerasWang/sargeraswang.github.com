@@ -9,21 +9,10 @@
   <meta name="author" content="Sageras">
 
   
-  <meta name="description" content="区块元素 段落和换行 通常的回车并不会换行，插入一个空行会产生一个空行。
-强制换行可以使用 &lt;br/&gt; 1
+  <meta name="description" content="我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。 1
 2
-这是第一行
-这是第二行 这并不会产生换行 效果如图 标题 一到六个#分别对应H1~H6 1
-2
-3
-4
-5
-6
-#H1
-##H2
-###H3
-####H4
-#####H5 &hellip;">
+本文中的Ctrl+x,指的是按住Ctrl按x键
+Esc+x,指的是先按一下Esc，再按下x键 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -45,6 +34,26 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 
 <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
 
 
   
@@ -90,6 +99,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T15:07:00+08:00" pubdate data-updated="true">2013-11-17</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。
+<img src="/images/blog_img/emacs/eclipseKeys.png"></p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>本文中的Ctrl+x,指的是按住Ctrl按x键
+</span><span class='line'>Esc+x,指的是先按一下Esc，再按下x键</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/17/emacsshi-yong-shou-ce/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -519,7 +580,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a>
+        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
       </li>
     
       <li class="post">
@@ -532,10 +597,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">Octopress添加腾讯微博分享中图片的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">解决Octopress的表格样式问题</a>
       </li>
     
   </ul>

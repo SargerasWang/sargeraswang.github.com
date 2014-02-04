@@ -9,10 +9,7 @@
   <meta name="author" content="Sageras">
 
   
-  <meta name="description" content="最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。 运行时数据区 线程共享 方法区（Method Area）
-（Java）堆（Heap） 线程私有 虚拟机栈（VM Stack）
-本地方法栈（Native Method Stack）
-程序计数器（Program Counter &hellip;">
+  <meta name="description" content=" 对象已死吗 引用计数算法 给对象添加引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器为0的对象就是不可能再被使用的。 它很难解决对象之间互相循环引用的问题。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -34,6 +31,26 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 
 <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
 
 
   
@@ -86,7 +103,58 @@
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a></h1>
+        <h1 class="entry-title"><a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-03T16:40:00+08:00" pubdate data-updated="true">2014-02-03</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://item.jd.com/11252778.html"><img src="/images/blog_img/jvmbook.jpg" alt="" /></a></p>
+
+<h3>对象已死吗</h3>
+
+<h4>引用计数算法</h4>
+
+<blockquote><p>给对象添加引用计数器，每当有一个地方引用它时，计数器值就加1；当引用失效时，计数器值就减1；任何时刻计数器为0的对象就是不可能再被使用的。</p>
+
+<p>它很难解决对象之间互相循环引用的问题。</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a></h1>
       
     
     
@@ -110,7 +178,8 @@
   </header>
 
 
-  <div class="entry-content"><blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。</p></blockquote>
+  <div class="entry-content"><blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。<br/>
+<a href="http://item.jd.com/11252778.html"><img src="/images/blog_img/jvmbook.jpg" alt="" /></a></p></blockquote>
 
 <h1>运行时数据区</h1>
 
@@ -525,58 +594,6 @@ Emacs使用手册系列要过几天才能写了。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-17T15:07:00+08:00" pubdate data-updated="true">2013-11-17</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。
-<img src="/images/blog_img/emacs/eclipseKeys.png"></p></blockquote>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>本文中的Ctrl+x,指的是按住Ctrl按x键
-</span><span class='line'>Esc+x,指的是先按一下Esc，再按下x键</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/11/17/emacsshi-yong-shou-ce/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -592,7 +609,11 @@ Emacs使用手册系列要过几天才能写了。
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">Java内存区域与内存溢出异常</a>
+        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
       </li>
     
       <li class="post">
@@ -605,10 +626,6 @@ Emacs使用手册系列要过几天才能写了。
     
       <li class="post">
         <a href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">Octopress添加腾讯微博分享中图片的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">解决Octopress的表格样式问题</a>
       </li>
     
   </ul>
