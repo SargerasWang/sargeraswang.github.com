@@ -4,10 +4,10 @@
   <title><![CDATA[Category: 深入理解java虚拟机 | 程序员小刚]]></title>
   <link href="http://SargerasWang.github.io/blog/categories/shen-ru-li-jie-javaxu-ni-ji/atom.xml" rel="self"/>
   <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-02-04T23:05:11+08:00</updated>
+  <updated>2014-02-04T23:29:13+08:00</updated>
   <id>http://SargerasWang.github.io/</id>
   <author>
-    <name><![CDATA[Sageras]]></name>
+    <name><![CDATA[SargerasWang]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -18,7 +18,7 @@
     <link href="http://SargerasWang.github.io/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/"/>
     <updated>2014-02-03T16:40:00+08:00</updated>
     <id>http://SargerasWang.github.io/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue</id>
-    <content type="html"><![CDATA[<p><a href="http://item.jd.com/11252778.html"><img src="{{page.images[0]}}" alt="" /></a></p>
+    <content type="html"><![CDATA[<p><a href="http://item.jd.com/11252778.html"><img src="" alt="" /></a></p>
 
 <h3>对象已死吗</h3>
 
@@ -388,7 +388,7 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
     <updated>2014-01-28T14:31:00+08:00</updated>
     <id>http://SargerasWang.github.io/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang</id>
     <content type="html"><![CDATA[<blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。<br/>
-<a href="http://item.jd.com/11252778.html"><img src="{{page.images[0]}}" alt="" /></a></p></blockquote>
+<a href="http://item.jd.com/11252778.html"><img src="" alt="" /></a></p></blockquote>
 
 <h1>运行时数据区</h1>
 
