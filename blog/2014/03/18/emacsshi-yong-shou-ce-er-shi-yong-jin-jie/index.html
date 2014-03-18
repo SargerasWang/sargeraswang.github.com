@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Appfuse搭建SSH的问题与解决 - 程序员小刚</title>
+  <title>Emacs使用手册(二) 使用进阶 - 程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase &hellip;">
+  <meta name="description" content="一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 “外面的世界很精彩&hellip;外面的世界很无奈&hellip;北京&hellip;北京&hellip;”
+哈，没那么文艺，新的城市，新的公司，新的开始，我还是不够努力，奔跑吧！少年！ 被禁用的命令 有一些 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://SargerasWang.github.io/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -100,7 +101,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   <header>
     
       
-        <h1 class="entry-title">Appfuse搭建SSH的问题与解决</h1>
+        <h1 class="entry-title">Emacs使用手册(二) 使用进阶</h1>
       
     
     
@@ -117,81 +118,84 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-11-25T20:14:00+08:00" pubdate data-updated="true">2013-11-25</time>
+<time datetime="2014-03-18T19:55:00+08:00" pubdate data-updated="true">2014-03-18</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><ul>
-<li>Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase: test-compile)
+<div class="entry-content"><p><img src="/images/blog_img/benpao.jpg" alt="" /></p>
+
+<blockquote><p>一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 <br/>
+“外面的世界很精彩&hellip;外面的世界很无奈&hellip;北京&hellip;北京&hellip;”<br/>
+哈，没那么文艺，新的城市，新的公司，新的开始，我还是不够努力，奔跑吧！少年！</p></blockquote>
+
+<h3>被禁用的命令</h3>
+
+<p>有一些 Emacs 命令被“禁用”了，以避免初学者误用，当你使用到了一个被禁用的命令，Emacs 会显示一个提示消息，告诉你这个命令到底是干什么的，询问你是否要继续，并在得到你的肯定后再执行这命令。</p>
 
 <ul>
-<li>解决方法：在<code>&lt;plugins&gt;</code>外面套上<code>&lt;pluginManagement&gt;</code></li>
+<li>如果你确定要执行，就按下空格</li>
+<li>如果你不想用，就按下“n”
+
+<blockquote><p>试试 Ctrl+x Ctrl+l<br/>
+<img src="/images/blog_img/emacs/c_x_c_l.png" alt="" /></p></blockquote></li>
+</ul>
+
+
+<h3>窗格（WINDOWS）</h3>
+
+<p>Emacs 可以有多个窗格，每个窗格显示不同的文字。</p>
+
+<ul>
+<li>关掉多余的窗格 <code>Ctrl+x 1</code>
+
+<blockquote><p>这个命令跟之前的命令不太一样，包含了两个字符，以Ctrl+x开始，有一系列命令都是以Ctrl+x开始的，许多都跟“窗格、文件、缓冲区”等有关，其中有些命令可能包含了2个、3个、4个字符。</p></blockquote></li>
+</ul>
+
+
+<h3>插入与删除</h3>
+
+<ul>
+<li>插入文字很简单，直接敲键盘就可以了。</li>
+<li>删除前一个字符，用<code>Delete</code>，与 Emacs 之外的用法一样。</li>
+<li>如果一行中文字显示不下，需要换行，那么：
+
+<ul>
+<li>在console下会有反斜杠<code>\</code>出现</li>
+<li>在图形窗口中会有小小的转弯箭头出现
+<img src="/images/blog_img/emacs/subline.png" alt="" /></li>
 </ul>
 </li>
+<li>插入重复字符，插入八个星号<code>*</code>,<code>ctrl+u 8 *</code></li>
+<li>删除指定区域内的文字，在开始的地方按下<code>ctrl+@</code>,结束的地方按下<code>ctrl+w</code>.</li>
+<li><code>ctrl+y</code>可以把上次连续kill掉的内容都吐出来</li>
+<li>如果<code>ctrl+y</code>里面没有你要的，你想要的是在更早的时候kill掉的，那就按下<code>alt+y</code>,如果还不是，就继续<code>alt+y</code>直到吐出你想要的为止</li>
 </ul>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;pluginManagement&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;&lt;/plugin&gt;</span>
-</span><span class='line'>      ...
-</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/pluginManagement&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
-
+<h3>文件（FILE）</h3>
 
 <ul>
-<li>Can not find the tag library descriptor for &ldquo;<a href="http://java.sun.com/jsp/jstl/core">http://java.sun.com/jsp/jstl/core</a>&rdquo;</li>
-<li>Can not find the tag library descriptor for &ldquo;<a href="http://java.sun.com/jsp/jstl/fmt">http://java.sun.com/jsp/jstl/fmt</a>&rdquo;</li>
-<li>Can not find the tag library descriptor for &ldquo;<a href="http://java.sun.com/jsp/jstl/functions">http://java.sun.com/jsp/jstl/functions</a>&rdquo;
+<li>打开一个文件<code>ctrl+x ctrl+f</code>，输入一个不存在的文件名，就是 Emacs 创建文件的方式</li>
+<li>储存这个文件<code>ctrl+x ctrl+s</code>
+
+<blockquote><p>第一次存盘的时候 Emacs 会将源文件重命名以备份，通常是在原文件名之后添加一个<code>~</code>
+可以用这条命令关闭这个特性：<code>alt+x customize-variable &lt;Return&gt; make-backup-files &lt;Return&gt;】</code></p></blockquote></li>
+</ul>
+
+
+<h3>缓冲区（BUFFER）</h3>
 
 <ul>
-<li>解决方法：添加jstl依赖</li>
+<li>打开新的文件后，想切换会原先的文件，还是执行<code>ctrl+x ctrl+f</code>，输入先前的文件名即可。</li>
+<li>列出缓冲区 <code>ctrl+x ctrl+b</code>
+<img src="/images/blog_img/emacs/buffer.png" alt="" /></li>
+<li><code>ctrl+x b</code>也可以用来切换缓冲区</li>
+<li>并不是所有的缓冲区都对应一个文件，例如<em>Messages</em>里放着的都是 Emacs 底部出现的消息。</li>
 </ul>
-</li>
-</ul>
 
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>jstl<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>taglibs<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>standard<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.1.2<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>遇到的其他问题基本都是因为网络问题，jar包下载失败，重新下载就好了。
-附上我配置成功的项目。<br/>
-<a href="http://SargerasWang.github.io/images/code/myproject.zip">下载myproject.zip</a></p>
 </div>
 
 
@@ -214,7 +218,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-11-25T20:14:00+08:00" pubdate data-updated="true">2013-11-25</time>
+<time datetime="2014-03-18T19:55:00+08:00" pubdate data-updated="true">2014-03-18</time>
       
 
 
@@ -227,14 +231,15 @@ $(document).bind('DOMNodeInserted', function(event) {
    
 
   	
-		
+  		
 	
 	
     <table width="100%">
 		<tr>
 		<td>&nbsp;</td>
 		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Appfuse搭建SSH的问题与解决:Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0 &hellip;" data-pic="http://SargerasWang.github.io/images/blog-title.png">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Emacs使用手册(二) 使用进阶:一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 “外面的世界很精彩&hellip;外面的世界很无奈&hellip;北京&hellip;北京&hellip;”
+哈， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/benpao.jpg|http://SargerasWang.github.io/images/blog_img/emacs/c_x_c_l.png|http://SargerasWang.github.io/images/blog_img/emacs/subline.png|http://SargerasWang.github.io/images/blog_img/emacs/buffer.png|">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
@@ -246,10 +251,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/" title="Previous Post: 在Octopress中添加腾讯微博一键分享功能">&laquo; 在Octopress中添加腾讯微博一键分享功能</a>
+        <a class="basic-alignment left articlenav" href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/" title="Previous Post: 第3章 垃圾收集器与内存分配策略">&laquo; 第3章 垃圾收集器与内存分配策略</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/" title="Next Post: 10篇vs19天博客撰写小结">10篇vs19天博客撰写小结 &raquo;</a>
       
     </p>
   </footer>
