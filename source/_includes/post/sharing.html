@@ -22,11 +22,12 @@
 			{{site.url}}/images/blog-title.png
 		{% endcapture %}
 	{% endif %}
+	{% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
     <table width="100%">
 		<tr>
 		<td>&nbsp;</td>
 		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="{{site.qq_weibo_key}}" data-icon="1" data-counter="0" data-counter_pos="{{qq_weibo_data_pos}}" data-content="{{page.title}}" data-pic="{{weiboImg| remove: ' ' | remove: '	'| remove: carriage_return }}">
+		    <div id="qqwb_share__" data-appkey="{{site.qq_weibo_key}}" data-icon="1" data-counter="0" data-counter_pos="{{qq_weibo_data_pos}}" data-content="{{page.title}}:{{ description | strip_html | condense_spaces | truncate:100 }}" data-pic="{{weiboImg| remove: ' ' | remove: '	'| remove: carriage_return }}">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
