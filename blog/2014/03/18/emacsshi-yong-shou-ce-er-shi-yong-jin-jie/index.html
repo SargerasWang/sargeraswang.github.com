@@ -24,6 +24,8 @@
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -149,7 +151,18 @@ $(document).bind('DOMNodeInserted', function(event) {
 <p>Emacs 可以有多个窗格，每个窗格显示不同的文字。</p>
 
 <ul>
-<li>关掉多余的窗格 <code>Ctrl+x 1</code>
+<li>关掉多余的窗格 <code>Ctrl+x 1</code></li>
+<li>切换为2个窗口：
+
+<ul>
+<li>上下拆分<code>ctrl+x 2</code></li>
+<li>左右拆分<code>ctrl+x 3</code><br/>
+<img src="/images/blog_img/emacs/subWindow.png" alt="" /></li>
+</ul>
+</li>
+<li>多窗口间切换光标 <code>ctrl+x o</code> <strong>这里o代表other</strong></li>
+<li>滚动另外一个画面 <code>alt+ctrl+v</code></li>
+<li>开启新窗口并打开指定文件 <code>ctrl+x 4 ctrl+f 文件名</code>
 
 <blockquote><p>这个命令跟之前的命令不太一样，包含了两个字符，以Ctrl+x开始，有一系列命令都是以Ctrl+x开始的，许多都跟“窗格、文件、缓冲区”等有关，其中有些命令可能包含了2个、3个、4个字符。</p></blockquote></li>
 </ul>
@@ -179,10 +192,11 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <ul>
 <li>打开一个文件<code>ctrl+x ctrl+f</code>，输入一个不存在的文件名，就是 Emacs 创建文件的方式</li>
-<li>储存这个文件<code>ctrl+x ctrl+s</code>
+<li>储存这个文件<code>ctrl+x ctrl+s</code>,储存缓存区中的所有文件<code>ctrl+x s</code>.
 
 <blockquote><p>第一次存盘的时候 Emacs 会将源文件重命名以备份，通常是在原文件名之后添加一个<code>~</code>
 可以用这条命令关闭这个特性：<code>alt+x customize-variable &lt;Return&gt; make-backup-files &lt;Return&gt;】</code></p></blockquote></li>
+<li>Emacs 会自动保存，在原文件名两侧加“#”，如果想恢复为自动保存的文件，使用命令：<code>alt+x recover file</code></li>
 </ul>
 
 
@@ -193,7 +207,74 @@ $(document).bind('DOMNodeInserted', function(event) {
 <li>列出缓冲区 <code>ctrl+x ctrl+b</code>
 <img src="/images/blog_img/emacs/buffer.png" alt="" /></li>
 <li><code>ctrl+x b</code>也可以用来切换缓冲区</li>
-<li>并不是所有的缓冲区都对应一个文件，例如<em>Messages</em>里放着的都是 Emacs 底部出现的消息。</li>
+<li>并不是所有的缓冲区都对应一个文件，例如<code>*Messages*</code>里放着的都是 Emacs 底部出现的消息。</li>
+</ul>
+
+
+<blockquote><h3>命令集扩展</h3>
+
+<p>Emacs 扩展命令的两种风格：</p></blockquote>
+
+<table>
+<thead>
+<tr>
+<th>按键 &amp; 名称 </th>
+<th> 解释 </th>
+<th> 举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctrl+x</code>   字符扩展。   </td>
+<td> <code>ctrl+x</code>之后输入另一个字符或者组合键。 </td>
+<td> <code>ctrl+x ctrl+s</code></td>
+</tr>
+<tr>
+<td><code>alt+x</code>  命令名扩展。  </td>
+<td> <code>alt+x</code>之后输入一个命令名 </td>
+<td> <code>alt+x help-with-tutorial</code></td>
+</tr>
+</tbody>
+</table>
+
+
+<blockquote><p>在Console中，<code>ctrl+z</code>可以将Emacs暂时挂起，回到shell，再使用<code>fg</code>命令可以再切换回 Emacs。1</p></blockquote>
+
+<ul>
+<li>字符串替换命令：<code>alt+x replace-string</code> 两个参数分别用回车提交。比如要替换当前屏幕中所有“abc”为“def”，那应该执行<code>alt+x replace-string 回车 abc 回车 def</code></li>
+</ul>
+
+
+<h3>主/辅模式</h3>
+
+<p>状态栏括号中表示当前使用的主模式，使用<code>alt+x 模式名称</code>来切换主模式。</p>
+
+<blockquote><p>例如<code>alt+x text-mode</code>切换到Text模式
+* 使用<code>ctrl+h m</code>可以查看当前主模式的文档
+* 辅模式与子模式无关，与其他辅模式也无关
+有一个叫做自动折行模式，可以再编辑自然语言文本的时候，打字超出一行边界时自动换行。<br/>
+默认的行边界是70个字符，可以通过<code>ctrl+u 字符数 ctrl+x f</code>来设置<br/>
+设定某段自动折行 <code>alt+q</code></p></blockquote>
+
+<h3>搜索</h3>
+
+<p>Emacs 是渐进式搜索，在你输入的同时Emacs就开始搜索了
+* <code>ctrl+s</code>向前搜索
+* <code>ctrl+r</code>向后搜索
+* 结束搜索：
+  * 回车：光标停留在搜索到的位置
+  * <code>ctrl+g</code>：光标停留在执行搜索之前的位置</p>
+
+<h3>递归编辑 （没试出来效果。。。后续补上）</h3>
+
+<h3>使用帮助</h3>
+
+<ul>
+<li><code>ctrl+h 命令</code>可以查看对应命令的帮助，<code>ctrl+h ?</code>可以列出哪些命令有帮助。</li>
+<li><code>ctrl+h c 按键</code>可以查看按键的说明。<code>ctrl+h k 按键</code>可以查看按键更详细的帮助</li>
+<li><code>ctrl+h f 命令</code>可以查看命令的帮助</li>
+<li><code>ctrl+h v 变量名</code>可以查看变量的文档。</li>
+<li><code>ctrl+h a 命令</code>相关命令的搜索</li>
 </ul>
 
 </div>
@@ -239,7 +320,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 		<td>&nbsp;</td>
 		<td width="62px">
 		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Emacs使用手册(二) 使用进阶:一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 “外面的世界很精彩&hellip;外面的世界很无奈&hellip;北京&hellip;北京&hellip;”
-哈， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/benpao.jpg|http://SargerasWang.github.io/images/blog_img/emacs/c_x_c_l.png|http://SargerasWang.github.io/images/blog_img/emacs/subline.png|http://SargerasWang.github.io/images/blog_img/emacs/buffer.png|">
+哈， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/benpao.jpg|http://SargerasWang.github.io/images/blog_img/emacs/c_x_c_l.png|http://SargerasWang.github.io/images/blog_img/emacs/subline.png|http://SargerasWang.github.io/images/blog_img/emacs/buffer.png|http://SargerasWang.github.io/images/blog_img/emacs/subWindow.png|">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
