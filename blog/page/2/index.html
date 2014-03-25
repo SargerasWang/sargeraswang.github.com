@@ -9,9 +9,7 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
-Emacs使用手册系列要过几天才能写了。
-接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。 ">
+  <meta name="description" content="Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +96,74 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-25T20:14:00+08:00" pubdate data-updated="true">2013-11-25</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase: test-compile)
+
+<ul>
+<li>解决方法：在<code>&lt;plugins&gt;</code>外面套上<code>&lt;pluginManagement&gt;</code></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;pluginManagement&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;&lt;/plugin&gt;</span>
+</span><span class='line'>      ...
+</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/pluginManagement&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -626,6 +692,10 @@ Emacs使用手册系列要过几天才能写了。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/">花信之年-二十四岁</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">Emacs使用手册(二) 使用进阶</a>
       </li>
     
@@ -639,10 +709,6 @@ Emacs使用手册系列要过几天才能写了。
     
       <li class="post">
         <a href="/blog/2014/01/04/zong-jie-he-zhan-wang/">总结和展望</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">配置每次new_post后自动用Mou打开文章(续)</a>
       </li>
     
   </ul>
