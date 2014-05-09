@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://SargerasWang.github.io/atom.xml" rel="self"/>
   <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-03-26T08:50:57+08:00</updated>
+  <updated>2014-05-09T17:38:13+08:00</updated>
   <id>http://SargerasWang.github.io/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac 下 Eclipse 使用Emac按键的设置]]></title>
+    <link href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/"/>
+    <updated>2014-05-09T16:41:00+08:00</updated>
+    <id>http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi</id>
+    <content type="html"><![CDATA[<blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
+
+<!-- more -->
+
+
+<h3>需要什么</h3>
+
+<p>首先要分析需求，很简单，我不想让右手离开主键位区，去找上下左右按键。</p>
+
+<p>那么，我需要能修改以下按键 ：</p>
+
+<ul>
+<li>上</li>
+<li>下</li>
+<li>左</li>
+<li>右</li>
+<li>行头</li>
+<li>行尾</li>
+</ul>
+
+
+<h3>Keys很强大</h3>
+
+<ol>
+<li>去 eclipse->Preferences (快捷键 <code>Commend+，</code>)，filter中输入<code>Kyes</code>.
+<img src="http://SargerasWang.github.io/images/blog_img/eclipse_keys.png" alt="" /></li>
+<li>设置以下按键
+
+<ul>
+<li>上 <code>Line Up</code> 为 <code>Ctrl+P</code></li>
+<li>下 <code>Line Down</code> 为 <code>Ctrl+N</code></li>
+<li>左 <code>Previous Column</code> 为 <code>Ctrl+B</code></li>
+<li>右 <code>Next Column</code> 为 <code>Ctrl+F</code></li>
+<li>行头 <code>Line Start</code> 为 <code>Ctrl+A</code></li>
+<li>行尾 <code>Line End</code> 为 <code>Ctrl+E</code><br/>
+<img src="http://SargerasWang.github.io/images/blog_img/eclipse_keys2.png" alt="" /></li>
+</ul>
+</li>
+</ol>
+
+
+<h3>OK了，解放你的右胳膊吧</h3>
+
+<p>之所以现在才写这篇，是因为我一直认为<code>左</code>和<code>右</code>应该是<code>Back</code>和<code>Forward</code>,一直无法使用，甚是恼火，直到我看了eclipse自带的emacs按键方案。</p>
+
+<p><img src="http://SargerasWang.github.io/images/blog_img/eclipse_keys3.png" alt="" /></p>
+
+<blockquote><p>哈，到现在，当初的坑就剩下最后一个了 <strong>使用maven搭建SSH框架</strong></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[花信之年-二十四岁]]></title>
@@ -1671,15 +1727,15 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 <ul>
 <li><p>在写完<a href="http://SargerasWang.github.io/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>之后，我一直用到现在，问题也就出现了，自动用Mou打开文章后，终端就一直在等Mou关闭才能继续；而且一旦关闭终端，Mou也会被关闭，
-<font color="red">这个待解决</font>。<br/>
+<font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">链接</a></font>。<br/>
 <img src="http://SargerasWang.github.io/images/blog_img/shellWaitMou.png"></p></li>
 <li><p>在<a href="http://SargerasWang.github.io/blog/2013/11/16/markdown-yu-fa-shuo-ming/">MarkDown 语法说明</a>一文中，有说道“表格(在Octopress中并没有画出线，后续解决)”,后来有查过解决方案，是修改css，但是一直没有动手改，
 <font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">链接</a></font>。</p></li>
 <li><p>关于在<a href="http://SargerasWang.github.io/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a>中我说要学习Emacs的原因是eclipse有这个键位支持方案，后来我有坚持使用一周这个方案，最终放弃了，原因是eclipse的默认emacs方案并没有支持所有按键（我最不能忍受的是系统自动提示的时候，Ctrl+N并不能当做↓来使用），Google了一下，发现一个eclipse的emacs插件（<a href="http://www.mulgasoft.com/">Emacs+ Eclipse Plug-in</a>）,但是作者已经不维护了，新版Eclipse中使用会报错，所以现在我还忍受着手要离开主键盘去按上下左右的痛苦，
-<font color="red">这个待解决</font>。<br/>
+<font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">链接</a></font>。<br/>
 <img src="http://SargerasWang.github.io/images/blog_img/emacsPlus.png"></p></li>
 <li><p>既然是叫做“Emacs使用手册(一) 基本操作”，就说明至少还应该有“二”，不能假装忘记，
-<font color="red">这个待解决</font>。</p></li>
+<font color="green">这个已解决<a href="http://SargerasWang.github.iohttp://127.0.0.1:4000/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">链接</a></font>。</p></li>
 <li><p>在<a href="http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a> 最后，有提出两点&#8221;不尽人意之处&#8221;，
 <font color="green">2013-12-10 这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font>。</p></li>
 <li><p>在<a href="http://SargerasWang.github.io/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a>写完之后，我有大概看过整个生成的项目，其中除了我想要的Spring+Struts2+Hibernate之外，有太多太多的其他东西。所以不适用，后来我又试了简易版的Light版，好像有好一些，但总是觉得不如从头自己搭建一个来的舒心，吃的放心，就这么定了，自己搭建一个，然后过程记录在博客里，
@@ -3747,17 +3803,6 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 <p>频率暂定最少3天一篇，内容嘛，这博客刚刚搭建起来，关于Octopress和MarkDown语法的学习，应该可以写几篇了，之后或许会读一次《Java核心技术》，写读书笔记，或者从头学习IOS开发，写学习笔记。</p>
 
 <p>为梦想而努力吧！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[github 搭建博客成功]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/11/github-da-jian-bo-ke-cheng-gong/"/>
-    <updated>2013-11-11T23:36:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/11/github-da-jian-bo-ke-cheng-gong</id>
-    <content type="html"><![CDATA[<p>这是我在github上写下的第一篇文章，只为纪念愚笨的我搞了好几天的成果！</p>
-
-<p>现在太晚了，明天整理一下过程中遇到的问题。</p>
 ]]></content>
   </entry>
   

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>配置每次new_post后自动用Mou打开文章(续) - 程序员小刚</title>
+  <title>Mac 下 Eclipse 使用Emac按键的设置 - 程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="已经有超过10天没有写过博客了，最近读完了Linux发明者林纳斯·托瓦兹的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。 这篇还是来擦屁股的，之前一篇配置每次new_post后自动用Mou打开文章, &hellip;">
+  <meta name="description" content="来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。好吧，主要是填坑10篇vs19天博客撰写小结 需要什么 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://SargerasWang.github.io/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -100,7 +100,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   <header>
     
       
-        <h1 class="entry-title">配置每次new_post后自动用Mou打开文章(续)</h1>
+        <h1 class="entry-title">Mac 下 Eclipse 使用Emac按键的设置</h1>
       
     
     
@@ -117,49 +117,61 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-12-19T22:13:00+08:00" pubdate data-updated="true">2013-12-19</time>
+<time datetime="2014-05-09T16:41:00+08:00" pubdate data-updated="true">2014-05-09</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><blockquote><p>已经有超过10天没有写过博客了，最近读完了Linux发明者<a href="http://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。</p></blockquote>
+<div class="entry-content"><blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
 
 <!-- more -->
 
 
-<p>这篇还是来擦屁股的，之前一篇<a href="http://SargerasWang.github.io/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>,用了几次之后发现一个小问题，就是当我使用了<code>rake new_post['xxx']</code>之后，确实帮我使用Mou打开Markdown文件了，但是当前shell就没法用了，只有退出Mou后才可以使用。</p>
+<h3>需要什么</h3>
 
-<p>最近一直在找解决办法，今天终于找到了，就是<code>open</code>命令加上<code>-a</code>参数，官方是这样描述的：</p>
+<p>首先要分析需求，很简单，我不想让右手离开主键位区，去找上下左右按键。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>-a                Opens with the specified application.</span></code></pre></td></tr></table></div></figure>
+<p>那么，我需要能修改以下按键 ：</p>
 
-
-<p>那么，单独在shell中使用的代码就是：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>open -a /Applications/Mou.app/Contents/MacOS/Mou xxx.markdown
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>测试成功，修改<code>Rakefile</code>文件中的：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">editor</span>   <span class="o">=</span> <span class="s2">&quot;/Applications/Mou.app/Contents/MacOS/Mou&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>上</li>
+<li>下</li>
+<li>左</li>
+<li>右</li>
+<li>行头</li>
+<li>行尾</li>
+</ul>
 
 
-<p>为：</p>
+<h3>Keys很强大</h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">editor</span>   <span class="o">=</span> <span class="s2">&quot;open -a /Applications/Mou.app/Contents/MacOS/Mou&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<ol>
+<li>去 eclipse->Preferences (快捷键 <code>Commend+，</code>)，filter中输入<code>Kyes</code>.
+<img src="/images/blog_img/eclipse_keys.png" alt="" /></li>
+<li>设置以下按键
+
+<ul>
+<li>上 <code>Line Up</code> 为 <code>Ctrl+P</code></li>
+<li>下 <code>Line Down</code> 为 <code>Ctrl+N</code></li>
+<li>左 <code>Previous Column</code> 为 <code>Ctrl+B</code></li>
+<li>右 <code>Next Column</code> 为 <code>Ctrl+F</code></li>
+<li>行头 <code>Line Start</code> 为 <code>Ctrl+A</code></li>
+<li>行尾 <code>Line End</code> 为 <code>Ctrl+E</code><br/>
+<img src="/images/blog_img/eclipse_keys2.png" alt="" /></li>
+</ul>
+</li>
+</ol>
 
 
-<p>大功告成，shell与Mou互不影响，效果如图：<br/>
-<img src="/images/blog_img/newpost.png" alt="" /></p>
+<h3>OK了，解放你的右胳膊吧</h3>
+
+<p>之所以现在才写这篇，是因为我一直认为<code>左</code>和<code>右</code>应该是<code>Back</code>和<code>Forward</code>,一直无法使用，甚是恼火，直到我看了eclipse自带的emacs按键方案。</p>
+
+<p><img src="/images/blog_img/eclipse_keys3.png" alt="" /></p>
+
+<blockquote><p>哈，到现在，当初的坑就剩下最后一个了 <strong>使用maven搭建SSH框架</strong></p></blockquote>
 </div>
 
 
@@ -182,7 +194,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-12-19T22:13:00+08:00" pubdate data-updated="true">2013-12-19</time>
+<time datetime="2014-05-09T16:41:00+08:00" pubdate data-updated="true">2014-05-09</time>
       
 
 
@@ -202,7 +214,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 		<tr>
 		<td>&nbsp;</td>
 		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="配置每次new_post后自动用Mou打开文章(续):已经有超过10天没有写过博客了，最近读完了Linux发明者林纳斯·托瓦兹的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/newpost.png|">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Mac 下 Eclipse 使用Emac按键的设置:来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/emac_eclipse.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys2.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys3.png|">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
@@ -214,10 +226,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/" title="Previous Post: Octopress添加腾讯微博分享中图片的问题">&laquo; Octopress添加腾讯微博分享中图片的问题</a>
+        <a class="basic-alignment left articlenav" href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/" title="Previous Post: 花信之年-二十四岁">&laquo; 花信之年-二十四岁</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2014/01/04/zong-jie-he-zhan-wang/" title="Next Post: 总结和展望">总结和展望 &raquo;</a>
       
     </p>
   </footer>
