@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://SargerasWang.github.io/atom.xml" rel="self"/>
   <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-05-09T17:38:13+08:00</updated>
+  <updated>2014-05-12T11:47:04+08:00</updated>
   <id>http://SargerasWang.github.io/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -18,7 +18,10 @@
     <link href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/"/>
     <updated>2014-05-09T16:41:00+08:00</updated>
     <id>http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi</id>
-    <content type="html"><![CDATA[<blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
+    <content type="html"><![CDATA[<!--test -->
+
+
+<blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
 
 <!-- more -->
 
