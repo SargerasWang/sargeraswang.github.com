@@ -14,7 +14,7 @@ images: [/images/blog_img/emac_eclipse.png,
 [eclipse_keys]: {{page.images[1]}}
 [eclipse_keys2]: {{page.images[2]}}
 [eclipse_keys3]: {{page.images[3]}}
-
+<!--test -->
 > 来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。**好吧，主要是填坑[10篇vs19天博客撰写小结]({{ site.url }}/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/)**
 <!-- more -->
 ###需要什么
