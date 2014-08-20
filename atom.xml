@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://SargerasWang.github.io/atom.xml" rel="self"/>
   <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-05-12T11:47:04+08:00</updated>
+  <updated>2014-08-20T20:31:17+08:00</updated>
   <id>http://SargerasWang.github.io/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法]]></title>
+    <link href="http://SargerasWang.github.io/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/"/>
+    <updated>2014-08-20T20:21:00+08:00</updated>
+    <id>http://SargerasWang.github.io/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa</id>
+    <content type="html"><![CDATA[<p><img src="http://SargerasWang.github.io/images/blog_img/mysql_status.png" alt="" /></p>
+
+<p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> [ERROR] /usr/local/mysql/bin/mysqld: unknown variable
+</span><span class='line'> 'default-character-set=utf8'
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>后来Google到<a href="http://lists.mysql.com/mysql/226319">官网的这篇文章</a>.</p>
+
+<p>其中说道:<code>The above link says default-character-set is depreciated and you should
+be   using  character-set-server. It also states default-character-set
+was removed in v5.5.3.</code></p>
+
+<p>解决方法:把<code>my.cnf</code> 中的</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>default-character-set=utf8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改为</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>character-set-server=utf8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>成功启动mysql.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac 下 Eclipse 使用Emac按键的设置]]></title>
@@ -3715,97 +3753,6 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 <h4>完成</h4>
 
 <p>到此，评论功能添加完成，<strong>enjoy it</strong>!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于我遇到的问题]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti/"/>
-    <updated>2013-11-12T21:26:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti</id>
-    <content type="html"><![CDATA[<h3>环境</h3>
-
-<p>Mac OSX 10.9 (已安装XCode 5.0.1)</p>
-
-<h3>流程</h3>
-
-<p>我是按照<a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/" title="利用Octopress搭建一个Github博客">这篇文章</a>来操作的。</p>
-
-<h4>安装ruby</h4>
-
-<p>这里打上命令试了好久都不行，最后发现，原来系统里已经有ruby了，不知道是OSX10.9自带的还是XCode带的。利用</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby -v
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就可以看到，目前使用的ruby版本号。就像我这里显示的是：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby 2.0.0p247 <span class="o">(</span>2013-06-27 revision 41674<span class="o">)</span> <span class="o">[</span>universal.x86_64-darwin13<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>安装Octopress</h4>
-
-<!--more-->
-
-
-<p>这步的时候，已经有了先前的经验，我知道自己已经有git了，</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>octopress
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>还是很顺利的。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install bundlerrbenv rehash
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就没那么顺利了，看起来是网络的问题，google了一下，有一个解决方案就是把sources替换掉。<a href="http://ruby.taobao.org/">这里</a>有如何使用的教程。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem sources --remove https://rubygems.org/
-</span><span class='line'><span class="nv">$ </span>gem sources -a http://ruby.taobao.org/
-</span><span class='line'><span class="nv">$ </span>gem sources -l
-</span><span class='line'>*** CURRENT SOURCES ***
-</span><span class='line'>http://ruby.taobao.org
-</span><span class='line'><span class="c"># 请确保只有 ruby.taobao.org</span>
-</span><span class='line'><span class="nv">$ </span>gem install rails
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>后续操作</h4>
-
-<p>在后面的<strong>配置Octopress</strong>、<strong>将博客部署到GitHub上</strong>、<strong>开始写博客</strong>，都没有什么问题。</p>
-
-<h4>更换主题</h4>
-
-<p>如果对默认的主题不爽，可以安装第三方主题，链接在这里：<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes</a></p>
-
-<h3>如何坚持写博客？</h3>
-
-<p>关于程序员为什么应该写博客的文章数不胜数，之前的我也经常找借口不写，比方说xx空间，xx博客都不适合我写东西。</p>
-
-<p>现在，自己给自己绝了后路（这是一种自控的方式，参见《自控力》一书）没有了借口。</p>
-
-<p>但是，想让一个长远目标真的能实现，就要有计划，而计划的难以程度要以自己能办到，且不会太容易为基准。而且要有内容可写。</p>
-
-<p>频率暂定最少3天一篇，内容嘛，这博客刚刚搭建起来，关于Octopress和MarkDown语法的学习，应该可以写几篇了，之后或许会读一次《Java核心技术》，写读书笔记，或者从头学习IOS开发，写学习笔记。</p>
-
-<p>为梦想而努力吧！</p>
 ]]></content>
   </entry>
   

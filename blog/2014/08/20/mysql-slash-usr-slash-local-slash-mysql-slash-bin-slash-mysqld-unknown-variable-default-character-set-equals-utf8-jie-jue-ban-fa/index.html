@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mac 下 Eclipse 使用Emac按键的设置 - 程序员小刚</title>
+  <title>mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法 - 程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。好吧，主要是填坑10篇vs19天博客撰写小结 需要什么 &hellip;">
+  <meta name="description" content="为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
+2 [ERROR] /usr/local/mysql/bin/mysqld: unknown variable 'default-character-set=utf8' &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -100,7 +101,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   <header>
     
       
-        <h1 class="entry-title">Mac 下 Eclipse 使用Emac按键的设置</h1>
+        <h1 class="entry-title">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</h1>
       
     
     
@@ -117,64 +118,43 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-05-09T16:41:00+08:00" pubdate data-updated="true">2014-05-09</time>
+<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><!--test -->
+<div class="entry-content"><p><img src="/images/blog_img/mysql_status.png" alt="" /></p>
+
+<p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> [ERROR] /usr/local/mysql/bin/mysqld: unknown variable
+</span><span class='line'> 'default-character-set=utf8'
+</span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
+<p>后来Google到<a href="http://lists.mysql.com/mysql/226319">官网的这篇文章</a>.</p>
 
-<!-- more -->
+<p>其中说道:<code>The above link says default-character-set is depreciated and you should
+be   using  character-set-server. It also states default-character-set
+was removed in v5.5.3.</code></p>
 
+<p>解决方法:把<code>my.cnf</code> 中的</p>
 
-<h3>需要什么</h3>
-
-<p>首先要分析需求，很简单，我不想让右手离开主键位区，去找上下左右按键。</p>
-
-<p>那么，我需要能修改以下按键 ：</p>
-
-<ul>
-<li>上</li>
-<li>下</li>
-<li>左</li>
-<li>右</li>
-<li>行头</li>
-<li>行尾</li>
-</ul>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>default-character-set=utf8</span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Keys很强大</h3>
+<p>修改为</p>
 
-<ol>
-<li>去 eclipse->Preferences (快捷键 <code>Commend+，</code>)，filter中输入<code>Kyes</code>.
-<img src="/images/blog_img/eclipse_keys.png" alt="" /></li>
-<li>设置以下按键
-
-<ul>
-<li>上 <code>Line Up</code> 为 <code>Ctrl+P</code></li>
-<li>下 <code>Line Down</code> 为 <code>Ctrl+N</code></li>
-<li>左 <code>Previous Column</code> 为 <code>Ctrl+B</code></li>
-<li>右 <code>Next Column</code> 为 <code>Ctrl+F</code></li>
-<li>行头 <code>Line Start</code> 为 <code>Ctrl+A</code></li>
-<li>行尾 <code>Line End</code> 为 <code>Ctrl+E</code><br/>
-<img src="/images/blog_img/eclipse_keys2.png" alt="" /></li>
-</ul>
-</li>
-</ol>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>character-set-server=utf8</span></code></pre></td></tr></table></div></figure>
 
 
-<h3>OK了，解放你的右胳膊吧</h3>
-
-<p>之所以现在才写这篇，是因为我一直认为<code>左</code>和<code>右</code>应该是<code>Back</code>和<code>Forward</code>,一直无法使用，甚是恼火，直到我看了eclipse自带的emacs按键方案。</p>
-
-<p><img src="/images/blog_img/eclipse_keys3.png" alt="" /></p>
-
-<blockquote><p>哈，到现在，当初的坑就剩下最后一个了 <strong>使用maven搭建SSH框架</strong></p></blockquote>
+<p>成功启动mysql.</p>
 </div>
 
 
@@ -197,7 +177,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-05-09T16:41:00+08:00" pubdate data-updated="true">2014-05-09</time>
+<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
       
 
 
@@ -217,7 +197,8 @@ $(document).bind('DOMNodeInserted', function(event) {
 		<tr>
 		<td>&nbsp;</td>
 		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Mac 下 Eclipse 使用Emac按键的设置:来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/emac_eclipse.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys2.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys3.png|">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法:为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
+2 [ERROR] /usr/local/mysql/bin/mysqld: unknown &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/mysql_status.png|">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
@@ -229,10 +210,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/" title="Previous Post: 花信之年-二十四岁">&laquo; 花信之年-二十四岁</a>
+        <a class="basic-alignment left articlenav" href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/" title="Previous Post: Mac 下 Eclipse 使用Emac按键的设置">&laquo; Mac 下 Eclipse 使用Emac按键的设置</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/" title="Next Post: mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法">mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法 &raquo;</a>
       
     </p>
   </footer>

@@ -9,7 +9,8 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content=" 来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。好吧，主要是填坑10篇vs19天博客撰写小结 ">
+  <meta name="description" content="为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
+2 [ERROR] /usr/local/mysql/bin/mysqld: unknown variable 'default-character-set=utf8' &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,6 +97,73 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/blog_img/mysql_status.png" alt="" /></p>
+
+<p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> [ERROR] /usr/local/mysql/bin/mysqld: unknown variable
+</span><span class='line'> 'default-character-set=utf8'
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>后来Google到<a href="http://lists.mysql.com/mysql/226319">官网的这篇文章</a>.</p>
+
+<p>其中说道:<code>The above link says default-character-set is depreciated and you should
+be   using  character-set-server. It also states default-character-set
+was removed in v5.5.3.</code></p>
+
+<p>解决方法:把<code>my.cnf</code> 中的</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>default-character-set=utf8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改为</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>character-set-server=utf8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>成功启动mysql.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -527,54 +595,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/12/06/googleyi-jing-shou-lu-liao/">Google已经收录了</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-06T21:36:00+08:00" pubdate data-updated="true">2013-12-06</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在<a href="">上一篇文章</a>中，说道了最后一个问题。
-就是这个使用Octopress在Github上搭建的博客，没有被Google收录的问题，最近闲来又自恋的搜索了一下，发现已经被收录了。</p>
-
-<p><img src="/images/blog_img/google.png"></p>
-
-<p>如上图中的最后一个就是了。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/06/googleyi-jing-shou-lu-liao/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -590,6 +610,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">Mac 下 Eclipse 使用Emac按键的设置</a>
       </li>
     
@@ -603,10 +627,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
       </li>
     
   </ul>
