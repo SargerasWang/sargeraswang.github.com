@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://SargerasWang.github.io/atom.xml" rel="self"/>
   <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-08-20T20:31:17+08:00</updated>
+  <updated>2014-08-20T20:41:24+08:00</updated>
   <id>http://SargerasWang.github.io/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -31,7 +31,9 @@
 
 <p>后来Google到<a href="http://lists.mysql.com/mysql/226319">官网的这篇文章</a>.</p>
 
-<p>其中说道:<code>The above link says default-character-set is depreciated and you should
+<p>其中说道:</p>
+
+<p><code>The above link says default-character-set is depreciated and you should
 be   using  character-set-server. It also states default-character-set
 was removed in v5.5.3.</code></p>
 
