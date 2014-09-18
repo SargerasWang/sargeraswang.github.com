@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>在Octopress中添加腾讯微博一键分享功能 - 程序员小刚</title>
+  <meta name="author" content="SargerasWang">
+
+  
+  <meta name="description" content="前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
+Emacs使用手册系列要过几天才能写了。
+接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。 申请一键分享代码 先去腾讯微博开放平台登陆后,点【网站接入】 再点【一键分享】 再点【立即使用】 然后填写【 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:SargerasWang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">在Octopress中添加腾讯微博一键分享功能</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-22T19:04:00+08:00" pubdate data-updated="true">2013-11-22</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
+Emacs使用手册系列要过几天才能写了。
+接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。</p></blockquote>
+
+<p><img src="/images/blog_img/qqweibo.png"></p>
+
+<!-- more -->
+
+
+<h3>申请一键分享代码</h3>
+
+<p>先去<a href="http://dev.t.qq.com/">腾讯微博开放平台</a>登陆后,点【网站接入】<br/>
+<img src="/images/blog_img/wangzhanjieru.png" width="160"><br/>
+再点【一键分享】<br/>
+<img src="/images/blog_img/yijianfenxiang.png" width="160"><br/>
+再点【立即使用】<br/>
+<img src="/images/blog_img/lijishiyong.png">
+然后填写【网站名称】和【网站地址】，选择一个样式，点【获取代码】<br/>
+然后你可以看到两段代码：<br/>
+一段是DIV</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qqwb_share__&quot;</span> <span class="na">data-appkey=</span><span class="s">&quot;你的key&quot;</span> <span class="na">data-icon=</span><span class="s">&quot;0&quot;</span> <span class="na">data-counter=</span><span class="s">&quot;0&quot;</span> <span class="na">data-content=</span><span class="s">&quot;{title}&quot;</span> <span class="na">data-pic=</span><span class="s">&quot;{pic}&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一段是JavaScript</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>添加代码到Octopress</h3>
+
+<h4>第一段div</h4>
+
+<p>打开octopress/source/_includes/post/sharing.html<br/>
+加入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.qq_weibo %}
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qqwb_share__&quot;</span> <span class="na">data-appkey=</span><span class="s">&quot;{{site.qq_weibo_key}}&quot;</span> <span class="na">data-icon=</span><span class="s">&quot;1&quot;</span> <span class="na">data-counter=</span><span class="s">&quot;0&quot;</span> <span class="na">data-counter_pos=</span><span class="s">&quot;{{qq_weibo_data_pos}}&quot;</span> <span class="na">data-content=</span><span class="s">&quot;{{page.title}}&quot;</span> <span class="na">data-pic=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后打开_config.yml
+加入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'># qq weibo
+</span><span class='line'>qq_weibo: true
+</span><span class='line'>qq_weibo_key: 你的key
+</span><span class='line'>qq_weibo_data_pos: right
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>第二段JavaScript</h4>
+
+<p>打开octopress/source/_includes/custom/head.html<br/>
+加入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>测试</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>rake generate
+</span><span class='line'>rake preview
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看下效果，应该就可以了</p>
+
+<h3>初阶完善</h3>
+
+<h4>位置问题</h4>
+
+<p>上面的代码生成后，一键分享按钮在画面的左对齐，看着很不顺眼，我想要他居中。试了下在div上加 <code>style="text-align:center;"</code>,没有用，用开发者模式看一下这个div，发现：</p>
+
+<p><img src="/images/blog_img/divDebug.png"></p>
+
+<p>Div上被加了<code>style="textalign:left;"</code>的属性，那段JavaScript一定是凶手，然后就去看<a href="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no">这段JavaScript  </a>（一坨代码，你可以用GoogleChrome的<a href="https://chrome.google.com/webstore/detail/piekbefgpgdecckjcpffhnacjflfoddg">这个插件</a>来格式化一下，方便阅读），搜索<code>text-align:left</code>,找到了：<br/>
+<img src="/images/blog_img/textAlign.png"></p>
+
+<p>凶手是找到了，可是尝试过加一段JavaScript盖掉<code>text-align</code>,没有起到作用，一定是我的JavaScript功力不够。换个思路，最后决定用table了。最终可以达到居中效果的完整代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.qq_weibo %}
+</span><span class='line'><span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">&quot;100%&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;tr&gt;</span>
+</span><span class='line'><span class="nt">&lt;td&gt;</span><span class="ni">&amp;nbsp;</span><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;td</span> <span class="na">width=</span><span class="s">&quot;62px&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qqwb_share__&quot;</span> <span class="na">data-appkey=</span><span class="s">&quot;{{site.qq_weibo_key}}&quot;</span> <span class="na">data-icon=</span><span class="s">&quot;1&quot;</span> <span class="na">data-counter=</span><span class="s">&quot;0&quot;</span> <span class="na">data-counter_pos=</span><span class="s">&quot;{{qq_weibo_data_pos}}&quot;</span> <span class="na">data-content=</span><span class="s">&quot;{{page.title}}&quot;</span> <span class="na">data-pic=</span><span class="s">&quot;{{site.url}}/images/blog-title.png&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;td&gt;</span><span class="ni">&amp;nbsp;</span><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;/tr&gt;</span>
+</span><span class='line'><span class="nt">&lt;/table&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>不尽人意之处</h3>
+
+<ol>
+<li>image应该可以读取文章中的所有图片才对，后续研究后补到这里。</li>
+<li>最后用table定位居中的方式蠢了一些，后续有更好的解决办法再补到这里。
+<font color="green">@2013-12-10 这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font></li>
+</ol>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-22T19:04:00+08:00" pubdate data-updated="true">2013-11-22</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+		
+	
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="在Octopress中添加腾讯微博一键分享功能:前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
+Emacs使用手册系列要过几天才能写了。
+接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。 &hellip;" data-pic="http://SargerasWang.github.io/images/blog-title.png">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2013/11/17/emacsshi-yong-shou-ce/" title="Previous Post: Emacs使用手册(一) 基本操作">&laquo; Emacs使用手册(一) 基本操作</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/" title="Next Post: Appfuse搭建SSH的问题与解决">Appfuse搭建SSH的问题与解决 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">Mac 下 Eclipse 使用Emac按键的设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/">花信之年-二十四岁</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">Emacs使用手册(二) 使用进阶</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>About Me</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - SargerasWang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Markdown 语法说明 - 程序员小刚</title>
+  <meta name="author" content="SargerasWang">
+
+  
+  <meta name="description" content="区块元素 段落和换行 通常的回车并不会换行，插入一个空行会产生一个空行。
+强制换行可以使用 &lt;br/&gt; 1
+2
+这是第一行
+这是第二行 这并不会产生换行 效果如图 标题 一到六个#分别对应H1~H6 1
+2
+3
+4
+5
+6
+#H1
+##H2
+###H3
+####H4
+#####H5 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2013/11/16/markdown-yu-fa-shuo-ming/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:SargerasWang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Markdown 语法说明</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-16T19:08:00+08:00" pubdate data-updated="true">2013-11-16</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>区块元素</h1>
+
+<h2>段落和换行</h2>
+
+<p>通常的回车并不会换行，插入一个空行会产生一个空行。
+强制换行可以使用 <code>&lt;br/&gt;</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>这是第一行
+</span><span class='line'>这是第二行 这并不会产生换行</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如图<br/>
+<img src="/images/blog_img/brTag.png"></p>
+
+<h2>标题</h2>
+
+<p>一到六个<code>#</code>分别对应<code>H1~H6</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#H1
+</span><span class='line'>##H2
+</span><span class='line'>###H3
+</span><span class='line'>####H4
+</span><span class='line'>#####H5
+</span><span class='line'>######H6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如图<br/>
+<img src="/images/blog_img/H1H6.png"></p>
+
+<!-- more -->
+
+
+<h2>区块引用</h2>
+
+<p>引经据典的时候在每行第一个字符使用<code>&gt;</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;Learn basic keystroke commands
+</span><span class='line'>&gt;Emacs Guided Tour Overview of Emacs features at gnu.org
+</span><span class='line'>&gt;View Emacs Manual View the Emacs manual using Info
+</span><span class='line'>&gt;
+</span><span class='line'>&gt;Copying Conditions    Conditions for redistributing and &gt;changing Emacs
+</span><span class='line'>&gt;Ordering Manuals  Purchasing printed copies of manuals</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<blockquote><p>Learn basic keystroke commands
+Emacs Guided Tour  Overview of Emacs features at gnu.org
+View Emacs Manual  View the Emacs manual using Info</p>
+
+<p>Copying Conditions Conditions for redistributing and >changing Emacs
+Ordering Manuals   Purchasing printed copies of manuals</p></blockquote>
+
+<p>MarkDown也允许只在段落的第一行最前面加上<code>&gt;</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;Learn basic keystroke commands
+</span><span class='line'>Emacs Guided Tour Overview of Emacs features at gnu.org
+</span><span class='line'>View Emacs Manual View the Emacs manual using Info
+</span><span class='line'>
+</span><span class='line'>&gt;Copying Conditions    Conditions for redistributing and changing Emacs
+</span><span class='line'>Ordering Manuals  Purchasing printed copies of manuals</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果与上面一样。<br />
+区块引用可以嵌套</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;Learn basic keystroke commands
+</span><span class='line'>&gt;
+</span><span class='line'>&gt;&gt;Emacs Guided Tour Overview of Emacs features at gnu.org
+</span><span class='line'>&gt;
+</span><span class='line'>&gt;View Emacs Manual View the Emacs manual using Info</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<blockquote><p>Learn basic keystroke commands</p>
+
+<blockquote><p>Emacs Guided Tour Overview of Emacs features at gnu.org</p></blockquote>
+
+<p>View Emacs Manual  View the Emacs manual using Info</p></blockquote>
+
+<p>引用的区块内也可以使用其他的MarkDown语法，包括标题、列表、代码区块等。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;##这是一个标题
+</span><span class='line'>&gt;
+</span><span class='line'>&gt;1. 这是第一行列表项
+</span><span class='line'>&gt;2. 这是第二行列表项
+</span><span class='line'>&gt;
+</span><span class='line'>&gt;给出一些例子代码：
+</span><span class='line'>&gt;
+</span><span class='line'>&gt;  ```public static void main()```</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<blockquote><h2>这是一个标题</h2>
+
+<ol>
+<li>这是第一行列表项</li>
+<li>这是第二行列表项</li>
+</ol>
+
+
+<p>给出一些例子代码：</p>
+
+<p>  <code>public static void main()</code></p></blockquote>
+
+<h2>列表</h2>
+
+<p>无序列表使用星号、加号或减号作为列表标记</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>* 红
+</span><span class='line'>* 绿
+</span><span class='line'>* 蓝
+</span><span class='line'>+ 红
+</span><span class='line'>+ 绿
+</span><span class='line'>+ 蓝
+</span><span class='line'>- 红
+</span><span class='line'>- 绿
+</span><span class='line'>- 蓝</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<ul>
+<li>红</li>
+<li>绿</li>
+<li>蓝</li>
+<li>红</li>
+<li>绿</li>
+<li>蓝</li>
+<li>红</li>
+<li>绿</li>
+<li>蓝</li>
+</ul>
+
+
+<p>有序列表使用数字加英文句点加空格</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 加菲猫
+</span><span class='line'>2. 机器猫
+</span><span class='line'>3. 黑猫警长</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<ol>
+<li>加菲猫</li>
+<li>机器猫</li>
+<li>黑猫警长</li>
+</ol>
+
+
+<p><strong>注意：数字不会影响到结果</strong>，就算你写成这样</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1. 加菲猫
+</span><span class='line'>1. 机器猫
+</span><span class='line'>1. 黑猫警长</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果还是：</p>
+
+<ol>
+<li>加菲猫</li>
+<li>机器猫</li>
+<li>黑猫警长</li>
+</ol>
+
+
+<p><strong>但最好还是按照顺序写，因为将来MarkDown可能会支持这种属性</strong></p>
+
+<p>列表项目里也可以放入引用或代码块</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>* Learn basic keystroke commands
+</span><span class='line'>  &gt; Emacs Guided Tour  Overview of Emacs features at gnu.org
+</span><span class='line'>* View Emacs Manual   View the Emacs manual using Info
+</span><span class='line'>* ```public static void main(String[] arg1)```</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<ul>
+<li>Learn basic keystroke commands
+
+<blockquote><p>Emacs Guided Tour Overview of Emacs features at gnu.org</p></blockquote></li>
+<li>View Emacs Manual View the Emacs manual using Info</li>
+<li><code>public static void main(String[] arg1)</code></li>
+</ul>
+
+
+<p>当然，项目列表很可能无意中产生，比方说</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1949. 中华人民共和国成立！</span></code></pre></td></tr></table></div></figure>
+
+
+<p>会变成</p>
+
+<ol>
+<li>. 中华人民共和国成立！</li>
+</ol>
+
+
+<p>所以需要在<code>.</code>前面加入<code>\</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1949\. 中华人民共和国成立！</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就正常了：</p>
+
+<p>1949. 中华人民共和国成立！</p>
+
+<h2>代码区块</h2>
+
+<p>用三个反引号表示代码区块</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>```这里写代码```</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>分割线</h2>
+
+<p>在一行中用三个以上的星号、减号、底线来建立一个分割线，行内不能有其他东西，可以再星号或是减号中间插入空格。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>***
+</span><span class='line'>---
+</span><span class='line'>___
+</span><span class='line'>* * *
+</span><span class='line'>-     - -
+</span><span class='line'>_ _       _</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h1>区段元素</h1>
+
+<h2>链接</h2>
+
+<p>MarkDown 支持两种形式的链接语法：<strong>行内式</strong>和<strong>参考式</strong>两种。</p>
+
+<h3>行内式</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>这是一个[链接](http://www.google.com "Gooooooogle")的例子。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如：</p>
+
+<p>这是一个<a href="http://www.google.com" title="Gooooooogle">链接</a>的例子。</p>
+
+<p>双引号中的文字是在鼠标悬浮在链接上时显示的。</p>
+
+<h3>参考式</h3>
+
+<p>在链接的方括号后面再接一个方括号，里面写id，这个id可以再任何地方声明</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[googleLink]: http://www.google.com "Gooooooogle"
+</span><span class='line'>这是一个[链接][googleLink]的例子。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<p>这是一个<a href="http://www.google.com" title="Gooooooogle">链接</a>的例子。</p>
+
+<p>id标签可以有字母、数字、空白和标点符号，但是忽略大小写。<br />
+参考式的优点在于更容易后期修改，整篇文章的所有链接写在一起更容易管理。</p>
+
+<p><strong>隐式链接</strong>
+允许第二个中括号中什么都不写，那认为第一个中括号中的文字就是ID。如下写法：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[链接]: http://www.google.com "Gooooooogle"
+</span><span class='line'>这是一个[链接][]的例子。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是一个<a href="http://www.google.com" title="Gooooooogle">链接</a>的例子。</p>
+
+<h2>强调</h2>
+
+<p>使用星号<code>*</code>或者底线<code>_</code>强调字词</p>
+
+<ul>
+<li>一个表示倾斜，会转换成<code>&lt;em&gt;</code></li>
+<li>两个表示加粗，会转换成<code>&lt;strong&gt;</code></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>*倾斜* _这样也能倾斜_
+</span><span class='line'>**加粗** __这样也能加粗__</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<p><em>倾斜</em> <em>这样也能倾斜</em>
+<strong>加粗</strong> <strong>这样也能加粗</strong></p>
+
+<h2>图片</h2>
+
+<p>也分<strong>行内式</strong>和<strong>参考式</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>行内式：
+</span><span class='line'>![描述](/images/blog_img/tenten.jpg "标题")
+</span><span class='line'>参考式：
+</span><span class='line'>![描述][tImg]
+</span><span class='line'>[tImg]: /images/blog_img/tenten.jpg "标题"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<p><img src="/images/blog_img/tenten.jpg" title="标题" alt="描述" />
+参考式：
+<img src="/images/blog_img/tenten.jpg" title="标题" alt="描述" />
+目前MarkDown不支持设置图片宽高，如果必须设置，请使用<code>&lt;img&gt;</code>标签。</p>
+
+<h2>其它</h2>
+
+<h3>注脚</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>That's some text with a footnote.[^1]
+</span><span class='line'>
+</span><span class='line'>[^1]: And that's the footnote.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果要点这句话最后的小1：<br/>
+That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<h3>删除线</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>有些话说的影响和谐，就要~~~被删除~~~</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：<br/>
+有些话说的影响和谐，就要<del>被删除</del></p>
+
+<h3>表格(在Octopress中并没有画出线，后续解决(2013-12-09，<a href="http://SargerasWang.github.io/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">问题已解决</a>))</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>First Header | Second Header | Third Header
+</span><span class='line'>------------ | ------------- | ------------
+</span><span class='line'>Content Cell | Content Cell  | Content Cell
+</span><span class='line'>Content Cell | Content Cell  | Content Cell
+</span><span class='line'>
+</span><span class='line'>| First Header | Second Header | Third Header |
+</span><span class='line'>| ------------ | ------------- | ------------ |
+</span><span class='line'>| Content Cell | Content Cell  | Content Cell |
+</span><span class='line'>| Content Cell | Content Cell  | Content Cell |
+</span><span class='line'>
+</span><span class='line'>First Header | Second Header | Third Header
+</span><span class='line'>:----------- | :-----------: | -----------:
+</span><span class='line'>Left         | Center        | Right
+</span><span class='line'>Left         | Center        | Right</span></code></pre></td></tr></table></div></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>First Header </th>
+<th> Second Header </th>
+<th> Third Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell </td>
+<td> Content Cell  </td>
+<td> Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell </td>
+<td> Content Cell  </td>
+<td> Content Cell</td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> First Header </th>
+<th> Second Header </th>
+<th> Third Header </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Content Cell </td>
+<td> Content Cell  </td>
+<td> Content Cell |</td>
+</tr>
+<tr>
+<td></td>
+<td> Content Cell </td>
+<td> Content Cell  </td>
+<td> Content Cell |</td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th align="left">First Header </th>
+<th align="center"> Second Header </th>
+<th align="right"> Third Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Left         </td>
+<td align="center"> Center        </td>
+<td align="right"> Right</td>
+</tr>
+<tr>
+<td align="left">Left         </td>
+<td align="center"> Center        </td>
+<td align="right"> Right</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>自动连接</h3>
+
+<p>尖括号内会自动转换为链接</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;http://www.google.com&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://www.google.com">http://www.google.com</a>
+邮件链接也可以，并且MarkDown会转换为<code>mailto:地址</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;address@example.com&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>效果如下：</p>
+
+<p><img src="/images/blog_img/mailto.png"></p>
+
+<h3>Markdown免费编辑器</h3>
+
+<ul>
+<li>Windows 平台
+
+<ul>
+<li>MarkdownPad</li>
+<li>MarkPad</li>
+</ul>
+</li>
+<li>Linux
+
+<ul>
+<li>ReText</li>
+</ul>
+</li>
+<li>Mac
+
+<ul>
+<li>Mou</li>
+</ul>
+</li>
+<li>在线编辑器
+
+<ul>
+<li>Markable.in</li>
+<li>Dillinger.io</li>
+</ul>
+</li>
+<li>浏览器插件
+
+<ul>
+<li>MaDe (Chrome)</li>
+</ul>
+</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>And that&rsquo;s the footnote.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-16T19:08:00+08:00" pubdate data-updated="true">2013-11-16</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+		
+	
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Markdown 语法说明:区块元素 段落和换行 通常的回车并不会换行，插入一个空行会产生一个空行。
+强制换行可以使用 &lt;br/&gt; 1
+2
+这是第一行
+这是第二行 这并不会产生换行 效果如图 标题 一到六个# &hellip;" data-pic="http://SargerasWang.github.io/images/blog-title.png">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/" title="Previous Post: 配置每次new_post后自动用Mou打开文章">&laquo; 配置每次new_post后自动用Mou打开文章</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2013/11/17/emacsshi-yong-shou-ce/" title="Next Post: Emacs使用手册(一) 基本操作">Emacs使用手册(一) 基本操作 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">Mac 下 Eclipse 使用Emac按键的设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/">花信之年-二十四岁</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">Emacs使用手册(二) 使用进阶</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>About Me</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - SargerasWang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>

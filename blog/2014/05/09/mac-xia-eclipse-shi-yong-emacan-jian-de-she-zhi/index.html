@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mac 下 Eclipse 使用Emac按键的设置 - 程序员小刚</title>
+  <meta name="author" content="SargerasWang">
+
+  
+  <meta name="description" content="来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。好吧，主要是填坑10篇vs19天博客撰写小结 需要什么 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:SargerasWang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Mac 下 Eclipse 使用Emac按键的设置</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-09T16:41:00+08:00" pubdate data-updated="true">2014-05-09</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
+
+<!-- more -->
+
+
+<h3>需要什么</h3>
+
+<p>首先要分析需求，很简单，我不想让右手离开主键位区，去找上下左右按键。</p>
+
+<p>那么，我需要能修改以下按键 ：</p>
+
+<ul>
+<li>上</li>
+<li>下</li>
+<li>左</li>
+<li>右</li>
+<li>行头</li>
+<li>行尾</li>
+</ul>
+
+
+<h3>Keys很强大</h3>
+
+<ol>
+<li>去 eclipse->Preferences (快捷键 <code>Commend+，</code>)，filter中输入<code>Kyes</code>.
+<img src="/images/blog_img/eclipse_keys.png" alt="" /></li>
+<li>设置以下按键
+
+<ul>
+<li>上 <code>Line Up</code> 为 <code>Ctrl+P</code></li>
+<li>下 <code>Line Down</code> 为 <code>Ctrl+N</code></li>
+<li>左 <code>Previous Column</code> 为 <code>Ctrl+B</code></li>
+<li>右 <code>Next Column</code> 为 <code>Ctrl+F</code></li>
+<li>行头 <code>Line Start</code> 为 <code>Ctrl+A</code></li>
+<li>行尾 <code>Line End</code> 为 <code>Ctrl+E</code><br/>
+<img src="/images/blog_img/eclipse_keys2.png" alt="" /></li>
+</ul>
+</li>
+</ol>
+
+
+<h3>OK了，解放你的右胳膊吧</h3>
+
+<p>之所以现在才写这篇，是因为我一直认为<code>左</code>和<code>右</code>应该是<code>Back</code>和<code>Forward</code>,一直无法使用，甚是恼火，直到我看了eclipse自带的emacs按键方案。</p>
+
+<p><img src="/images/blog_img/eclipse_keys3.png" alt="" /></p>
+
+<blockquote><p>哈，到现在，当初的坑就剩下最后一个了 <strong>使用maven搭建SSH框架</strong></p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-09T16:41:00+08:00" pubdate data-updated="true">2014-05-09</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+  		
+	
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="Mac 下 Eclipse 使用Emac按键的设置:来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用， &hellip;" data-pic="http://SargerasWang.github.io/images/blog_img/emac_eclipse.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys2.png|http://SargerasWang.github.io/images/blog_img/eclipse_keys3.png|">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/" title="Previous Post: 花信之年-二十四岁">&laquo; 花信之年-二十四岁</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">Mac 下 Eclipse 使用Emac按键的设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/">花信之年-二十四岁</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">Emacs使用手册(二) 使用进阶</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>About Me</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - SargerasWang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>
