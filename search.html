@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
@@ -95,21 +96,36 @@ $(document).bind('DOMNodeInserted', function(event) {
   <div id="main">
     <div id="content">
       <h1 class="entry-title"><center>Search Results</center></h1>
+=======
+---
+layout: default
+---
+<h1 class="entry-title"><center>Search Results</center></h1>
+>>>>>>> 92fdc341c74059a0c2b12bf919e911cce6fb6063
 <div id="search_loading" style="margin: 40px 0">
     <center><img src="/images/loading.gif"></center>
 </div>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
+=======
+<script type="text/javascript" src="{{ root_url }}/javascripts/jquery-tapir.js"></script>
+>>>>>>> 92fdc341c74059a0c2b12bf919e911cce6fb6063
 <div id="search_results" style="display:none">
 <br>
 </div>
 <script>
          $('#search_results').tapir({
+<<<<<<< HEAD
              'token': '',
+=======
+             'token': '{{ site.tapir_token }}',
+>>>>>>> 92fdc341c74059a0c2b12bf919e911cce6fb6063
              'complete' : function() { document.getElementById('search_loading').style.display="none"; }
          });
 </script>
 
+<<<<<<< HEAD
 
     </div>
   </div>
@@ -137,3 +153,5 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 </body>
 </html>
+=======
+>>>>>>> 92fdc341c74059a0c2b12bf919e911cce6fb6063

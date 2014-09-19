@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 User-agent: *
 Disallow: 
 
 Sitemap: http://SargerasWang.github.io/sitemap.xml 
+=======
+---
+layout: nil
+---
+User-agent: *
+Disallow: 
+
+Sitemap: {{ site.url }}/sitemap.xml 
+>>>>>>> 92fdc341c74059a0c2b12bf919e911cce6fb6063

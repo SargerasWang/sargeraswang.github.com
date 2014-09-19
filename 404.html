@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
@@ -197,6 +196,20 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 </article>
 
+=======
+---
+layout: page
+title: 抱歉，你要访问的网页不存在
+footer: false
+---
+<h3>看一下下面是否有你要找的东东？</h3>
+<div id="blog-archives">
+{% for post in site.posts limit: 10 %}
+<article>
+  {% include archive_post.html %}
+</article>
+{% endfor %}
+>>>>>>> 92fdc341c74059a0c2b12bf919e911cce6fb6063
 </div><!-- Duoshuo Comment BEGIN -->
 <div class="ds-thread"></div>
 <script type="text/javascript">
@@ -211,77 +224,3 @@ $(document).bind('DOMNodeInserted', function(event) {
   })();
 </script>
 <!-- Duoshuo Comment END -->
-
-  
-</article>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">Mac 下 Eclipse 使用Emac按键的设置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/">花信之年-二十四岁</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">Emacs使用手册(二) 使用进阶</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">第3章 垃圾收集器与内存分配策略</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-<section>
-  <h1>About Me</h1>
-  <p>一个正在追逐梦想的人.</p>
-  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
-     Github: <a href="https://github.com/sargeraswang">SargerasWang</a></p>
-  </p>
-</section>
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - SargerasWang -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-</body>
-</html>
