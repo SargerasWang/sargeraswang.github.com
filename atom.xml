@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-09-21T16:07:37+08:00</updated>
+  <updated>2014-09-21T16:10:46+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -18,9 +18,7 @@
     <link href="http://sargeraswang.com/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/"/>
     <updated>2014-08-20T20:21:00+08:00</updated>
     <id>http://sargeraswang.com/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa</id>
-    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/mysql_status.png" alt="" /></p>
-
-<p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
+    <content type="html"><![CDATA[<p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -53,6 +51,8 @@ was removed in v5.5.3.</code></p>
 
 
 <p>成功启动mysql.</p>
+
+<p><img src="http://sargeraswang.com/images/blog_img/mysql_status.png" alt="" /></p>
 ]]></content>
   </entry>
   
@@ -174,9 +174,7 @@ was removed in v5.5.3.</code></p>
     <link href="http://sargeraswang.com/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/"/>
     <updated>2014-03-18T19:55:00+08:00</updated>
     <id>http://sargeraswang.com/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie</id>
-    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/benpao.jpg" alt="" /></p>
-
-<blockquote><p>一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 <br/>
+    <content type="html"><![CDATA[<blockquote><p>一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 <br/>
 “外面的世界很精彩&hellip;外面的世界很无奈&hellip;北京&hellip;北京&hellip;”<br/>
 哈，没那么文艺，新的城市，新的公司，新的开始，我还是不够努力，奔跑吧！少年！</p></blockquote>
 
@@ -327,6 +325,8 @@ was removed in v5.5.3.</code></p>
 <li><code>ctrl+h a 命令</code>相关命令的搜索</li>
 </ul>
 
+
+<p><img src="http://sargeraswang.com/images/blog_img/benpao.jpg" alt="" /></p>
 ]]></content>
   </entry>
   
@@ -335,9 +335,7 @@ was removed in v5.5.3.</code></p>
     <link href="http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/"/>
     <updated>2014-02-03T16:40:00+08:00</updated>
     <id>http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue</id>
-    <content type="html"><![CDATA[<p><a href="http://item.jd.com/11252778.html"><img src="http://sargeraswang.com/images/blog_img/jvmbook.jpg" alt="" /></a></p>
-
-<h3>对象已死吗</h3>
+    <content type="html"><![CDATA[<h3>对象已死吗</h3>
 
 <h4>引用计数算法</h4>
 
@@ -348,7 +346,7 @@ was removed in v5.5.3.</code></p>
 <!-- more -->
 
 
-
+<p><a href="http://item.jd.com/11252778.html"><img src="http://sargeraswang.com/images/blog_img/jvmbook.jpg" alt="" /></a></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

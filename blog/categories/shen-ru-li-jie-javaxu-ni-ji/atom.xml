@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 深入理解java虚拟机 | 程序员小刚]]></title>
   <link href="http://sargeraswang.com/blog/categories/shen-ru-li-jie-javaxu-ni-ji/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-09-21T16:07:37+08:00</updated>
+  <updated>2014-09-21T16:10:46+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -18,9 +18,7 @@
     <link href="http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/"/>
     <updated>2014-02-03T16:40:00+08:00</updated>
     <id>http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue</id>
-    <content type="html"><![CDATA[<p><a href="http://item.jd.com/11252778.html"><img src="" alt="" /></a></p>
-
-<h3>对象已死吗</h3>
+    <content type="html"><![CDATA[<h3>对象已死吗</h3>
 
 <h4>引用计数算法</h4>
 
@@ -30,6 +28,8 @@
 
 <!-- more -->
 
+
+<p><a href="http://item.jd.com/11252778.html"><img src="" alt="" /></a></p>
 
 <p>``` java
 /<em>*
