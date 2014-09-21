@@ -9,8 +9,8 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
-2 [ERROR] /usr/local/mysql/bin/mysqld: unknown variable 'default-character-set=utf8' &hellip;">
+  <meta name="description" content=" 为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
+2 [ERROR] /usr/local/mysql/bin/mysqld: unknown variable 'default-character-set=utf8' ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -139,29 +139,12 @@ $(document).bind('DOMNodeInserted', function(event) {
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>后来Google到<a href="http://lists.mysql.com/mysql/226319">官网的这篇文章</a>.</p>
-
-<p>其中说道:</p>
-
-<p><code>The above link says default-character-set is depreciated and you should
-be   using  character-set-server. It also states default-character-set
-was removed in v5.5.3.</code></p>
-
-<p>解决方法:把<code>my.cnf</code> 中的</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>default-character-set=utf8</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改为</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>character-set-server=utf8</span></code></pre></td></tr></table></div></figure>
-
-
-<p>成功启动mysql.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">阅读全文 &rarr;</a>
+    </footer>
   
 
 
@@ -354,243 +337,6 @@ was removed in v5.5.3.</code></p>
   
     <footer>
       <a rel="full-article" href="/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-28T14:31:00+08:00" pubdate data-updated="true">2014-01-28</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。<br/>
-<a href="http://item.jd.com/11252778.html"><img src="/images/blog_img/jvmbook.jpg" alt="" /></a></p></blockquote>
-
-<h1>运行时数据区</h1>
-
-<ol>
-<li>线程共享
-
-<ol>
-<li>方法区（Method Area）</li>
-<li>（Java）堆（Heap）</li>
-</ol>
-</li>
-<li>线程私有
-
-<ol>
-<li>虚拟机栈（VM Stack）</li>
-<li>本地方法栈（Native Method Stack）</li>
-<li>程序计数器（Program Counter Register）</li>
-</ol>
-
-
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/01/04/zong-jie-he-zhan-wang/">总结和展望</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-04T12:06:00+08:00" pubdate data-updated="true">2014-01-04</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>新年到，很多大牛都在blog上写下自己的2013总结。回想一下自己，13年的变化还蛮大的，写下来激励自己往前走。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/04/zong-jie-he-zhan-wang/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">配置每次new_post后自动用Mou打开文章(续)</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-19T22:13:00+08:00" pubdate data-updated="true">2013-12-19</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>已经有超过10天没有写过博客了，最近读完了Linux发明者<a href="http://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">Octopress添加腾讯微博分享中图片的问题</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-09T22:44:00+08:00" pubdate data-updated="true">2013-12-09</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>这篇又是来收拾残局的，之前<a href="http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a>最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">解决Octopress的表格样式问题</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-09T21:42:00+08:00" pubdate data-updated="true">2013-12-09</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>在<a href="http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a>中,一个待解决的问题：表格(在Octopress中并没有画出线，后续解决)</p></blockquote>
-
-<p>Google到<a href="http://programus.github.io/blog/2012/03/07/add-table-data-css-for-octopress/">为Octopress追加数据表格的CSS</a>这篇，照着做就好了。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">阅读全文 &rarr;</a>
     </footer>
   
 

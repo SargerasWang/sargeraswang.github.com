@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法 - 程序员小刚</title>
+  <title>程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
-2 [ERROR] /usr/local/mysql/bin/mysqld: unknown variable 'default-character-set=utf8' &hellip;">
+  <meta name="description" content="环境 Mac OSX 10.9 (已安装XCode 5.0.1) 流程 我是按照这篇文章来操作的。 安装ruby 这里打上命令试了好久都不行，最后发现，原来系统里已经有ruby了，不知道是OSX10.9自带的还是XCode带的。利用 1
+$ ruby -v 就可以看到，目前使用的ruby版本号。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sargeraswang.com/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">
+  <link rel="canonical" href="http://sargeraswang.com/blog/page/5/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -95,13 +95,16 @@ $(document).bind('DOMNodeInserted', function(event) {
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      
-        <h1 class="entry-title">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</h1>
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti/">关于我遇到的问题</a></h1>
       
     
     
@@ -118,131 +121,98 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
+<time datetime="2013-11-12T21:26:00+08:00" pubdate data-updated="true">2013-11-12</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><img src="/images/blog_img/mysql_status.png" alt="" /></p>
+  <div class="entry-content"><h3>环境</h3>
 
-<p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
+<p>Mac OSX 10.9 (已安装XCode 5.0.1)</p>
+
+<h3>流程</h3>
+
+<p>我是按照<a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/" title="利用Octopress搭建一个Github博客">这篇文章</a>来操作的。</p>
+
+<h4>安装ruby</h4>
+
+<p>这里打上命令试了好久都不行，最后发现，原来系统里已经有ruby了，不知道是OSX10.9自带的还是XCode带的。利用</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'> [ERROR] /usr/local/mysql/bin/mysqld: unknown variable
-</span><span class='line'> 'default-character-set=utf8'
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby -v
 </span></code></pre></td></tr></table></div></figure>
 
 
-<!-- more -->
-
-
-<p>后来Google到<a href="http://lists.mysql.com/mysql/226319">官网的这篇文章</a>.</p>
-
-<p>其中说道:</p>
-
-<p><code>The above link says default-character-set is depreciated and you should
-be   using  character-set-server. It also states default-character-set
-was removed in v5.5.3.</code></p>
-
-<p>解决方法:把<code>my.cnf</code> 中的</p>
+<p>就可以看到，目前使用的ruby版本号。就像我这里显示的是：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>default-character-set=utf8</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby 2.0.0p247 <span class="o">(</span>2013-06-27 revision 41674<span class="o">)</span> <span class="o">[</span>universal.x86_64-darwin13<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>修改为</p>
+<h4>安装Octopress</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>character-set-server=utf8</span></code></pre></td></tr></table></div></figure>
-
-
-<p>成功启动mysql.</p>
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
-
-      
-
-
-
-
-
-
-
-
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti/">阅读全文 &rarr;</a>
+    </footer>
   
 
 
-<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
+    </article>
+  
+  
+    <article>
       
-
-
-    </p>
+  <header>
     
-      <div class="sharing">
-  
-  
-  
-   
-
-  	
-  		
-	
-	
-    <table width="100%">
-		<tr>
-		<td>&nbsp;</td>
-		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法:为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
-2 [ERROR] /usr/local/mysql/bin/mysqld: unknown &hellip;" data-pic="http://sargeraswang.com/images/blog_img/mysql_status.png|">
-		    </div>
-		</td>
-		<td>&nbsp;</td>
-		</tr>
-	</table>
-  
-</div>
-
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/11/11/github-da-jian-bo-ke-cheng-gong/">Github 搭建博客成功</a></h1>
+      
     
-    <p class="meta">
-      
-        <a class="basic-alignment left articlenav" href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/" title="Previous Post: Mac 下 Eclipse 使用Emac按键的设置">&laquo; Mac 下 Eclipse 使用Emac按键的设置</a>
-      
-      
-    </p>
-  </footer>
-</article>
+    
+      <p class="meta">
+        
 
-  <section>
-    <h1>评论</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread"></div>
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"sageraswang"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script>
-<!-- Duoshuo Comment END -->
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-11T23:36:00+08:00" pubdate data-updated="true">2013-11-11</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这是我在github上写下的第一篇文章，只为纪念愚笨的我搞了好几天的成果！</p>
+
+<p>现在太晚了，明天整理一下过程中遇到的问题。</p>
 </div>
-  </section>
+  
+  
 
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -283,7 +253,6 @@ was removed in v5.5.3.</code></p>
 
   
 </aside>
-
 
     </div>
   </div>
