@@ -18,6 +18,7 @@ images: [/images/blog_img/mysql_status.png]
  'default-character-set=utf8'
 
 ```
+<!-- more -->
 
 后来Google到[官网的这篇文章](http://lists.mysql.com/mysql/226319).
 
