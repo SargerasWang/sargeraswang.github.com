@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[程序员小刚]]></title>
-  <link href="http://SargerasWang.github.io/atom.xml" rel="self"/>
-  <link href="http://SargerasWang.github.io/"/>
-  <updated>2014-09-21T10:15:04+08:00</updated>
-  <id>http://SargerasWang.github.io/</id>
+  <link href="http://sargeraswang.com/atom.xml" rel="self"/>
+  <link href="http://sargeraswang.com/"/>
+  <updated>2014-09-21T10:35:56+08:00</updated>
+  <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
     
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[mysql  /usr/local/mysql/bin/mysqld: unknown variable default-character-set=utf8 解决办法]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/"/>
+    <link href="http://sargeraswang.com/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/"/>
     <updated>2014-08-20T20:21:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa</id>
-    <content type="html"><![CDATA[<p><img src="http://SargerasWang.github.io/images/blog_img/mysql_status.png" alt="" /></p>
+    <id>http://sargeraswang.com/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa</id>
+    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/mysql_status.png" alt="" /></p>
 
 <p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
 
@@ -55,13 +55,13 @@ was removed in v5.5.3.</code></p>
   
   <entry>
     <title type="html"><![CDATA[Mac 下 Eclipse 使用Emac按键的设置]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/"/>
+    <link href="http://sargeraswang.com/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/"/>
     <updated>2014-05-09T16:41:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi</id>
+    <id>http://sargeraswang.com/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi</id>
     <content type="html"><![CDATA[<!--test -->
 
 
-<blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
+<blockquote><p>来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。<strong>好吧，主要是填坑<a href="http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a></strong></p></blockquote>
 
 <!-- more -->
 
@@ -86,7 +86,7 @@ was removed in v5.5.3.</code></p>
 
 <ol>
 <li>去 eclipse->Preferences (快捷键 <code>Commend+，</code>)，filter中输入<code>Kyes</code>.
-<img src="http://SargerasWang.github.io/images/blog_img/eclipse_keys.png" alt="" /></li>
+<img src="http://sargeraswang.com/images/blog_img/eclipse_keys.png" alt="" /></li>
 <li>设置以下按键
 
 <ul>
@@ -96,7 +96,7 @@ was removed in v5.5.3.</code></p>
 <li>右 <code>Next Column</code> 为 <code>Ctrl+F</code></li>
 <li>行头 <code>Line Start</code> 为 <code>Ctrl+A</code></li>
 <li>行尾 <code>Line End</code> 为 <code>Ctrl+E</code><br/>
-<img src="http://SargerasWang.github.io/images/blog_img/eclipse_keys2.png" alt="" /></li>
+<img src="http://sargeraswang.com/images/blog_img/eclipse_keys2.png" alt="" /></li>
 </ul>
 </li>
 </ol>
@@ -106,7 +106,7 @@ was removed in v5.5.3.</code></p>
 
 <p>之所以现在才写这篇，是因为我一直认为<code>左</code>和<code>右</code>应该是<code>Back</code>和<code>Forward</code>,一直无法使用，甚是恼火，直到我看了eclipse自带的emacs按键方案。</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/eclipse_keys3.png" alt="" /></p>
+<p><img src="http://sargeraswang.com/images/blog_img/eclipse_keys3.png" alt="" /></p>
 
 <blockquote><p>哈，到现在，当初的坑就剩下最后一个了 <strong>使用maven搭建SSH框架</strong></p></blockquote>
 ]]></content>
@@ -114,13 +114,13 @@ was removed in v5.5.3.</code></p>
   
   <entry>
     <title type="html"><![CDATA[花信之年-二十四岁]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/"/>
+    <link href="http://sargeraswang.com/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/"/>
     <updated>2014-03-25T21:00:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui</id>
+    <id>http://sargeraswang.com/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui</id>
     <content type="html"><![CDATA[<blockquote><p>有人问过我在外边闯荡会有孤单的感觉吗，我说不会，现在，我要证明这一点！
 就像过24岁生日这天，我也并不孤单，有QQ邮箱和招商银行惦记着我！</p></blockquote>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/24.jpg" alt="" /></p>
+<p><img src="http://sargeraswang.com/images/blog_img/24.jpg" alt="" /></p>
 
 <p>上班听了一天的水手，与十年前初次听的时候，感觉完全不同，当时更在意“风雨中这点痛算什么，至少我们还有
 梦”，而现在更能理解“总是拿着微不足道的成就来骗自己，总是莫名其妙感到一阵的空虚”&hellip;</p>
@@ -168,10 +168,10 @@ was removed in v5.5.3.</code></p>
   
   <entry>
     <title type="html"><![CDATA[Emacs使用手册(二) 使用进阶]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/"/>
+    <link href="http://sargeraswang.com/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/"/>
     <updated>2014-03-18T19:55:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie</id>
-    <content type="html"><![CDATA[<p><img src="http://SargerasWang.github.io/images/blog_img/benpao.jpg" alt="" /></p>
+    <id>http://sargeraswang.com/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie</id>
+    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/benpao.jpg" alt="" /></p>
 
 <blockquote><p>一个多月没有写东西了，这期间发生了很多事，年初定的换工作的目标达成，收获颇丰。 <br/>
 “外面的世界很精彩&hellip;外面的世界很无奈&hellip;北京&hellip;北京&hellip;”<br/>
@@ -189,7 +189,7 @@ was removed in v5.5.3.</code></p>
 <li>如果你不想用，就按下“n”
 
 <blockquote><p>试试 Ctrl+x Ctrl+l<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/emacs/c_x_c_l.png" alt="" /></p></blockquote></li>
+<img src="http://sargeraswang.com/images/blog_img/emacs/c_x_c_l.png" alt="" /></p></blockquote></li>
 </ul>
 
 
@@ -204,7 +204,7 @@ was removed in v5.5.3.</code></p>
 <ul>
 <li>上下拆分<code>ctrl+x 2</code></li>
 <li>左右拆分<code>ctrl+x 3</code><br/>
-<img src="http://SargerasWang.github.io/images/blog_img/emacs/subWindow.png" alt="" /></li>
+<img src="http://sargeraswang.com/images/blog_img/emacs/subWindow.png" alt="" /></li>
 </ul>
 </li>
 <li>多窗口间切换光标 <code>ctrl+x o</code> <strong>这里o代表other</strong></li>
@@ -225,7 +225,7 @@ was removed in v5.5.3.</code></p>
 <ul>
 <li>在console下会有反斜杠<code>\</code>出现</li>
 <li>在图形窗口中会有小小的转弯箭头出现
-<img src="http://SargerasWang.github.io/images/blog_img/emacs/subline.png" alt="" /></li>
+<img src="http://sargeraswang.com/images/blog_img/emacs/subline.png" alt="" /></li>
 </ul>
 </li>
 <li>插入重复字符，插入八个星号<code>*</code>,<code>ctrl+u 8 *</code></li>
@@ -252,7 +252,7 @@ was removed in v5.5.3.</code></p>
 <ul>
 <li>打开新的文件后，想切换会原先的文件，还是执行<code>ctrl+x ctrl+f</code>，输入先前的文件名即可。</li>
 <li>列出缓冲区 <code>ctrl+x ctrl+b</code>
-<img src="http://SargerasWang.github.io/images/blog_img/emacs/buffer.png" alt="" /></li>
+<img src="http://sargeraswang.com/images/blog_img/emacs/buffer.png" alt="" /></li>
 <li><code>ctrl+x b</code>也可以用来切换缓冲区</li>
 <li>并不是所有的缓冲区都对应一个文件，例如<code>*Messages*</code>里放着的都是 Emacs 底部出现的消息。</li>
 </ul>
@@ -329,10 +329,10 @@ was removed in v5.5.3.</code></p>
   
   <entry>
     <title type="html"><![CDATA[第3章 垃圾收集器与内存分配策略]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/"/>
+    <link href="http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/"/>
     <updated>2014-02-03T16:40:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue</id>
-    <content type="html"><![CDATA[<p><a href="http://item.jd.com/11252778.html"><img src="http://SargerasWang.github.io/images/blog_img/jvmbook.jpg" alt="" /></a></p>
+    <id>http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue</id>
+    <content type="html"><![CDATA[<p><a href="http://item.jd.com/11252778.html"><img src="http://sargeraswang.com/images/blog_img/jvmbook.jpg" alt="" /></a></p>
 
 <h3>对象已死吗</h3>
 
@@ -799,11 +799,11 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[第2章 Java内存区域与内存溢出异常]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/"/>
+    <link href="http://sargeraswang.com/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/"/>
     <updated>2014-01-28T14:31:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang</id>
+    <id>http://sargeraswang.com/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang</id>
     <content type="html"><![CDATA[<blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。<br/>
-<a href="http://item.jd.com/11252778.html"><img src="http://SargerasWang.github.io/images/blog_img/jvmbook.jpg" alt="" /></a></p></blockquote>
+<a href="http://item.jd.com/11252778.html"><img src="http://sargeraswang.com/images/blog_img/jvmbook.jpg" alt="" /></a></p></blockquote>
 
 <h1>运行时数据区</h1>
 
@@ -1341,9 +1341,9 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[总结和展望]]></title>
-    <link href="http://SargerasWang.github.io/blog/2014/01/04/zong-jie-he-zhan-wang/"/>
+    <link href="http://sargeraswang.com/blog/2014/01/04/zong-jie-he-zhan-wang/"/>
     <updated>2014-01-04T12:06:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2014/01/04/zong-jie-he-zhan-wang</id>
+    <id>http://sargeraswang.com/blog/2014/01/04/zong-jie-he-zhan-wang</id>
     <content type="html"><![CDATA[<p>新年到，很多大牛都在blog上写下自己的2013总结。回想一下自己，13年的变化还蛮大的，写下来激励自己往前走。</p>
 
 <!-- more -->
@@ -1434,21 +1434,21 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 <hr />
 
 <p>奔跑吧，少年！！！<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/benpao.jpg" alt="" /></p>
+<img src="http://sargeraswang.com/images/blog_img/benpao.jpg" alt="" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[配置每次new_post后自动用Mou打开文章(续)]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/"/>
+    <link href="http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/"/>
     <updated>2013-12-19T22:13:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu</id>
+    <id>http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu</id>
     <content type="html"><![CDATA[<blockquote><p>已经有超过10天没有写过博客了，最近读完了Linux发明者<a href="http://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。</p></blockquote>
 
 <!-- more -->
 
 
-<p>这篇还是来擦屁股的，之前一篇<a href="http://SargerasWang.github.io/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>,用了几次之后发现一个小问题，就是当我使用了<code>rake new_post['xxx']</code>之后，确实帮我使用Mou打开Markdown文件了，但是当前shell就没法用了，只有退出Mou后才可以使用。</p>
+<p>这篇还是来擦屁股的，之前一篇<a href="http://sargeraswang.com/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>,用了几次之后发现一个小问题，就是当我使用了<code>rake new_post['xxx']</code>之后，确实帮我使用Mou打开Markdown文件了，但是当前shell就没法用了，只有退出Mou后才可以使用。</p>
 
 <p>最近一直在找解决办法，今天终于找到了，就是<code>open</code>命令加上<code>-a</code>参数，官方是这样描述的：</p>
 
@@ -1478,16 +1478,16 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 
 <p>大功告成，shell与Mou互不影响，效果如图：<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/newpost.png" alt="" /></p>
+<img src="http://sargeraswang.com/images/blog_img/newpost.png" alt="" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress添加腾讯微博分享中图片的问题]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/"/>
+    <link href="http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/"/>
     <updated>2013-12-09T22:44:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti</id>
-    <content type="html"><![CDATA[<blockquote><p>这篇又是来收拾残局的，之前<a href="http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a>最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。</p></blockquote>
+    <id>http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti</id>
+    <content type="html"><![CDATA[<blockquote><p>这篇又是来收拾残局的，之前<a href="http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a>最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。</p></blockquote>
 
 <!-- more -->
 
@@ -1555,21 +1555,21 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 
 <p>效果如：<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/naruto/Naruto.jpg" alt="鸣人" />
-<img src="http://SargerasWang.github.io/images/blog_img/naruto/Rin.jpg" alt="琳" /></p>
+<img src="http://sargeraswang.com/images/blog_img/naruto/Naruto.jpg" alt="鸣人" />
+<img src="http://sargeraswang.com/images/blog_img/naruto/Rin.jpg" alt="琳" /></p>
 
 <p>点击【转播】按钮，后的效果图如：</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/naruto/success.png" alt="" /></p>
+<p><img src="http://sargeraswang.com/images/blog_img/naruto/success.png" alt="" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[解决Octopress的表格样式问题]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/"/>
+    <link href="http://sargeraswang.com/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/"/>
     <updated>2013-12-09T21:42:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti</id>
-    <content type="html"><![CDATA[<blockquote><p>在<a href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a>中,一个待解决的问题：表格(在Octopress中并没有画出线，后续解决)</p></blockquote>
+    <id>http://sargeraswang.com/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti</id>
+    <content type="html"><![CDATA[<blockquote><p>在<a href="http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/">10篇vs19天博客撰写小结</a>中,一个待解决的问题：表格(在Octopress中并没有画出线，后续解决)</p></blockquote>
 
 <p>Google到<a href="http://programus.github.io/blog/2012/03/07/add-table-data-css-for-octopress/">为Octopress追加数据表格的CSS</a>这篇，照着做就好了。</p>
 
@@ -1704,13 +1704,13 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[Google已经收录了]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/12/06/googleyi-jing-shou-lu-liao/"/>
+    <link href="http://sargeraswang.com/blog/2013/12/06/googleyi-jing-shou-lu-liao/"/>
     <updated>2013-12-06T21:36:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/12/06/googleyi-jing-shou-lu-liao</id>
+    <id>http://sargeraswang.com/blog/2013/12/06/googleyi-jing-shou-lu-liao</id>
     <content type="html"><![CDATA[<p>在<a href="">上一篇文章</a>中，说道了最后一个问题。
 就是这个使用Octopress在Github上搭建的博客，没有被Google收录的问题，最近闲来又自恋的搜索了一下，发现已经被收录了。</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/google.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/google.png"></p>
 
 <p>如上图中的最后一个就是了。</p>
 
@@ -1728,10 +1728,10 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[10篇vs19天博客撰写小结]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/"/>
     <updated>2013-11-29T22:07:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie</id>
-    <content type="html"><![CDATA[<blockquote><p>刚才看了<a href="http://www.read.org.cn/html/2314-wo-de-zhan-tuo-ce-lue.html">战隼的学习探索-我的战拖策略</a>,想想自己距上一篇博文也有3天了，回想在博客搭建好的第二天，我曾说<a href="http://SargerasWang.github.io/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti/">频率暂定最少3天一篇</a>。</p></blockquote>
+    <id>http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie</id>
+    <content type="html"><![CDATA[<blockquote><p>刚才看了<a href="http://www.read.org.cn/html/2314-wo-de-zhan-tuo-ce-lue.html">战隼的学习探索-我的战拖策略</a>,想想自己距上一篇博文也有3天了，回想在博客搭建好的第二天，我曾说<a href="http://sargeraswang.com/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti/">频率暂定最少3天一篇</a>。</p></blockquote>
 
 <p>如果用除法，10篇/19天，平均2天一篇，应该算合格。<br/>
 但这就是在给自己找借口，我肯定当天所说“最少3天一篇”的愿意是“要把写博客当做一种习惯”，《自控力》中曾经说过：当我们不想做一件事情的时候，大脑就会想好各种“合理”的原因，让你不至于太痛苦。</p>
@@ -1758,7 +1758,7 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 <p>今天既然是小结，就把前几篇博客遗漏的，没有做完的事情列出来，生成一个TODO List:</p>
 
 <ul>
-<li>在写<a href="http://SargerasWang.github.io/blog/2013/11/13/tian-jia-ping-lun-gong-neng/">添加评论功能</a>这篇的时候，我并不知道如何才能把<code>{% if %}</code>转义掉，就用了全角大括号这一招，但是后来我在octopress官网上找到了解法，就是<code>raw</code>标签:</li>
+<li>在写<a href="http://sargeraswang.com/blog/2013/11/13/tian-jia-ping-lun-gong-neng/">添加评论功能</a>这篇的时候，我并不知道如何才能把<code>{% if %}</code>转义掉，就用了全角大括号这一招，但是后来我在octopress官网上找到了解法，就是<code>raw</code>标签:</li>
 </ul>
 
 
@@ -1766,22 +1766,22 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{% if %}{% endif %}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/rawtag.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/rawtag.png"></p>
 
 <ul>
-<li><p>在写完<a href="http://SargerasWang.github.io/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>之后，我一直用到现在，问题也就出现了，自动用Mou打开文章后，终端就一直在等Mou关闭才能继续；而且一旦关闭终端，Mou也会被关闭，
-<font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">链接</a></font>。<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/shellWaitMou.png"></p></li>
-<li><p>在<a href="http://SargerasWang.github.io/blog/2013/11/16/markdown-yu-fa-shuo-ming/">MarkDown 语法说明</a>一文中，有说道“表格(在Octopress中并没有画出线，后续解决)”,后来有查过解决方案，是修改css，但是一直没有动手改，
-<font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">链接</a></font>。</p></li>
-<li><p>关于在<a href="http://SargerasWang.github.io/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a>中我说要学习Emacs的原因是eclipse有这个键位支持方案，后来我有坚持使用一周这个方案，最终放弃了，原因是eclipse的默认emacs方案并没有支持所有按键（我最不能忍受的是系统自动提示的时候，Ctrl+N并不能当做↓来使用），Google了一下，发现一个eclipse的emacs插件（<a href="http://www.mulgasoft.com/">Emacs+ Eclipse Plug-in</a>）,但是作者已经不维护了，新版Eclipse中使用会报错，所以现在我还忍受着手要离开主键盘去按上下左右的痛苦，
-<font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">链接</a></font>。<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/emacsPlus.png"></p></li>
+<li><p>在写完<a href="http://sargeraswang.com/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>之后，我一直用到现在，问题也就出现了，自动用Mou打开文章后，终端就一直在等Mou关闭才能继续；而且一旦关闭终端，Mou也会被关闭，
+<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">链接</a></font>。<br/>
+<img src="http://sargeraswang.com/images/blog_img/shellWaitMou.png"></p></li>
+<li><p>在<a href="http://sargeraswang.com/blog/2013/11/16/markdown-yu-fa-shuo-ming/">MarkDown 语法说明</a>一文中，有说道“表格(在Octopress中并没有画出线，后续解决)”,后来有查过解决方案，是修改css，但是一直没有动手改，
+<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">链接</a></font>。</p></li>
+<li><p>关于在<a href="http://sargeraswang.com/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a>中我说要学习Emacs的原因是eclipse有这个键位支持方案，后来我有坚持使用一周这个方案，最终放弃了，原因是eclipse的默认emacs方案并没有支持所有按键（我最不能忍受的是系统自动提示的时候，Ctrl+N并不能当做↓来使用），Google了一下，发现一个eclipse的emacs插件（<a href="http://www.mulgasoft.com/">Emacs+ Eclipse Plug-in</a>）,但是作者已经不维护了，新版Eclipse中使用会报错，所以现在我还忍受着手要离开主键盘去按上下左右的痛苦，
+<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">链接</a></font>。<br/>
+<img src="http://sargeraswang.com/images/blog_img/emacsPlus.png"></p></li>
 <li><p>既然是叫做“Emacs使用手册(一) 基本操作”，就说明至少还应该有“二”，不能假装忘记，
-<font color="green">这个已解决<a href="http://SargerasWang.github.iohttp://127.0.0.1:4000/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">链接</a></font>。</p></li>
-<li><p>在<a href="http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a> 最后，有提出两点&#8221;不尽人意之处&#8221;，
-<font color="green">2013-12-10 这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font>。</p></li>
-<li><p>在<a href="http://SargerasWang.github.io/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a>写完之后，我有大概看过整个生成的项目，其中除了我想要的Spring+Struts2+Hibernate之外，有太多太多的其他东西。所以不适用，后来我又试了简易版的Light版，好像有好一些，但总是觉得不如从头自己搭建一个来的舒心，吃的放心，就这么定了，自己搭建一个，然后过程记录在博客里，
+<font color="green">这个已解决<a href="http://sargeraswang.comhttp://127.0.0.1:4000/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">链接</a></font>。</p></li>
+<li><p>在<a href="http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a> 最后，有提出两点&#8221;不尽人意之处&#8221;，
+<font color="green">2013-12-10 这个已解决<a href="http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font>。</p></li>
+<li><p>在<a href="http://sargeraswang.com/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a>写完之后，我有大概看过整个生成的项目，其中除了我想要的Spring+Struts2+Hibernate之外，有太多太多的其他东西。所以不适用，后来我又试了简易版的Light版，好像有好一些，但总是觉得不如从头自己搭建一个来的舒心，吃的放心，就这么定了，自己搭建一个，然后过程记录在博客里，
 <font color="red">这个待解决</font>。</p></li>
 </ul>
 
@@ -1792,19 +1792,19 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 <ul>
 <li>还有一个才对，搜索引擎收录的问题，百度已经解决了，但是Google为何没有收录，还没有找到原因，
-<font color="green">这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/06/googleyi-jing-shou-lu-liao/">链接</a></font>。</li>
+<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2013/12/06/googleyi-jing-shou-lu-liao/">链接</a></font>。</li>
 </ul>
 
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/baidu.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/baidu.png"></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Appfuse搭建SSH的问题与解决]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/"/>
     <updated>2013-11-25T20:14:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue</id>
+    <id>http://sargeraswang.com/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue</id>
     <content type="html"><![CDATA[<ul>
 <li>Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase: test-compile)
 
@@ -1872,20 +1872,20 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 <p>遇到的其他问题基本都是因为网络问题，jar包下载失败，重新下载就好了。
 附上我配置成功的项目。<br/>
-<a href="http://SargerasWang.github.io/images/code/myproject.zip">下载myproject.zip</a></p>
+<a href="http://sargeraswang.com/images/code/myproject.zip">下载myproject.zip</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[在Octopress中添加腾讯微博一键分享功能]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/"/>
     <updated>2013-11-22T19:04:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng</id>
+    <id>http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng</id>
     <content type="html"><![CDATA[<blockquote><p>前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
 Emacs使用手册系列要过几天才能写了。
 接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。</p></blockquote>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/qqweibo.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/qqweibo.png"></p>
 
 <!-- more -->
 
@@ -1893,11 +1893,11 @@ Emacs使用手册系列要过几天才能写了。
 <h3>申请一键分享代码</h3>
 
 <p>先去<a href="http://dev.t.qq.com/">腾讯微博开放平台</a>登陆后,点【网站接入】<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/wangzhanjieru.png" width="160"><br/>
+<img src="http://sargeraswang.com/images/blog_img/wangzhanjieru.png" width="160"><br/>
 再点【一键分享】<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/yijianfenxiang.png" width="160"><br/>
+<img src="http://sargeraswang.com/images/blog_img/yijianfenxiang.png" width="160"><br/>
 再点【立即使用】<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/lijishiyong.png">
+<img src="http://sargeraswang.com/images/blog_img/lijishiyong.png">
 然后填写【网站名称】和【网站地址】，选择一个样式，点【获取代码】<br/>
 然后你可以看到两段代码：<br/>
 一段是DIV</p>
@@ -1971,10 +1971,10 @@ Emacs使用手册系列要过几天才能写了。
 
 <p>上面的代码生成后，一键分享按钮在画面的左对齐，看着很不顺眼，我想要他居中。试了下在div上加 <code>style="text-align:center;"</code>,没有用，用开发者模式看一下这个div，发现：</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/divDebug.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/divDebug.png"></p>
 
 <p>Div上被加了<code>style="textalign:left;"</code>的属性，那段JavaScript一定是凶手，然后就去看<a href="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no">这段JavaScript  </a>（一坨代码，你可以用GoogleChrome的<a href="https://chrome.google.com/webstore/detail/piekbefgpgdecckjcpffhnacjflfoddg">这个插件</a>来格式化一下，方便阅读），搜索<code>text-align:left</code>,找到了：<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/textAlign.png"></p>
+<img src="http://sargeraswang.com/images/blog_img/textAlign.png"></p>
 
 <p>凶手是找到了，可是尝试过加一段JavaScript盖掉<code>text-align</code>,没有起到作用，一定是我的JavaScript功力不够。换个思路，最后决定用table了。最终可以达到居中效果的完整代码如下：</p>
 
@@ -2008,7 +2008,7 @@ Emacs使用手册系列要过几天才能写了。
 <ol>
 <li>image应该可以读取文章中的所有图片才对，后续研究后补到这里。</li>
 <li>最后用table定位居中的方式蠢了一些，后续有更好的解决办法再补到这里。
-<font color="green">@2013-12-10 这个已解决<a href="http://SargerasWang.github.io/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font></li>
+<font color="green">@2013-12-10 这个已解决<a href="http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font></li>
 </ol>
 
 ]]></content>
@@ -2016,11 +2016,11 @@ Emacs使用手册系列要过几天才能写了。
   
   <entry>
     <title type="html"><![CDATA[Emacs使用手册(一) 基本操作]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/17/emacsshi-yong-shou-ce/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/17/emacsshi-yong-shou-ce/"/>
     <updated>2013-11-17T15:07:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/17/emacsshi-yong-shou-ce</id>
+    <id>http://sargeraswang.com/blog/2013/11/17/emacsshi-yong-shou-ce</id>
     <content type="html"><![CDATA[<blockquote><p>我之所以学习Emacs而不是Vim的原因是Eclipse有Emacs键位方案，而这个方案可以解决困扰了我长久的问题：手总需要离开主键位去按方向键，这样浪费时间。
-<img src="http://SargerasWang.github.io/images/blog_img/emacs/eclipseKeys.png"></p></blockquote>
+<img src="http://sargeraswang.com/images/blog_img/emacs/eclipseKeys.png"></p></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2035,7 +2035,7 @@ Emacs使用手册系列要过几天才能写了。
 
 <ul>
 <li>Emacs启动，直接在终端中直接打<code>emacs</code>。
-<img src="http://SargerasWang.github.io/images/blog_img/emacs/start.png"></li>
+<img src="http://sargeraswang.com/images/blog_img/emacs/start.png"></li>
 <li>结束Emacs：<code>Ctrl+x Ctrl+c</code>,其实就是按住<code>Ctrl</code>然后<code>x</code>，然后<code>c</code>。</li>
 <li>取消（终止）执行：<code>Ctrl+g</code>
 
@@ -2098,9 +2098,9 @@ Emacs使用手册系列要过几天才能写了。
   
   <entry>
     <title type="html"><![CDATA[Markdown 语法说明]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/16/markdown-yu-fa-shuo-ming/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/16/markdown-yu-fa-shuo-ming/"/>
     <updated>2013-11-16T19:08:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/16/markdown-yu-fa-shuo-ming</id>
+    <id>http://sargeraswang.com/blog/2013/11/16/markdown-yu-fa-shuo-ming</id>
     <content type="html"><![CDATA[<h1>区块元素</h1>
 
 <h2>段落和换行</h2>
@@ -2115,7 +2115,7 @@ Emacs使用手册系列要过几天才能写了。
 
 
 <p>效果如图<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/brTag.png"></p>
+<img src="http://sargeraswang.com/images/blog_img/brTag.png"></p>
 
 <h2>标题</h2>
 
@@ -2136,7 +2136,7 @@ Emacs使用手册系列要过几天才能写了。
 
 
 <p>效果如图<br/>
-<img src="http://SargerasWang.github.io/images/blog_img/H1H6.png"></p>
+<img src="http://sargeraswang.com/images/blog_img/H1H6.png"></p>
 
 <!-- more -->
 
@@ -2491,9 +2491,9 @@ Ordering Manuals   Purchasing printed copies of manuals</p></blockquote>
 
 <p>效果如下：</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/tenten.jpg" title="标题" alt="描述" />
+<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg" title="标题" alt="描述" />
 参考式：
-<img src="http://SargerasWang.github.io/images/blog_img/tenten.jpg" title="标题" alt="描述" />
+<img src="http://sargeraswang.com/images/blog_img/tenten.jpg" title="标题" alt="描述" />
 目前MarkDown不支持设置图片宽高，如果必须设置，请使用<code>&lt;img&gt;</code>标签。</p>
 
 <h2>其它</h2>
@@ -2520,7 +2520,7 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 <p>效果如下：<br/>
 有些话说的影响和谐，就要<del>被删除</del></p>
 
-<h3>表格(在Octopress中并没有画出线，后续解决(2013-12-09，<a href="http://SargerasWang.github.io/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">问题已解决</a>))</h3>
+<h3>表格(在Octopress中并没有画出线，后续解决(2013-12-09，<a href="http://sargeraswang.com/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">问题已解决</a>))</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2641,7 +2641,7 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 
 <p>效果如下：</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/mailto.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/mailto.png"></p>
 
 <h3>Markdown免费编辑器</h3>
 
@@ -2693,10 +2693,10 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
   
   <entry>
     <title type="html"><![CDATA[配置每次new_post后自动用Mou打开文章]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/"/>
     <updated>2013-11-16T11:25:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang</id>
-    <content type="html"><![CDATA[<p><img src="http://SargerasWang.github.io/images/blog_img/automou.png"></p>
+    <id>http://sargeraswang.com/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang</id>
+    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/automou.png"></p>
 
 <p>每次new_post完都要自己找到那个文件，再打开，实在是太呆了。</p>
 
@@ -3525,10 +3525,10 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
   
   <entry>
     <title type="html"><![CDATA[rake deploy 出现Could not resolve host: github.com 的解决方法]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa/"/>
     <updated>2013-11-14T22:15:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa</id>
-    <content type="html"><![CDATA[<p><img src="http://SargerasWang.github.io/images/blog_img/gfw.jpg"></p>
+    <id>http://sargeraswang.com/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa</id>
+    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/gfw.jpg"></p>
 
 <p>今天上午看自己的博客，发现昨晚好像没有deploy，博客好多地方都有问题。</p>
 
@@ -3569,7 +3569,7 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 
 <p>这一定是我大<a href="http://zh.wikipedia.org/zh-cn/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E">GFW</a>的功劳，好吧，幸亏我有<a href="https://code.google.com/p/goagent/">goagent</a>.</p>
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/goagent.png"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/goagent.png"></p>
 
 <p>在shell中执行</p>
 
@@ -3585,10 +3585,10 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
   
   <entry>
     <title type="html"><![CDATA[在Octopress中添加图片]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/13/tian-jia-tu-pian/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/13/tian-jia-tu-pian/"/>
     <updated>2013-11-13T22:43:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/13/tian-jia-tu-pian</id>
-    <content type="html"><![CDATA[<p><img src="http://SargerasWang.github.io/images/blog_img/tenten.jpg"></p>
+    <id>http://sargeraswang.com/blog/2013/11/13/tian-jia-tu-pian</id>
+    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg"></p>
 
 <p>1.把图片copy到/source/images 下,例如我这张图片叫做tenten.jpg</p>
 
@@ -3609,7 +3609,7 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 </pre></td><td class='code'><pre><code class=''><span class='line'>{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/tenten.jpg" width="100" height="100"></p>
+<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg" width="100" height="100"></p>
 
 <p>上面这个是设置过大小的,代码如下：</p>
 
@@ -3617,7 +3617,7 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 </pre></td><td class='code'><pre><code class=''><span class='line'>{% img /images/blog_img/tenten.jpg 100 100 %}</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://SargerasWang.github.io/images/blog_img/tenten.jpg" width="200" height="200" title="火影中的人物-天天" ></p>
+<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg" width="200" height="200" title="火影中的人物-天天" ></p>
 
 <p>上面这个是加了描述的，鼠标悬浮的时候可以看到&#8217;火影中的人物-天天&#8217;，代码如下：</p>
 
@@ -3629,9 +3629,9 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
   
   <entry>
     <title type="html"><![CDATA[添加评论功能]]></title>
-    <link href="http://SargerasWang.github.io/blog/2013/11/13/tian-jia-ping-lun-gong-neng/"/>
+    <link href="http://sargeraswang.com/blog/2013/11/13/tian-jia-ping-lun-gong-neng/"/>
     <updated>2013-11-13T21:01:00+08:00</updated>
-    <id>http://SargerasWang.github.io/blog/2013/11/13/tian-jia-ping-lun-gong-neng</id>
+    <id>http://sargeraswang.com/blog/2013/11/13/tian-jia-ping-lun-gong-neng</id>
     <content type="html"><![CDATA[<p>今天同事听说我有博客了，表示要上来评论一番，我才想起来还没有这个功能，遂加了一个，过程记录在这里，整个过程以<strong>破船</strong>的<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">这篇文章</a>为基础，我只是稍作改动。</p>
 
 <h3>一. 多说网注册账号</h3>
