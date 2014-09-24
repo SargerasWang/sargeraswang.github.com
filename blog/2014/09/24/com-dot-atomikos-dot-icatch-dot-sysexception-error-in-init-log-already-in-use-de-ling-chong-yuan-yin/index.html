@@ -162,13 +162,13 @@ $(document).bind('DOMNodeInserted', function(event) {
 <p>马上去Google,网上说法总结为两个原因:</p>
 
 <ol>
-<li>一个项目,已经启动了,再次启动的时候.
+<li>一个项目,已经启动了,再次启动的时候报错.
 
 <ul>
 <li>解决办法:停止已启动的实例,再启动.</li>
 </ul>
 </li>
-<li>同一个环境中存在多个这种使用jta的项目.
+<li>同一个环境中存在多个这种使用jta的项目,启动第二/三/四&hellip;个的时候.
 
 <ul>
 <li>解决办法:为每个项目配置使用不同的log文件,如下</li>
@@ -199,9 +199,9 @@ $(document).bind('DOMNodeInserted', function(event) {
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>但是,经过尝试,均无法解决问题.然后尝试搜索了一下<code>rmlog2.log</code>,结果发现在resin根目录下有.就去服务器看,结果没有.马上,脑洞大开,<strong>会不会是因为权限??</strong></p>
+<p>但是,经过尝试,均无法解决问题.然后尝试本机搜索了一下<code>rmlog2.log</code>,结果发现在resin根目录下有.就去服务器看,结果没有.马上脑洞大开,<strong>会不会是因为权限??</strong></p>
 
-<p>结果,&ldquo;what f*ck&rdquo;,就是权限的问题.因为昨天同事吧resin目录的普通用户的写权限给禁用了.</p>
+<p>结果,&ldquo;what f*ck&rdquo;,就是权限的问题.因为昨天同事把resin目录的普通用户的写权限给禁用了.</p>
 
 <h3>解决办法:配置log文件为绝对路径(要有权限)</h3>
 
