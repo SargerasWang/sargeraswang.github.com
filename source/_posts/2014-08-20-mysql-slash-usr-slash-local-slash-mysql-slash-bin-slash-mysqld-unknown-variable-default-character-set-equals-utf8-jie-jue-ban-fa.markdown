@@ -8,8 +8,6 @@ images: [/images/blog_img/mysql_status.png]
 
 ---
 [ok]:{{page.images[0]}}
-![][ok]
-
 
 为了修改mysql默认字符集,按照网上的方式,修改了`my.cnf`,之后启动mysql报错:
 
@@ -41,3 +39,5 @@ character-set-server=utf8
 ```
 
 成功启动mysql.
+
+![][ok]

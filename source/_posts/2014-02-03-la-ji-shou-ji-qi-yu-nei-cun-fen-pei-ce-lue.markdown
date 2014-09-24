@@ -8,7 +8,7 @@ images: [/images/blog_img/jvmbook.jpg]
 
 ---
 [jvmbook]: {{page.images[0]}}
-[![][jvmbook]](http://item.jd.com/11252778.html)
+
 ###对象已死吗
 
 ####引用计数算法
@@ -17,6 +17,8 @@ images: [/images/blog_img/jvmbook.jpg]
 >它很难解决对象之间互相循环引用的问题。
 
 <!-- more -->
+
+[![][jvmbook]](http://item.jd.com/11252778.html)
 
 ``` java
 /**
