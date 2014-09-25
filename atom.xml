@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-09-25T10:40:14+08:00</updated>
+  <updated>2014-09-25T18:23:38+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -26,6 +26,9 @@
 <li><p>用摄像头扫描,点击<code>Scan</code>按钮进行.</p></li>
 <li><p>读取本机图片,点击<code>Import</code>按钮,将本机图片文件拖入弹出框中</p></li>
 </ol>
+
+
+<!--more-->
 
 
 <p><img src="http://sargeraswang.com/images/blog_img/QR_Journal.png" alt="" />
