@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-09-24T22:21:04+08:00</updated>
+  <updated>2014-09-25T10:40:14+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac下使用的二维码扫描工具并且可以直接识别图片中的二维码 QR Journal]]></title>
+    <link href="http://sargeraswang.com/blog/2014/09/25/macxia-shi-yong-de-er-wei-ma-sao-miao-gong-ju-bing-qie-ke-yi-zhi-jie-shi-bie-tu-pian-zhong-de-er-wei-ma/"/>
+    <updated>2014-09-25T10:22:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2014/09/25/macxia-shi-yong-de-er-wei-ma-sao-miao-gong-ju-bing-qie-ke-yi-zhi-jie-shi-bie-tu-pian-zhong-de-er-wei-ma</id>
+    <content type="html"><![CDATA[<p>QR Journal:<a href="http://www.macupdate.com/app/mac/41127/qr-journal">下载地址</a></p>
+
+<h4>使用方法:</h4>
+
+<ol>
+<li><p>用摄像头扫描,点击<code>Scan</code>按钮进行.</p></li>
+<li><p>读取本机图片,点击<code>Import</code>按钮,将本机图片文件拖入弹出框中</p></li>
+</ol>
+
+
+<p><img src="http://sargeraswang.com/images/blog_img/QR_Journal.png" alt="" />
+<img src="http://sargeraswang.com/images/blog_img/QR_Journal2.png" alt="" /></p>
+
+<p><strong>手机照的照片包含二维码,用这个工具貌似扫不出来</strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[com.atomikos.icatch.SysException:Error in init(): Log already in use? 的另一种原因]]></title>
@@ -3677,50 +3699,6 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 
 
 <p>这次ok了，成功deploy！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在Octopress中添加图片]]></title>
-    <link href="http://sargeraswang.com/blog/2013/11/13/tian-jia-tu-pian/"/>
-    <updated>2013-11-13T22:43:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2013/11/13/tian-jia-tu-pian</id>
-    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg"></p>
-
-<p>1.把图片copy到/source/images 下,例如我这张图片叫做tenten.jpg</p>
-
-<p>2.添加代码</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% img /images/blog_img/tenten.jpg %}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>以下摘自<a href="http://octopress.org/docs/plugins/image-tag/">octopress的官网</a>中关于Image Tag 的介绍</p>
-
-<!-- more -->
-
-
-<h3>语法格式</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg" width="100" height="100"></p>
-
-<p>上面这个是设置过大小的,代码如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% img /images/blog_img/tenten.jpg 100 100 %}</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://sargeraswang.com/images/blog_img/tenten.jpg" width="200" height="200" title="火影中的人物-天天" ></p>
-
-<p>上面这个是加了描述的，鼠标悬浮的时候可以看到&#8217;火影中的人物-天天&#8217;，代码如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% img /images/blog_img/tenten.jpg 200 200 火影中的人物-天天 %}</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
