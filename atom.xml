@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-09-25T18:23:38+08:00</updated>
+  <updated>2014-10-09T10:00:48+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[office for mac word 设置每页行数与每行字数(指定行网格和字符网格)]]></title>
+    <link href="http://sargeraswang.com/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/"/>
+    <updated>2014-10-09T09:35:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge</id>
+    <content type="html"><![CDATA[<p>毕业论文要求格式之一是,每行30字,每页25行.查到windows下word中的设置在<code>文件</code>——<code>页面设置</code>——<code>在网格选择“指定行和字符网络”</code>,可mac版中没有这个选项,经过挨个排查,找到这项设置在<code>文件</code>&ndash;><code>页面设置</code>&ndash;><code>[设置]下拉选择[Microsoft Word]</code>&ndash;><code>页边距</code>&ndash;><code>文档网格</code>&ndash;><code>指定行网格和字符网格</code>,然后在下方输入每页多少行,每行多少字.</p>
+
+<!-- more -->
+
+
+<p><img src="http://sargeraswang.com/images/blog_img/word_col_row.png" alt="" /></p>
+
+<p>使用后发现,明明设置每行30字,可实际总是在20字左右,行数也不对.测试后发现:</p>
+
+<ol>
+<li>每行字数不正确的,是由于在<code>字体...</code>中设置过<code>字符间距</code>,解决办法就是选中文字,点击<code>格式</code>&ndash;><code>字体...</code>&ndash;><code>高级</code>修改<code>间距</code>为<code>常规</code>,<code>位置</code>为<code>常规</code>.如下图:  <br/>
+<img src="http://sargeraswang.com/images/blog_img/word_col.png" alt="" /></li>
+<li>每页行数不正确的,是由于设置过<code>行间距</code>,解决办法是选中文字,点击<code>格式</code>&ndash;><code>段落...</code>&ndash;><code>间距</code>,<code>行距</code>设置为默认的<code>单倍行距</code>.如下图:  <br/>
+<img src="http://sargeraswang.com/images/blog_img/word_row.png" alt="" /></li>
+</ol>
+
+
+<h5>大功告成!</h5>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac下使用的二维码扫描工具并且可以直接识别图片中的二维码 QR Journal]]></title>
@@ -3642,66 +3668,6 @@ That&rsquo;s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" rel="fo
 
 
 <h4>ok了，当执行 rake new_post,或者 rake new_page之后，会自动用Mou打开。</h4>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rake deploy 出现Could not resolve host: github.com 的解决方法]]></title>
-    <link href="http://sargeraswang.com/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa/"/>
-    <updated>2013-11-14T22:15:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa</id>
-    <content type="html"><![CDATA[<p><img src="http://sargeraswang.com/images/blog_img/gfw.jpg"></p>
-
-<p>今天上午看自己的博客，发现昨晚好像没有deploy，博客好多地方都有问题。</p>
-
-<p>晚上回来，检查，确实有错误，修改完，打算提交，就执行了</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>reke deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>看到最后显示的是</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>## Github Pages deploy complete</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就以为成功了，遂上博客观察，还是没有改变，又去清浏览器缓存，还是没有改变。再次执行</p>
-
-<!-- more -->
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这次仔细看了一下console输出</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>## Pushing generated _deploy website
-</span><span class='line'>fatal: unable to access 'https://github.com/SagerasWang/sageraswang.github.com.git/': Could not resolve host: github.com
-</span><span class='line'>
-</span><span class='line'>## Github Pages deploy complete</span></code></pre></td></tr></table></div></figure>
-
-
-<p>原来如此，访问github.com无法解析了。</p>
-
-<p>这一定是我大<a href="http://zh.wikipedia.org/zh-cn/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E">GFW</a>的功劳，好吧，幸亏我有<a href="https://code.google.com/p/goagent/">goagent</a>.</p>
-
-<p><img src="http://sargeraswang.com/images/blog_img/goagent.png"></p>
-
-<p>在shell中执行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>set HTTP_PROXY=http://127.0.0.1:8087
-</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这次ok了，成功deploy！</p>
 ]]></content>
   </entry>
   
