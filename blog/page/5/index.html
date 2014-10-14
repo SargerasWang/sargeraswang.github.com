@@ -9,9 +9,7 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="今天上午看自己的博客，发现昨晚好像没有deploy，博客好多地方都有问题。 晚上回来，检查，确实有错误，修改完，打算提交，就执行了 1
-reke deploy 看到最后显示的是 1
-## Github Pages deploy complete 就以为成功了，遂上博客观察，还是没有改变， &hellip;">
+  <meta name="description" content="每次new_post完都要自己找到那个文件，再打开，实在是太呆了。 今天看到了这篇文章就照着做了一下，过程记录在这里。 原文作者说： 我平时一般用的是 Emacs，加上这个扩展函数之后可以直接在 Emacs 里创建博文和部署网站。我修改过 Rakefile &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +96,63 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-16T11:25:00+08:00" pubdate data-updated="true">2013-11-16</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/blog_img/automou.png"></p>
+
+<p>每次new_post完都要自己找到那个文件，再打开，实在是太呆了。</p>
+
+<p>今天看到了<a href="http://xoyo.name/2012/02/migrate-to-octopress/">这篇文章</a>就照着做了一下，过程记录在这里。</p>
+
+<p>原文作者说：</p>
+
+<blockquote><p>我平时一般用的是 Emacs，加上这个扩展函数之后可以直接在 Emacs 里创建博文和部署网站。<strong>我修改过 Rakefile 里的new_post和new_page任务，让它们自动打开 Mou 编辑新建页面</strong>；而在 Emacs 里执行这两个任务的时候就不需要自动打开 Mou，所以在调用rake new_post和rake new_page的时候还需要加个开关参数，这是我修改后的扩展。</p></blockquote>
+
+<p>Emacs是我打算下一个要学习的东西，或许就在下一篇文章。这篇先搞定Rakefile。</p>
+
+<p>找到Octopress下的Rakefile文件，打开。作者给出的源码在<a href="https://github.com/xoyowade/octopress/blob/master/Rakefile">https://github.com/xoyowade/octopress/blob/master/Rakefile</a></p>
+
+<p>我并不打算整份盖掉我的配置，而是学习一下，添加到自己的配置中。一共有以下三处要添加</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -337,47 +392,9 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/11/11/github-da-jian-bo-ke-cheng-gong/">Github 搭建博客成功</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-11T23:36:00+08:00" pubdate data-updated="true">2013-11-11</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这是我在github上写下的第一篇文章，只为纪念愚笨的我搞了好几天的成果！</p>
-
-<p>现在太晚了，明天整理一下过程中遇到的问题。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -390,6 +407,10 @@ $(document).bind('DOMNodeInserted', function(event) {
     <section>
   <h1>近期文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/er-slash-studio-for-mac-yi-zhi-ban-zhi-zuo-jiao-cheng-yu-xia-zai/">ER/Studio for Mac 移植版制作教程与下载</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/">Office for Mac Word 设置每页行数与每行字数(指定行网格和字符网格)</a>
@@ -405,10 +426,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">Mac 下 Eclipse 使用Emac按键的设置</a>
       </li>
     
   </ul>
