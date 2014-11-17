@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-11-17T13:37:16+08:00</updated>
+  <updated>2014-11-17T13:41:03+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -28,6 +28,12 @@
 <h4>resin 可能5.0以上才可以</h4>
 
 <p><img src="http://sargeraswang.com/images/blog_img/webSocket/resin.png" alt="" /></p>
+
+<p>否则浏览器的console会出现如下错误:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>WebSocket connection to 'ws://127.0.0.1:8080/xxx/yyy' failed: Error during WebSocket handshake: Unexpected response code: 404</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>server端</h2>
 

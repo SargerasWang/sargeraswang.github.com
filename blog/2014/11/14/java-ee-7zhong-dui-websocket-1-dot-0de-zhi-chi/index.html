@@ -10,12 +10,8 @@
 
   
   <meta name="description" content="非原创,原文链接：http://www.javaarch.net/jiagoushi/749.htm
-原文打不开,所以贴到这里. 需要tomcat 7.0.50 及以上版本才支持 resin 可能5.0以上才可以 server端 pom依赖: 1
-2
-3
-4
-5
-6 &lt;dependency& &hellip;">
+原文打不开,所以贴到这里. 需要tomcat 7.0.50 及以上版本才支持 resin 可能5.0以上才可以 否则浏览器的console会出现如下错误: 1
+WebSocket &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -140,6 +136,12 @@ $(document).bind('DOMNodeInserted', function(event) {
 <h4>resin 可能5.0以上才可以</h4>
 
 <p><img src="/images/blog_img/webSocket/resin.png" alt="" /></p>
+
+<p>否则浏览器的console会出现如下错误:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>WebSocket connection to 'ws://127.0.0.1:8080/xxx/yyy' failed: Error during WebSocket handshake: Unexpected response code: 404</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>server端</h2>
 
