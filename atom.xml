@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2014-11-14T15:59:09+08:00</updated>
+  <updated>2014-11-17T13:37:16+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -20,6 +20,14 @@
     <id>http://sargeraswang.com/blog/2014/11/14/java-ee-7zhong-dui-websocket-1-dot-0de-zhi-chi</id>
     <content type="html"><![CDATA[<blockquote><p>非原创,原文链接：<a href="http://www.javaarch.net/jiagoushi/749.htm">http://www.javaarch.net/jiagoushi/749.htm</a>
 原文打不开,所以贴到这里.</p></blockquote>
+
+<h4>需要tomcat 7.0.50 及以上版本才支持</h4>
+
+<p><img src="http://sargeraswang.com/images/blog_img/webSocket/tomcat.png" alt="" /></p>
+
+<h4>resin 可能5.0以上才可以</h4>
+
+<p><img src="http://sargeraswang.com/images/blog_img/webSocket/resin.png" alt="" /></p>
 
 <h2>server端</h2>
 
