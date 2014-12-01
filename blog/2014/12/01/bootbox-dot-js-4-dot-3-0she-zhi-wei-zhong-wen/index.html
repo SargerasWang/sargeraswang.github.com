@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>office for mac word 设置每页行数与每行字数(指定行网格和字符网格) - 程序员小刚</title>
+  <title>bootbox.js 4.3.0设置为中文 - 程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="毕业论文要求格式之一是,每行30字,每页25行.查到windows下word中的设置在文件——页面设置——在网格选择“指定行和字符网络”,可mac版中没有这个选项,经过挨个排查,找到这项设置在文件&ndash;>页面设置&ndash;>[设置]下拉选择[Microsoft Word]&ndash &hellip;">
+  <meta name="description" content="bootbox.js 是bootstrap用的alert/confirm插件,支持多语言.中文设置方法: 1
+bootbox.setDefaults({locale:&quot;zh_CN&quot;}); 然后alert的确认按钮,还是显示为OK,直接去源码修改:
+bootbox.js 最后位置 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sargeraswang.com/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/">
+  <link rel="canonical" href="http://sargeraswang.com/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -100,7 +102,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   <header>
     
       
-        <h1 class="entry-title">Office for Mac Word 设置每页行数与每行字数(指定行网格和字符网格)</h1>
+        <h1 class="entry-title">bootbox.js 4.3.0设置为中文</h1>
       
     
     
@@ -117,31 +119,35 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-10-09T09:35:00+08:00" pubdate data-updated="true">2014-10-09</time>
+<time datetime="2014-12-01T09:06:00+08:00" pubdate data-updated="true">2014-12-01</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>毕业论文要求格式之一是,每行30字,每页25行.查到windows下word中的设置在<code>文件</code>——<code>页面设置</code>——<code>在网格选择“指定行和字符网络”</code>,可mac版中没有这个选项,经过挨个排查,找到这项设置在<code>文件</code>&ndash;><code>页面设置</code>&ndash;><code>[设置]下拉选择[Microsoft Word]</code>&ndash;><code>页边距</code>&ndash;><code>文档网格</code>&ndash;><code>指定行网格和字符网格</code>,然后在下方输入每页多少行,每行多少字.</p>
+<div class="entry-content"><p>bootbox.js 是bootstrap用的alert/confirm插件,支持多语言.中文设置方法:</p>
 
-<!-- more -->
-
-
-<p><img src="/images/blog_img/word_col_row.png" alt="" /></p>
-
-<p>使用后发现,明明设置每行30字,可实际总是在20字左右,行数也不对.测试后发现:</p>
-
-<ol>
-<li>每行字数不正确的,是由于在<code>字体...</code>中设置过<code>字符间距</code>,解决办法就是选中文字,点击<code>格式</code>&ndash;><code>字体...</code>&ndash;><code>高级</code>修改<code>间距</code>为<code>常规</code>,<code>位置</code>为<code>常规</code>.如下图:  <br/>
-<img src="/images/blog_img/word_col.png" alt="" /></li>
-<li>每页行数不正确的,是由于设置过<code>行间距</code>,解决办法是选中文字,点击<code>格式</code>&ndash;><code>段落...</code>&ndash;><code>间距</code>,<code>行距</code>设置为默认的<code>单倍行距</code>.如下图:  <br/>
-<img src="/images/blog_img/word_row.png" alt="" /></li>
-</ol>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">bootbox</span><span class="p">.</span><span class="nx">setDefaults</span><span class="p">({</span><span class="nx">locale</span><span class="o">:</span><span class="s2">&quot;zh_CN&quot;</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h5>大功告成!</h5>
+<p>然后alert的确认按钮,还是显示为<code>OK</code>,直接去源码修改:
+bootbox.js 最后位置</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">zh_CN</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">OK</span>      <span class="o">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span><span class="c1">//修改这里</span>
+</span><span class='line'>      <span class="nx">CANCEL</span>  <span class="o">:</span> <span class="s2">&quot;取消&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">CONFIRM</span> <span class="o">:</span> <span class="s2">&quot;确认&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -164,7 +170,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-10-09T09:35:00+08:00" pubdate data-updated="true">2014-10-09</time>
+<time datetime="2014-12-01T09:06:00+08:00" pubdate data-updated="true">2014-12-01</time>
       
 
 
@@ -184,7 +190,8 @@ $(document).bind('DOMNodeInserted', function(event) {
 		<tr>
 		<td>&nbsp;</td>
 		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="office for mac word 设置每页行数与每行字数(指定行网格和字符网格):毕业论文要求格式之一是,每行30字,每页25行.查到windows下word中的设置在文件——页面设置——在网格选择“指定行和字符网络”,可mac版中没有这个选项,经过挨个排查,找到这项设置在文件& &hellip;" data-pic="http://sargeraswang.com/images/blog_img/word_col_row.png|http://sargeraswang.com/images/blog_img/word_col.png|http://sargeraswang.com/images/blog_img/word_row.png|">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="bootbox.js 4.3.0设置为中文:bootbox.js 是bootstrap用的alert/confirm插件,支持多语言.中文设置方法: 1
+bootbox.setDefaults({locale:&quot;zh_CN&quot &hellip;" data-pic="">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
@@ -196,10 +203,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2014/09/25/macxia-shi-yong-de-er-wei-ma-sao-miao-gong-ju-bing-qie-ke-yi-zhi-jie-shi-bie-tu-pian-zhong-de-er-wei-ma/" title="Previous Post: Mac下使用的二维码扫描工具并且可以直接识别图片中的二维码 QR Journal">&laquo; Mac下使用的二维码扫描工具并且可以直接识别图片中的二维码 QR Journal</a>
+        <a class="basic-alignment left articlenav" href="/blog/2014/11/14/java-ee-7zhong-dui-websocket-1-dot-0de-zhi-chi/" title="Previous Post: Java EE 7中对WebSocket 1.0的支持">&laquo; Java EE 7中对WebSocket 1.0的支持</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2014/10/14/er-slash-studio-for-mac-yi-zhi-ban-zhi-zuo-jiao-cheng-yu-xia-zai/" title="Next Post: ER/Studio for mac 移植版制作教程与下载">ER/Studio for mac 移植版制作教程与下载 &raquo;</a>
       
     </p>
   </footer>
