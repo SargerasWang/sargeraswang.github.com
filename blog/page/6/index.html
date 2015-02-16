@@ -9,7 +9,8 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="今天同事听说我有博客了，表示要上来评论一番，我才想起来还没有这个功能，遂加了一个，过程记录在这里，整个过程以破船的这篇文章为基础，我只是稍作改动。 一. 多说网注册账号 去多说网,点[我要安装],选一个账号登陆，我直接选的QQ登陆。 授权后，进入[创建站点]的页面，站点名称填一下 站点地址， &hellip;">
+  <meta name="description" content=" 1.把图片copy到/source/images 下,例如我这张图片叫做tenten.jpg 2.添加代码 1
+{% img /images/blog_img/tenten.jpg %} 以下摘自octopress的官网中关于Image Tag 的介绍 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,6 +97,59 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/11/13/tian-jia-tu-pian/">在Octopress中添加图片</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-13T22:43:00+08:00" pubdate data-updated="true">2013-11-13</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/blog_img/tenten.jpg"></p>
+
+<p>1.把图片copy到/source/images 下,例如我这张图片叫做tenten.jpg</p>
+
+<p>2.添加代码</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% img /images/blog_img/tenten.jpg %}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下摘自<a href="http://octopress.org/docs/plugins/image-tag/">octopress的官网</a>中关于Image Tag 的介绍</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/13/tian-jia-tu-pian/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -278,6 +332,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql/">在VPS上搭建tomcat+mysql</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/">bootbox.js 4.3.0设置为中文</a>
       </li>
     
@@ -291,10 +349,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/">Office for Mac Word 设置每页行数与每行字数(指定行网格和字符网格)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/25/macxia-shi-yong-de-er-wei-ma-sao-miao-gong-ju-bing-qie-ke-yi-zhi-jie-shi-bie-tu-pian-zhong-de-er-wei-ma/">Mac下使用的二维码扫描工具并且可以直接识别图片中的二维码 QR Journal</a>
       </li>
     
   </ul>

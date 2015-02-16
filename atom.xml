@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2015-01-28T22:15:25+08:00</updated>
+  <updated>2015-02-16T15:18:07+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,223 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在VPS上搭建tomcat+mysql]]></title>
+    <link href="http://sargeraswang.com/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql/"/>
+    <updated>2015-02-16T13:54:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql</id>
+    <content type="html"><![CDATA[<blockquote><p>很久没有写blog了,从去年底开始一直在整一个框架,现在最最基础的东西好了.
+就想着给基友演示一下,看了一下国外的VPS,价格还可以接受,而且还可以增强linux的操作熟练度,就租了.
+这篇是写从租服务器开始直到可以通过<a href="http://csm.sargeraswang.com">http://csm.sargeraswang.com</a>访问到我的站点.</p></blockquote>
+
+<h3>准备</h3>
+
+<ol>
+<li>你自己的域名</li>
+<li>支持<code>VISA</code>或者<code>MasterCard</code>的信用卡</li>
+<li>你的网站程序</li>
+</ol>
+
+
+<!-- more -->
+
+
+<h2>开始</h2>
+
+<h3>1.购买VPS</h3>
+
+<p>对VPS的选购我是从<a href="http://www.vpsmm.com/">这里</a>找的,具体我购买的是<a href="https://peakservers.com/">peakservers</a>的配置[256MB/10GB/1core],价格15$/年.</p>
+
+<p>购买的时候会让你选择系统,我选择的是<code>ubuntu14.04 64bit</code>.</p>
+
+<p>购买之后,你可以看到分配给你的IP,root的密码.</p>
+
+<h3>2.安装</h3>
+
+<p>打开终端,输入 <code>ssh root@服务器IP</code> 回车,输入密码,登陆成功.</p>
+
+<h4>安装mysql</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>apt-get update
+</span><span class='line'>apt-get install mysql-server
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>输入mysql的root密码两次,安装完成</p></blockquote>
+
+<h4>安装tomcat</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>apt-get install tomcat7
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>安装emacs(可选)</h4>
+
+<p>由于我只会一点点emacs而不会使用vi,所以需要安装emacs,如果你用vi,可以忽略这步.后文中所有<code>emacs</code>请自行使用vi.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>apt-get install emacs
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3.配置</h3>
+
+<h4>关闭系统的Apache2服务</h4>
+
+<p>系统默认有apache2服务占用80端口,需要关闭:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>service apache2 stop
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>修改tomcat端口为80</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>emacs /var/lib/tomcat7/conf/server.xml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找到这行</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&quot;8080&quot;</span> <span class="na">protocol=</span><span class="s">&quot;HTTP/1.1&quot;</span>
+</span><span class='line'>               <span class="na">connectionTimeout=</span><span class="s">&quot;20000&quot;</span>
+</span><span class='line'>               <span class="na">URIEncoding=</span><span class="s">&quot;UTF-8&quot;</span>
+</span><span class='line'>               <span class="na">redirectPort=</span><span class="s">&quot;8443&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&quot;80&quot;</span> <span class="na">protocol=</span><span class="s">&quot;HTTP/1.1&quot;</span>
+</span><span class='line'>               <span class="na">connectionTimeout=</span><span class="s">&quot;20000&quot;</span>
+</span><span class='line'>               <span class="na">URIEncoding=</span><span class="s">&quot;UTF-8&quot;</span>
+</span><span class='line'>               <span class="na">redirectPort=</span><span class="s">&quot;8443&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>ctrl+x ctrl+s</code>保存,<code>ctrl+x ctrl+c</code>退出.</p>
+
+<p>由于linux中1024以下端口只有root用户才有权限占用,而使用<code>apt-get</code>方式安装的Tomcat默认会新增一个用户使用.所以我们要修改启动Tomcat的用户为root.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>emacs /etc/default/tomcat7
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找到这行</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">TOMCAT7_USER</span><span class="o">=</span>tomcat7
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">TOMCAT7_USER</span><span class="o">=</span>root
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>保存退出.</p>
+
+<h3>4.上传数据库&amp;程序</h3>
+
+<p>打开FileZilla,<code>主机</code>输入服务器IP,<code>用户名</code>输入<code>root</code>,<code>密码</code>输入你的root密码,<code>端口</code>输入<code>22</code>,点击<code>快速连接</code>.</p>
+
+<h4>数据库备份与还原</h4>
+
+<ul>
+<li>备份本地的数据库</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mysqldump -u root -p 数据库名称 &gt; /某个目录/db.sql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>上传到服务器</li>
+</ul>
+
+
+<p>使用FileZilla,从左侧框体(就是你本机目录)中找到刚才的<code>db.sql</code>,在右侧框体(服务器目录)的根目录下新建一个文件夹用于存放上传的文件,我这里叫<code>download</code>.<br/>
+然后,将文件从左侧拖拽到右侧,等待上传完成.</p>
+
+<ul>
+<li>从服务器上还原数据库</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mysql -u root -p
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输入你服务上mysql的root密码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">create</span> <span class="k">database</span> <span class="err">数据库名称</span><span class="p">;</span>
+</span><span class='line'><span class="n">use</span> <span class="err">数据库名称</span><span class="p">;</span>
+</span><span class='line'><span class="k">source</span> <span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">db</span><span class="p">.</span><span class="k">sql</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>程序打包上传</h4>
+
+<ol>
+<li>将打包好的war包通过FileZilla上传到服务器.</li>
+<li>在服务器端:
+
+<ol>
+<li>复制war包到webapps目录<br/>
+<code>
+cp /download/WebManager.war /var/lib/tomcat7/webapps/
+</code></li>
+<li>重启tomcat解压war<br/>
+<code>
+service tomcat7 restart
+</code></li>
+<li>将程序移动到ROOT文件夹<br/>
+<code>
+rm -rf WebManager.war
+rm -rf ROOT
+mv WebManager ROOT
+</code></li>
+<li>重启tomcat<br/>
+<code>
+service tomcat7 restart
+</code></li>
+</ol>
+</li>
+<li>通过服务器ip访问测试服务是否正常</li>
+</ol>
+
+
+<h3>5.域名绑定</h3>
+
+<p>登陆到你的域名解析界面,新增一条<code>A记录</code>,记录值为你的服务器IP,完成.</p>
+
+<h3>完成</h3>
+
+<p><img src="http://sargeraswang.com/images/blog_img/vps/success.png" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[bootbox.js 4.3.0设置为中文]]></title>
@@ -2603,144 +2820,6 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 <p>遇到的其他问题基本都是因为网络问题，jar包下载失败，重新下载就好了。
 附上我配置成功的项目。<br/>
 <a href="http://sargeraswang.com/images/code/myproject.zip">下载myproject.zip</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在Octopress中添加腾讯微博一键分享功能]]></title>
-    <link href="http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/"/>
-    <updated>2013-11-22T19:04:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng</id>
-    <content type="html"><![CDATA[<blockquote><p>前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
-Emacs使用手册系列要过几天才能写了。
-接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。</p></blockquote>
-
-<p><img src="http://sargeraswang.com/images/blog_img/qqweibo.png"></p>
-
-<!-- more -->
-
-
-<h3>申请一键分享代码</h3>
-
-<p>先去<a href="http://dev.t.qq.com/">腾讯微博开放平台</a>登陆后,点【网站接入】<br/>
-<img src="http://sargeraswang.com/images/blog_img/wangzhanjieru.png" width="160"><br/>
-再点【一键分享】<br/>
-<img src="http://sargeraswang.com/images/blog_img/yijianfenxiang.png" width="160"><br/>
-再点【立即使用】<br/>
-<img src="http://sargeraswang.com/images/blog_img/lijishiyong.png">
-然后填写【网站名称】和【网站地址】，选择一个样式，点【获取代码】<br/>
-然后你可以看到两段代码：<br/>
-一段是DIV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qqwb_share__&quot;</span> <span class="na">data-appkey=</span><span class="s">&quot;你的key&quot;</span> <span class="na">data-icon=</span><span class="s">&quot;0&quot;</span> <span class="na">data-counter=</span><span class="s">&quot;0&quot;</span> <span class="na">data-content=</span><span class="s">&quot;{title}&quot;</span> <span class="na">data-pic=</span><span class="s">&quot;{pic}&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>一段是JavaScript</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>添加代码到Octopress</h3>
-
-<h4>第一段div</h4>
-
-<p>打开octopress/source/_includes/post/sharing.html<br/>
-加入</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.qq_weibo %}
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qqwb_share__&quot;</span> <span class="na">data-appkey=</span><span class="s">&quot;{{site.qq_weibo_key}}&quot;</span> <span class="na">data-icon=</span><span class="s">&quot;1&quot;</span> <span class="na">data-counter=</span><span class="s">&quot;0&quot;</span> <span class="na">data-counter_pos=</span><span class="s">&quot;{{qq_weibo_data_pos}}&quot;</span> <span class="na">data-content=</span><span class="s">&quot;{{page.title}}&quot;</span> <span class="na">data-pic=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'>{% endif %}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后打开_config.yml
-加入</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'># qq weibo
-</span><span class='line'>qq_weibo: true
-</span><span class='line'>qq_weibo_key: 你的key
-</span><span class='line'>qq_weibo_data_pos: right
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>第二段JavaScript</h4>
-
-<p>打开octopress/source/_includes/custom/head.html<br/>
-加入</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>测试</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>rake generate
-</span><span class='line'>rake preview
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>看下效果，应该就可以了</p>
-
-<h3>初阶完善</h3>
-
-<h4>位置问题</h4>
-
-<p>上面的代码生成后，一键分享按钮在画面的左对齐，看着很不顺眼，我想要他居中。试了下在div上加 <code>style="text-align:center;"</code>,没有用，用开发者模式看一下这个div，发现：</p>
-
-<p><img src="http://sargeraswang.com/images/blog_img/divDebug.png"></p>
-
-<p>Div上被加了<code>style="textalign:left;"</code>的属性，那段JavaScript一定是凶手，然后就去看<a href="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&amp;debug=no">这段JavaScript  </a>（一坨代码，你可以用GoogleChrome的<a href="https://chrome.google.com/webstore/detail/piekbefgpgdecckjcpffhnacjflfoddg">这个插件</a>来格式化一下，方便阅读），搜索<code>text-align:left</code>,找到了：<br/>
-<img src="http://sargeraswang.com/images/blog_img/textAlign.png"></p>
-
-<p>凶手是找到了，可是尝试过加一段JavaScript盖掉<code>text-align</code>,没有起到作用，一定是我的JavaScript功力不够。换个思路，最后决定用table了。最终可以达到居中效果的完整代码如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.qq_weibo %}
-</span><span class='line'><span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">&quot;100%&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;tr&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span><span class="ni">&amp;nbsp;</span><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td</span> <span class="na">width=</span><span class="s">&quot;62px&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qqwb_share__&quot;</span> <span class="na">data-appkey=</span><span class="s">&quot;{{site.qq_weibo_key}}&quot;</span> <span class="na">data-icon=</span><span class="s">&quot;1&quot;</span> <span class="na">data-counter=</span><span class="s">&quot;0&quot;</span> <span class="na">data-counter_pos=</span><span class="s">&quot;{{qq_weibo_data_pos}}&quot;</span> <span class="na">data-content=</span><span class="s">&quot;{{page.title}}&quot;</span> <span class="na">data-pic=</span><span class="s">&quot;{{site.url}}/images/blog-title.png&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span><span class="ni">&amp;nbsp;</span><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;/tr&gt;</span>
-</span><span class='line'><span class="nt">&lt;/table&gt;</span>
-</span><span class='line'>{% endif %}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>不尽人意之处</h3>
-
-<ol>
-<li>image应该可以读取文章中的所有图片才对，后续研究后补到这里。</li>
-<li>最后用table定位居中的方式蠢了一些，后续有更好的解决办法再补到这里。
-<font color="green">@2013-12-10 这个已解决<a href="http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font></li>
-</ol>
-
 ]]></content>
   </entry>
   
