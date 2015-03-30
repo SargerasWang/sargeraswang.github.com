@@ -149,6 +149,13 @@ $(document).bind('DOMNodeInserted', function(event) {
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>修改log4j配置文件的第一行,服务器端有mail,本机没有</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sed -i <span class="s1">&#39;1c log4j.rootLogger=INFO,stdout,stderr,mail&#39;</span> ./src/main/resources/log4j.properties
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h4>3.打包</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -209,23 +216,25 @@ $(document).bind('DOMNodeInserted', function(event) {
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
+<span class='line-number'>20</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh                                                                                                                                   </span>
 </span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;==============================开始部署==============================&quot;</span>
 </span><span class='line'><span class="nb">cd</span> /usr/local/project/csm-framework/
 </span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################更新git##############################&quot;</span>
 </span><span class='line'>git pull
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################替换数据库配置##############################&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;########################替换数据库配置#############################&quot;</span>
 </span><span class='line'>cp -f ../db_config/db.properties ./src/main/resources/props/db.properties
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################打包##############################&quot;</span>
-</span><span class='line'>mvn package
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################停止tomcat##############################&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;########################修改Log4j配置#############################&quot;</span>
+</span><span class='line'>sed -i <span class="s1">&#39;1c log4j.rootLogger=INFO,stdout,stderr,mail&#39;</span> ./src/main/resources/log4j.properties
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;############################打包###################################&quot;</span>
+</span><span class='line'>mvn clean package
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;#########################停止tomcat################################&quot;</span>
 </span><span class='line'>service tomcat7 stop
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################删除原文件夹##############################&quot;</span>
-</span><span class='line'>rm -rf /var/lib/tomcat7/webapps/ROOT
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################复制包到tomcat##############################&quot;</span>
-</span><span class='line'>mv target/WebManager.war target/ROOT.war
-</span><span class='line'>cp -f target/ROOT.war /var/lib/tomcat7/webapps/
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################启动tomcat##############################&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##########################删除原文件夹#############################&quot;</span>
+</span><span class='line'>rm -rf /var/lib/tomcat7/webapps/*
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##########################解压到webapps############################&quot;</span>
+</span><span class='line'>unzip -o target/WebManager.war -d /var/lib/tomcat7/webapps/ROOT/
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;############################启动tomcat#############################&quot;</span>
 </span><span class='line'>service tomcat7 start
 </span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;==============================部署完成==============================&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
