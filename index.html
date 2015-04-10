@@ -9,10 +9,18 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="vps服务器弄好之后,每次更改完代码都是本地打包,上传war到服务器,再替换数据库配置,重启服务.
-刚开始偶尔一次还好,但频繁操作就受不了了,然后写了以下脚本. 部署流程 1.从github更新 1
-git pull 2.替换数据库配置 1
-cp -f ../db_config/db. &hellip;">
+  <meta name="description" content="问题描述 Mybatis 关联的嵌套查询 官方的例子: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;resultMap id=&quot;blogResult&quot; type=&quot;Blog&quot;&gt; &lt;association property=&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +107,90 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-10T19:44:00+08:00" pubdate data-updated="true">2015-04-10</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>问题描述</h2>
+
+<p>Mybatis 关联的嵌套查询 官方的例子:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&quot;blogResult&quot;</span> <span class="na">type=</span><span class="s">&quot;Blog&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&quot;author&quot;</span> <span class="na">column=</span><span class="s">&quot;author_id&quot;</span> <span class="na">javaType=</span><span class="s">&quot;Author&quot;</span> <span class="na">select=</span><span class="s">&quot;selectAuthor&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/resultMap&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectBlog&quot;</span> <span class="na">resultMap=</span><span class="s">&quot;blogResult&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  SELECT * FROM BLOG WHERE ID = #{id}
+</span><span class='line'><span class="nt">&lt;/select&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectAuthor&quot;</span> <span class="na">resultType=</span><span class="s">&quot;Author&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  SELECT * FROM AUTHOR WHERE ID = #{id}
+</span><span class='line'><span class="nt">&lt;/select&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个时候,如果<code>AUTHOR</code>表与<code>BLOG</code>在两个不同的数据库中,执行会报找不到<code>AUTHOR</code>表.</p>
+
+<h2>解决思路</h2>
+
+<p>新建一个Mybatis的<code>Plugins插件</code>,在第二次查询也就是<code>selectAuthor</code>执行之前,切换数据源为另一个数据库.看一下Plugins都可以用于哪些地方:</p>
+
+<ul>
+<li>Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)</li>
+<li>ParameterHandler (getParameterObject, setParameters)</li>
+<li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
+<li>StatementHandler (prepare, parameterize, batch, update, query)</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -521,62 +613,6 @@ bootbox.js 最后位置</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/10/14/er-slash-studio-for-mac-yi-zhi-ban-zhi-zuo-jiao-cheng-yu-xia-zai/">ER/Studio for Mac 移植版制作教程与下载</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-14T11:24:00+08:00" pubdate data-updated="true">2014-10-14</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>先上图:<br/>
-<img src="/images/blog_img/erstudio/new.png" alt="" /></p>
-
-<h3>原理</h3>
-
-<p>使用<a href="http://wineskin.urgesoftware.com/tiki-index.php">Wineskin</a>安装一个Windows的ER/Studio</p>
-
-<h3>步骤</h3>
-
-<ol>
-<li>下载wineskin,地址<a href="http://wineskin.urgesoftware.com/tiki-index.php?page=Downloads">http://wineskin.urgesoftware.com/tiki-index.php?page=Downloads</a></li>
-<li>运行wineskin,点击加号[+],新增一个engine,我用的是<code>WS9Wine 1.7.28</code>,点击[Download And Install].</li>
-</ol>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/14/er-slash-studio-for-mac-yi-zhi-ban-zhi-zuo-jiao-cheng-yu-xia-zai/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -592,6 +628,10 @@ bootbox.js 最后位置</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben/">简单的linux下maven程序自动部署脚本</a>
       </li>
     
@@ -605,10 +645,6 @@ bootbox.js 最后位置</p>
     
       <li class="post">
         <a href="/blog/2014/11/14/java-ee-7zhong-dui-websocket-1-dot-0de-zhi-chi/">Java EE 7中对WebSocket 1.0的支持</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/14/er-slash-studio-for-mac-yi-zhi-ban-zhi-zuo-jiao-cheng-yu-xia-zai/">ER/Studio for Mac 移植版制作教程与下载</a>
       </li>
     
   </ul>

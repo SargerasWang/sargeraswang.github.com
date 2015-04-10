@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mybatis中association查询与主查询在不同数据库的解决方法 - 程序员小刚</title>
+  <meta name="author" content="SargerasWang">
+
+  
+  <meta name="description" content="问题描述 Mybatis 关联的嵌套查询 官方的例子: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;resultMap id=&quot;blogResult&quot; type=&quot;Blog&quot;&gt; &lt;association property=&quot; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sargeraswang.com/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sargeraswang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Mybatis中association查询与主查询在不同数据库的解决方法</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-10T19:44:00+08:00" pubdate data-updated="true">2015-04-10</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>问题描述</h2>
+
+<p>Mybatis 关联的嵌套查询 官方的例子:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&quot;blogResult&quot;</span> <span class="na">type=</span><span class="s">&quot;Blog&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&quot;author&quot;</span> <span class="na">column=</span><span class="s">&quot;author_id&quot;</span> <span class="na">javaType=</span><span class="s">&quot;Author&quot;</span> <span class="na">select=</span><span class="s">&quot;selectAuthor&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/resultMap&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectBlog&quot;</span> <span class="na">resultMap=</span><span class="s">&quot;blogResult&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  SELECT * FROM BLOG WHERE ID = #{id}
+</span><span class='line'><span class="nt">&lt;/select&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectAuthor&quot;</span> <span class="na">resultType=</span><span class="s">&quot;Author&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  SELECT * FROM AUTHOR WHERE ID = #{id}
+</span><span class='line'><span class="nt">&lt;/select&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个时候,如果<code>AUTHOR</code>表与<code>BLOG</code>在两个不同的数据库中,执行会报找不到<code>AUTHOR</code>表.</p>
+
+<h2>解决思路</h2>
+
+<p>新建一个Mybatis的<code>Plugins插件</code>,在第二次查询也就是<code>selectAuthor</code>执行之前,切换数据源为另一个数据库.看一下Plugins都可以用于哪些地方:</p>
+
+<ul>
+<li>Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)</li>
+<li>ParameterHandler (getParameterObject, setParameters)</li>
+<li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
+<li>StatementHandler (prepare, parameterize, batch, update, query)</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>尝试1</h3>
+
+<p>拦截<code>Executor</code>的<code>query</code>方法是最先想到的,毕竟是符合思路的&#8221;执行查询之前&#8221;,有两个<code>query</code>方法:</p>
+
+<ul>
+<li><E> List<E> query(MappedStatement var1, Object var2, RowBounds var3, ResultHandler var4, CacheKey var5, BoundSql var6) throws SQLException;</li>
+<li><E> List<E> query(MappedStatement var1, Object var2, RowBounds var3, ResultHandler var4) throws SQLException;</li>
+</ul>
+
+
+<p>尝试结果:4个参数的只能拦截到执行主查询,6个参数的什么都拦截不到,暂时放弃</p>
+
+<h3>尝试2</h3>
+
+<p>子查询执行之前既然不行,就尝试在主查询执行完成之后,拦截<code>ResultSetHandler</code>的<code>handleResultSets</code>.</p>
+
+<p>尝试结果:在主查询结束后替换掉了dataSource,子查询也顺利查出,但是有不可扩展的问题:如果主查询需要多个映射查询,分别在不同数据库中,在此处无法得知接下来要执行的是哪一个库的,所以此尝试方案只适用于只有一个子查询的情况,放弃</p>
+
+<h3>尝试3</h3>
+
+<p>开始思考<code>尝试1</code>失败的原因,debug发现子查询确实是执行了<code>query</code>6个参数的方法,但是为什么没有拦截住呢,怀疑是因为JDK的动态代理是基于接口的,而此处的调用是方法内部之间的调用,并没有通过接口,所以拦截失败.那如果使用基于继承的<code>cglib</code>动态代理呢?</p>
+
+<p>尝试结果:还是无法拦截,在类的内部的方法之间的调用,是无法通过动态代理拦截的,具体原因如这篇<a href="http://lgbolgger.iteye.com/blog/2123895">Spring AOP源码分析（八）SpringAOP要注意的地方</a>所说,放弃</p>
+
+<h3>尝试4</h3>
+
+<p>既然执行前和执行后都不行,再尝试一下<code>StatementHandler</code>的<code>query</code>.</p>
+
+<h4>尝试4.1</h4>
+
+<p>对调用者<code>StatementHandler</code>中的<code>delegate.executor.transaction.dataSource</code>和<code>delegate.executor.transaction.connection</code>替换.结果数据库并没有切换,放弃</p>
+
+<h4>尝试4.2</h4>
+
+<p>对方法参数<code>Statement</code>中的<code>inner.connection</code>和<code>inner.currentCatalog</code>替换.结果成功!</p>
+
+<p>如思路,执行主查询后,子查询前把connection替换为另一个数据库连接,并且通过调用者<code>StatementHandler</code>的<code>delegate.mappedStatement.id</code>可以取到子查询的id,再通过对id名称的约定(名称中包含db名称)实现扩展.</p>
+
+<h3>问题</h3>
+
+<p>在使用中发现,连续查询20次之后就无法查询了,怀疑是因为connection没有close的原因.debug发现确实是卡在了<code>dataSource.getConnection()</code>,改良方法:<code>invocation.proceed();</code>执行之后手动关闭connection.</p>
+
+<p>解决问题.</p>
+
+<h3>代码</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">com.mchange.v2.c3p0.ComboPooledDataSource</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.mchange.v2.c3p0.impl.NewProxyConnection</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.foooooo.common.util.SpringBeanFactoryUtils</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.executor.statement.StatementHandler</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.plugin.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.reflection.MetaObject</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.reflection.factory.DefaultObjectFactory</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.reflection.factory.ObjectFactory</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.ResultHandler</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.reflect.Field</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.sql.Statement</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Created by SargerasWang on 15/4/9.</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nd">@Intercepts</span><span class="o">({</span><span class="nd">@Signature</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">StatementHandler</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;query&quot;</span><span class="o">,</span> <span class="n">args</span> <span class="o">=</span> <span class="o">{</span><span class="n">Statement</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ResultHandler</span><span class="o">.</span><span class="na">class</span><span class="o">})})</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DynamicDatasourcePlugin</span> <span class="kd">implements</span> <span class="n">Interceptor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ObjectFactory</span> <span class="n">DEFAULT_OBJECT_FACTORY</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultObjectFactory</span><span class="o">();</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ObjectWrapperFactory</span> <span class="n">DEFAULT_OBJECT_WRAPPER_FACTORY</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultObjectWrapperFactory</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">intercept</span><span class="o">(</span><span class="n">Invocation</span> <span class="n">invocation</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">Statement</span> <span class="n">statement</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">invocation</span><span class="o">.</span><span class="na">getArgs</span><span class="o">()[</span><span class="mi">0</span><span class="o">];</span>
+</span><span class='line'>        <span class="n">StatementHandler</span> <span class="n">statementHandler</span> <span class="o">=</span> <span class="o">(</span><span class="n">StatementHandler</span><span class="o">)</span> <span class="n">invocation</span><span class="o">.</span><span class="na">getTarget</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">MetaObject</span> <span class="n">metaStatement</span> <span class="o">=</span>  <span class="n">getRealObj</span><span class="o">(</span><span class="n">statement</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">MetaObject</span> <span class="n">metaStatementHandler</span> <span class="o">=</span> <span class="n">getRealObj</span><span class="o">(</span><span class="n">statementHandler</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">String</span> <span class="n">index</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">metaStatementHandler</span><span class="o">.</span><span class="na">getValue</span><span class="o">(</span><span class="s">&quot;delegate.mappedStatement.id&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">index</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&quot;_formatter_&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">String</span> <span class="n">dataSourceBeanName</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="s">&quot;_formatter_&quot;</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">index</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">&quot;!&quot;</span><span class="o">));</span>
+</span><span class='line'>            <span class="n">ComboPooledDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="o">(</span><span class="n">ComboPooledDataSource</span><span class="o">)</span> <span class="n">SpringBeanFactoryUtils</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&quot;ds_&quot;</span> <span class="o">+</span> <span class="n">dataSourceBeanName</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">NewProxyConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="o">(</span><span class="n">NewProxyConnection</span><span class="o">)</span><span class="n">dataSource</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">Field</span> <span class="n">inner</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;inner&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">inner</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">metaStatement</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;inner.connection&quot;</span><span class="o">,</span><span class="n">inner</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">connection</span><span class="o">)</span> <span class="o">);</span>
+</span><span class='line'>            <span class="n">metaStatement</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;inner.currentCatalog&quot;</span><span class="o">,</span> <span class="n">dataSourceBeanName</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">invocation</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">connection</span><span class="o">.</span><span class="na">close</span><span class="o">();</span><span class="c1">//这里关闭连接</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">invocation</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">MetaObject</span> <span class="nf">getRealObj</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">MetaObject</span> <span class="n">metaStatement</span> <span class="o">=</span> <span class="n">MetaObject</span><span class="o">.</span><span class="na">forObject</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="n">DEFAULT_OBJECT_FACTORY</span><span class="o">,</span>
+</span><span class='line'>                <span class="n">DEFAULT_OBJECT_WRAPPER_FACTORY</span><span class="o">);</span>
+</span><span class='line'>        <span class="c1">// 分离代理对象链(由于目标类可能被多个拦截器拦截，从而形成多次代理，通过下面的两次循环可以分离出最原始的的目标类)</span>
+</span><span class='line'>        <span class="k">while</span> <span class="o">(</span><span class="n">metaStatement</span><span class="o">.</span><span class="na">hasGetter</span><span class="o">(</span><span class="s">&quot;h&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">metaStatement</span><span class="o">.</span><span class="na">getValue</span><span class="o">(</span><span class="s">&quot;h&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">metaStatement</span> <span class="o">=</span> <span class="n">MetaObject</span><span class="o">.</span><span class="na">forObject</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">DEFAULT_OBJECT_FACTORY</span><span class="o">,</span> <span class="n">DEFAULT_OBJECT_WRAPPER_FACTORY</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="c1">// 分离最后一个代理对象的目标类</span>
+</span><span class='line'>        <span class="k">while</span> <span class="o">(</span><span class="n">metaStatement</span><span class="o">.</span><span class="na">hasGetter</span><span class="o">(</span><span class="s">&quot;target&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">metaStatement</span><span class="o">.</span><span class="na">getValue</span><span class="o">(</span><span class="s">&quot;target&quot;</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">metaStatement</span> <span class="o">=</span> <span class="n">MetaObject</span><span class="o">.</span><span class="na">forObject</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">DEFAULT_OBJECT_FACTORY</span><span class="o">,</span> <span class="n">DEFAULT_OBJECT_WRAPPER_FACTORY</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">metaStatement</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">plugin</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">Plugin</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setProperties</span><span class="o">(</span><span class="n">Properties</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-10T19:44:00+08:00" pubdate data-updated="true">2015-04-10</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+  		
+	
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="mybatis中association查询与主查询在不同数据库的解决方法:问题描述 Mybatis 关联的嵌套查询 官方的例子: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;resultMap id=&quot;blogResult&quot; type=& &hellip;" data-pic="">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben/" title="Previous Post: 简单的linux下maven程序自动部署脚本">&laquo; 简单的linux下maven程序自动部署脚本</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>近期文章</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben/">简单的linux下maven程序自动部署脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql/">在VPS上搭建tomcat+mysql</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/">bootbox.js 4.3.0设置为中文</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/14/java-ee-7zhong-dui-websocket-1-dot-0de-zhi-chi/">Java EE 7中对WebSocket 1.0的支持</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>关于我</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a><br/>
+     E-mail: <a href="mailto:sargeraswang@gmail.com">sargeraswang@gmail.com</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - SargerasWang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<!--
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+-->
+
+</body>
+</html>
