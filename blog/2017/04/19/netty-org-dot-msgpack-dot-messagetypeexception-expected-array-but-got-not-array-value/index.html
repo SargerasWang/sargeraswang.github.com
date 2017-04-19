@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>netty org.msgpack.MessageTypeException: Expected array but got not array value - 程序员小刚</title>
+  <meta name="author" content="SargerasWang">
+
+  
+  <meta name="description" content="在使用Netty时,client给server发送消息,突然大量并发请求发送消息,抛出以下异常 1
+2
+org.msgpack.MessageTypeException: Expected array but got not array value at org.msgpack.unpacker. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sargeraswang.com/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
+  <!--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>-->
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">程序员小刚</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sargeraswang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-19T17:07:00+08:00" pubdate data-updated="true">2017-04-19</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>在使用Netty时,client给server发送消息,突然大量并发请求发送消息,抛出以下异常</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>org.msgpack.MessageTypeException: Expected array but got not array value
+</span><span class='line'>    at org.msgpack.unpacker.Converter.readArrayBegin(Converter.java:202) ~[msgpack-0.6.12.jar:na]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看起来是<code>msgpack</code>的问题,debug发现如果单步debug,就没有问题,并发时才会出现,google以上内容并没有解决问题.</p>
+
+<p>最后找到原因,是因为没有解决<code>粘包拆包</code>,解决方法如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">socketChannel</span><span class="o">.</span><span class="na">pipeline</span><span class="o">()</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;frameDecoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">LengthFieldBasedFrameDecoder</span><span class="o">(</span><span class="mi">1024</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">))</span>  <span class="c1">//</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;msgpack decoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">MsgpackDecoder</span><span class="o">())</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;frameEncoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">LengthFieldPrepender</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>  <span class="c1">//</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;msgpack encoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">MsgpackEncoder</span><span class="o">())</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">serverHandler</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主要是上面的<code>.addLast("msgpack decoder",new MsgpackDecoder())</code>和<code>.addLast("msgpack encoder",new MsgpackEncoder())</code>.</p>
+
+<p>问题解决.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-19T17:07:00+08:00" pubdate data-updated="true">2017-04-19</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+   
+
+  	
+  		
+	
+	
+    <table width="100%">
+		<tr>
+		<td>&nbsp;</td>
+		<td width="62px">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="netty org.msgpack.MessageTypeException: Expected array but got not array value:在使用Netty时,client给server发送消息,突然大量并发请求发送消息,抛出以下异常 1
+2
+org.msgpack.MessageTypeException: Expected &hellip;" data-pic="">
+		    </div>
+		</td>
+		<td>&nbsp;</td>
+		</tr>
+	</table>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/" title="Previous Post: mybatis中association查询与主查询在不同数据库的解决方法">&laquo; mybatis中association查询与主查询在不同数据库的解决方法</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"sageraswang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>近期文章</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben/">简单的linux下maven程序自动部署脚本</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql/">在VPS上搭建tomcat+mysql</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/">bootbox.js 4.3.0设置为中文</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>关于我</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>腾讯微博: <a href="http://t.qq.com/VipXiaoGang">@VipXiaoGang</a><br/>
+     Github: <a href="https://github.com/sargeraswang">SargerasWang</a><br/>
+     E-mail: <a href="mailto:sargeraswang@gmail.com">sargeraswang@gmail.com</a></p>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - SargerasWang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<!--
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ff60cafe97e36ca8410b8c2fd5b4e73' type='text/javascript'%3E%3C/script%3E"));
+</script>
+-->
+
+</body>
+</html>

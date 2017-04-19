@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2015-04-10T20:36:33+08:00</updated>
+  <updated>2017-04-19T17:52:34+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[netty org.msgpack.MessageTypeException: Expected array but got not array value]]></title>
+    <link href="http://sargeraswang.com/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/"/>
+    <updated>2017-04-19T17:07:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value</id>
+    <content type="html"><![CDATA[<p>在使用Netty时,client给server发送消息,突然大量并发请求发送消息,抛出以下异常</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>org.msgpack.MessageTypeException: Expected array but got not array value
+</span><span class='line'>    at org.msgpack.unpacker.Converter.readArrayBegin(Converter.java:202) ~[msgpack-0.6.12.jar:na]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看起来是<code>msgpack</code>的问题,debug发现如果单步debug,就没有问题,并发时才会出现,google以上内容并没有解决问题.</p>
+
+<p>最后找到原因,是因为没有解决<code>粘包拆包</code>,解决方法如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">socketChannel</span><span class="o">.</span><span class="na">pipeline</span><span class="o">()</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;frameDecoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">LengthFieldBasedFrameDecoder</span><span class="o">(</span><span class="mi">1024</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">2</span><span class="o">))</span>  <span class="c1">//</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;msgpack decoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">MsgpackDecoder</span><span class="o">())</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;frameEncoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">LengthFieldPrepender</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>  <span class="c1">//</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="s">&quot;msgpack encoder&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">MsgpackEncoder</span><span class="o">())</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">serverHandler</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主要是上面的<code>.addLast("msgpack decoder",new MsgpackDecoder())</code>和<code>.addLast("msgpack encoder",new MsgpackEncoder())</code>.</p>
+
+<p>问题解决.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mybatis中association查询与主查询在不同数据库的解决方法]]></title>
@@ -637,509 +675,6 @@ bootbox.js 最后位置</p>
 </span><span class='line'>      <span class="nx">CONFIRM</span> <span class="o">:</span> <span class="s2">&quot;确认&quot;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Java EE 7中对WebSocket 1.0的支持]]></title>
-    <link href="http://sargeraswang.com/blog/2014/11/14/java-ee-7zhong-dui-websocket-1-dot-0de-zhi-chi/"/>
-    <updated>2014-11-14T14:24:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2014/11/14/java-ee-7zhong-dui-websocket-1-dot-0de-zhi-chi</id>
-    <content type="html"><![CDATA[<blockquote><p>非原创,原文链接：<a href="http://www.javaarch.net/jiagoushi/749.htm">http://www.javaarch.net/jiagoushi/749.htm</a>
-原文打不开,所以贴到这里.</p></blockquote>
-
-<h4>需要tomcat 7.0.50 及以上版本才支持</h4>
-
-<p><img src="http://sargeraswang.com/images/blog_img/webSocket/tomcat.png" alt="" /></p>
-
-<h4>resin 可能5.0以上才可以</h4>
-
-<p><img src="http://sargeraswang.com/images/blog_img/webSocket/resin.png" alt="" /></p>
-
-<p>否则浏览器的console会出现如下错误:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>WebSocket connection to 'ws://127.0.0.1:8080/xxx/yyy' failed: Error during WebSocket handshake: Unexpected response code: 404</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>server端</h2>
-
-<h4>pom依赖:</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;groupId&gt;</span>javax<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;artifactId&gt;</span>javaee-api<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;version&gt;</span>7.0-b82<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>src/main/java/com/hmkcode/MyServerEndpoint.java</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">hmkcode</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.EncodeException</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.OnClose</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.OnMessage</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.OnOpen</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.Session</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.server.PathParam</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.server.ServerEndpoint</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@ServerEndpoint</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&quot;/websocket/{client-id}&quot;</span><span class="o">)</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyServerEndpoint</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Session</span><span class="o">&gt;</span> <span class="n">clients</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Session</span><span class="o">&gt;();</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nd">@OnOpen</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onOpen</span><span class="o">(</span><span class="n">Session</span> <span class="n">session</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">clients</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="nd">@OnMessage</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span><span class="nd">@PathParam</span><span class="o">(</span><span class="s">&quot;client-id&quot;</span><span class="o">)</span> <span class="n">String</span> <span class="n">clientId</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="k">for</span> <span class="o">(</span><span class="n">Session</span> <span class="n">client</span> <span class="o">:</span> <span class="n">clients</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">client</span><span class="o">.</span><span class="na">getBasicRemote</span><span class="o">().</span><span class="na">sendObject</span><span class="o">(</span><span class="n">clientId</span><span class="o">+</span><span class="s">&quot;: &quot;</span><span class="o">+</span><span class="n">message</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'>                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">EncodeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'>                <span class="o">}</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="nd">@OnClose</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClose</span><span class="o">(</span><span class="n">Session</span> <span class="n">peer</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">clients</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">peer</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
-
-
-<p><code>@ServerEndpoint(value=”/websocket/{client-id}”)</code>是client连接的url地址，<code>{client-id}</code>是每个client连接的名称标识。<br/>
-<code>@onOpen</code>，<code>@onMessag</code>和<code>@onClose</code>是对应的每个session连接生命周期的回调函数</p>
-
-<h2>websocket客户端(桌面端)</h2>
-
-<h4>pom依赖：</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;groupId&gt;</span>javax<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;artifactId&gt;</span>javaee-api<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;version&gt;</span>7.0-b82<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;groupId&gt;</span>org.glassfish.tyrus<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;artifactId&gt;</span>tyrus-client<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;version&gt;</span>1.0-rc3<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;groupId&gt;</span>org.glassfish.tyrus<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;artifactId&gt;</span>tyrus-container-grizzly<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;version&gt;</span>1.0-rc3<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>src/main/java/com/hmkcode/MyClient.java</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>
-</span><span class='line'>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">hmkcode</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.ClientEndpoint</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.OnError</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.OnMessage</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.OnOpen</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.Session</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@ClientEndpoint</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClient</span> <span class="o">{</span>
-</span><span class='line'>        <span class="nd">@OnOpen</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onOpen</span><span class="o">(</span><span class="n">Session</span> <span class="n">session</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Connected to endpoint: &quot;</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getBasicRemote</span><span class="o">());</span>
-</span><span class='line'>            <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">session</span><span class="o">.</span><span class="na">getBasicRemote</span><span class="o">().</span><span class="na">sendText</span><span class="o">(</span><span class="s">&quot;Hello&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nd">@OnMessage</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nd">@OnError</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>src/main/java/com/hmkcode/App.java</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">hmkcode</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.ContainerProvider</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.DeploymentException</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.Session</span><span class="o">;</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">javax.websocket.WebSocketContainer</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kd">public</span> <span class="n">Session</span> <span class="n">session</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span>
-</span><span class='line'>                 <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="n">WebSocketContainer</span> <span class="n">container</span> <span class="o">=</span> <span class="n">ContainerProvider</span><span class="o">.</span><span class="na">getWebSocketContainer</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="n">String</span> <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;ws://localhost:8080/websocket-glassfish-server/websocket/desktop-client&quot;</span><span class="o">;</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Connecting to &quot;</span> <span class="o">+</span> <span class="n">uri</span><span class="o">);</span>
-</span><span class='line'>                <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">session</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="na">connectToServer</span><span class="o">(</span><span class="n">MyClient</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">uri</span><span class="o">));</span>
-</span><span class='line'>                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">DeploymentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'>                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'>                <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]){</span>
-</span><span class='line'>            <span class="n">App</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">App</span><span class="o">();</span>
-</span><span class='line'>            <span class="n">client</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
-</span><span class='line'>            <span class="n">String</span> <span class="n">input</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-</span><span class='line'>            <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>                <span class="k">do</span><span class="o">{</span>
-</span><span class='line'>                    <span class="n">input</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-</span><span class='line'>                    <span class="k">if</span><span class="o">(!</span><span class="n">input</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;exit&quot;</span><span class="o">))</span>
-</span><span class='line'>                        <span class="n">client</span><span class="o">.</span><span class="na">session</span><span class="o">.</span><span class="na">getBasicRemote</span><span class="o">().</span><span class="na">sendText</span><span class="o">(</span><span class="n">input</span><span class="o">);</span><span class="c1">//发送消息</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="o">}</span><span class="k">while</span><span class="o">(!</span><span class="n">input</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;exit&quot;</span><span class="o">));</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="c1">// TODO Auto-generated catch block  </span>
-</span><span class='line'>                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>websocket客户端(web )</h2>
-
-<h4>/src/main/webapp/index.htm</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Java API for WebSocket (JSR-356)<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;bootstrap/css/bootstrap.min.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://code.jquery.com/jquery-1.9.1.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;websocket.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;h1&gt;</span>Java API for WebSocket (JSR-356)<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;div&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;status&quot;</span> <span class="na">class=</span><span class="s">&quot;label label-important&quot;</span><span class="nt">&gt;</span>Not Connected<span class="nt">&lt;/span&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;br/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;label</span> <span class="na">style=</span><span class="s">&quot;display:inline-block&quot;</span><span class="nt">&gt;</span>Message: <span class="nt">&lt;/label&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;message&quot;</span>  <span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">&quot;send&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-primary&quot;</span> <span class="na">onclick=</span><span class="s">&quot;sendMessage()&quot;</span><span class="nt">&gt;</span>Send<span class="nt">&lt;/button&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;table</span> <span class="na">id=</span><span class="s">&quot;received_messages&quot;</span> <span class="na">class=</span><span class="s">&quot;table table-striped&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;tr&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;th&gt;</span>#<span class="nt">&lt;/th&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;th&gt;</span>Sender<span class="nt">&lt;/th&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;th&gt;</span>Message<span class="nt">&lt;/th&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/tr&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/table&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>/src/main/webapp/websocket.js</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">URL</span> <span class="o">=</span> <span class="s2">&quot;ws://localhost:8080/websocket-glassfish-server/websocket/web-client&quot;</span><span class="p">;</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">websocket</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>        <span class="nx">connect</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">connect</span><span class="p">(){</span>
-</span><span class='line'>            <span class="nx">websocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="nx">URL</span><span class="p">);</span>
-</span><span class='line'>            <span class="nx">websocket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">{</span> <span class="nx">onOpen</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">};</span>
-</span><span class='line'>            <span class="nx">websocket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">{</span> <span class="nx">onMessage</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">};</span>
-</span><span class='line'>            <span class="nx">websocket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">{</span> <span class="nx">onError</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">};</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">sendMessage</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">websocket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#message&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">onOpen</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">updateStatus</span><span class="p">(</span><span class="s2">&quot;connected&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">onMessage</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#received_messages&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
-</span><span class='line'>                            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;tr/&gt;&#39;</span><span class="p">)</span>
-</span><span class='line'>                            <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;td/&gt;&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
-</span><span class='line'>                            <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;td/&gt;&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">))))</span>
-</span><span class='line'>                            <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;td/&gt;&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))));</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">onError</span><span class="p">(</span><span class="nx">evnt</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;ERROR: &#39;</span> <span class="o">+</span> <span class="nx">evnt</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">updateStatus</span><span class="p">(</span><span class="nx">status</span><span class="p">){</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">status</span> <span class="o">==</span> <span class="s2">&quot;connected&quot;</span><span class="p">){</span>
-</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#status&quot;</span><span class="p">).</span><span class="nx">removeClass</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">css</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>               <span class="k">return</span> <span class="p">(</span><span class="nx">css</span><span class="p">.</span><span class="nx">match</span> <span class="p">(</span><span class="sr">/\blabel-\S+/g</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">});</span>
-</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#status&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">status</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;label-success&quot;</span><span class="p">);</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
 
 ]]></content>
   </entry>
