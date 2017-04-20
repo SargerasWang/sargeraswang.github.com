@@ -5,11 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>配置每次new_post后自动用Mou打开文章(续) - 程序员小刚</title>
+  <title>SseEmitter DefaultHandlerExceptionResolver : Async timeout for GET 解决 - 程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="已经有超过10天没有写过博客了，最近读完了Linux发明者林纳斯·托瓦兹的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。 这篇还是来擦屁股的，之前一篇配置每次new_post后自动用Mou打开文章, &hellip;">
+  <meta name="description" content="使用SpringMVC搭配HTML5的EventSource之SseEmitter如下: 1
+2
+3
+4
+5
+@RequestMapping(&quot;connect&quot;)
+public SseEmitter connect(){ SseEmitter emitter = new &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">
+  <link rel="canonical" href="http://sargeraswang.com/blog/2017/04/20/sseemitter-defaulthandlerexceptionresolver-async-timeout-for-get-jie-jue/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -100,7 +106,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   <header>
     
       
-        <h1 class="entry-title">配置每次new_post后自动用Mou打开文章(续)</h1>
+        <h1 class="entry-title">SseEmitter DefaultHandlerExceptionResolver : Async Timeout for GET 解决</h1>
       
     
     
@@ -117,49 +123,78 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-12-19T22:13:00+08:00" pubdate data-updated="true">2013-12-19</time>
+<time datetime="2017-04-20T15:05:00+08:00" pubdate data-updated="true">2017-04-20</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><blockquote><p>已经有超过10天没有写过博客了，最近读完了Linux发明者<a href="http://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。</p></blockquote>
-
-<!-- more -->
-
-
-<p>这篇还是来擦屁股的，之前一篇<a href="http://sargeraswang.com/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>,用了几次之后发现一个小问题，就是当我使用了<code>rake new_post['xxx']</code>之后，确实帮我使用Mou打开Markdown文件了，但是当前shell就没法用了，只有退出Mou后才可以使用。</p>
-
-<p>最近一直在找解决办法，今天终于找到了，就是<code>open</code>命令加上<code>-a</code>参数，官方是这样描述的：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>-a                Opens with the specified application.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>那么，单独在shell中使用的代码就是：</p>
+<div class="entry-content"><p>使用<code>SpringMVC</code>搭配HTML5的<code>EventSource</code>之<code>SseEmitter</code>如下:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>open -a /Applications/Mou.app/Contents/MacOS/Mou xxx.markdown
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;connect&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="n">SseEmitter</span> <span class="nf">connect</span><span class="o">(){</span>
+</span><span class='line'>    <span class="n">SseEmitter</span> <span class="n">emitter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SseEmitter</span><span class="o">();</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">emitter</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>测试成功，修改<code>Rakefile</code>文件中的：</p>
+<p>这样会抛出如下异常:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">editor</span>   <span class="o">=</span> <span class="s2">&quot;/Applications/Mou.app/Contents/MacOS/Mou&quot;</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DefaultHandlerExceptionResolver</span> <span class="o">:</span> <span class="n">Async</span> <span class="n">timeout</span> <span class="k">for</span> <span class="n">GET</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>为：</p>
+<p>原因是请求到timeout时间就会超时,<code>new SseEmitter(long timeout);</code>是可以设置timeout的,单位是毫秒,但是设置为60000L(一分钟),也是一样的,每分钟都会抛出这个异常.</p>
+
+<p>最后解决办法,timeout永不过时,timeout设置为0,如下:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">editor</span>   <span class="o">=</span> <span class="s2">&quot;open -a /Applications/Mou.app/Contents/MacOS/Mou&quot;</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;connect&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="n">SseEmitter</span> <span class="nf">connect</span><span class="o">(){</span>
+</span><span class='line'>    <span class="n">SseEmitter</span> <span class="n">emitter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SseEmitter</span><span class="o">(</span><span class="mi">0L</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">emitter</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>大功告成，shell与Mou互不影响，效果如图：<br/>
-<img src="/images/blog_img/newpost.png" alt="" /></p>
+<p>就不会抛出异常了,前端用类似如下代码即可:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">eventSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventSource</span><span class="p">(</span><span class="s2">&quot;/sse/connect&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">eventSource</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="c1">//event.data 是数据</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">eventSource</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class='line'>        <span class="c1">//消息服务异常,无法创建连接</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+</span><span class='line'>        <span class="c1">//消息服务断开,无法及时收到消息</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -182,7 +217,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-12-19T22:13:00+08:00" pubdate data-updated="true">2013-12-19</time>
+<time datetime="2017-04-20T15:05:00+08:00" pubdate data-updated="true">2017-04-20</time>
       
 
 
@@ -202,7 +237,13 @@ $(document).bind('DOMNodeInserted', function(event) {
 		<tr>
 		<td>&nbsp;</td>
 		<td width="62px">
-		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="配置每次new_post后自动用Mou打开文章(续):已经有超过10天没有写过博客了，最近读完了Linux发明者林纳斯·托瓦兹的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇， &hellip;" data-pic="http://sargeraswang.com/images/blog_img/newpost.png|">
+		    <div id="qqwb_share__" data-appkey="801445389" data-icon="1" data-counter="0" data-counter_pos="" data-content="SseEmitter DefaultHandlerExceptionResolver : Async timeout for GET 解决:使用SpringMVC搭配HTML5的EventSource之SseEmitter如下: 1
+2
+3
+4
+5
+@RequestMapping(&quot;connect&quot;)
+public &hellip;" data-pic="">
 		    </div>
 		</td>
 		<td>&nbsp;</td>
@@ -214,10 +255,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/" title="Previous Post: Octopress添加腾讯微博分享中图片的问题">&laquo; Octopress添加腾讯微博分享中图片的问题</a>
+        <a class="basic-alignment left articlenav" href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/" title="Previous Post: netty org.msgpack.MessageTypeException: Expected array but got not array value">&laquo; netty org.msgpack.MessageTypeException: Expected array but got not array value</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2014/01/04/zong-jie-he-zhan-wang/" title="Next Post: 总结和展望">总结和展望 &raquo;</a>
       
     </p>
   </footer>

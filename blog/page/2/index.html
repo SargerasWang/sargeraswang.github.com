@@ -9,8 +9,9 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="先上图: 原理 使用Wineskin安装一个Windows的ER/Studio 步骤 下载wineskin,地址http://wineskin.urgesoftware.com/tiki-index.php?page=Downloads
-运行wineskin,点击加号[+],新增一个engine, &hellip;">
+  <meta name="description" content="bootbox.js 是bootstrap用的alert/confirm插件,支持多语言.中文设置方法: 1
+bootbox.setDefaults({locale:&quot;zh_CN&quot;}); 然后alert的确认按钮,还是显示为OK,直接去源码修改:
+bootbox.js 最后位置 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,6 +98,65 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/">bootbox.js 4.3.0设置为中文</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-01T09:06:00+08:00" pubdate data-updated="true">2014-12-01</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>bootbox.js 是bootstrap用的alert/confirm插件,支持多语言.中文设置方法:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">bootbox</span><span class="p">.</span><span class="nx">setDefaults</span><span class="p">({</span><span class="nx">locale</span><span class="o">:</span><span class="s2">&quot;zh_CN&quot;</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后alert的确认按钮,还是显示为<code>OK</code>,直接去源码修改:
+bootbox.js 最后位置</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">zh_CN</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">OK</span>      <span class="o">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span><span class="c1">//修改这里</span>
+</span><span class='line'>      <span class="nx">CANCEL</span>  <span class="o">:</span> <span class="s2">&quot;取消&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">CONFIRM</span> <span class="o">:</span> <span class="s2">&quot;确认&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -312,56 +372,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'> [ERROR] /usr/local/mysql/bin/mysqld: unknown variable
-</span><span class='line'> 'default-character-set=utf8'
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; 更老</a>
@@ -379,6 +389,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/20/sseemitter-defaulthandlerexceptionresolver-async-timeout-for-get-jie-jue/">SseEmitter DefaultHandlerExceptionResolver : Async Timeout for GET 解决</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a>
       </li>
     
@@ -392,10 +406,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql/">在VPS上搭建tomcat+mysql</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/">bootbox.js 4.3.0设置为中文</a>
       </li>
     
   </ul>
