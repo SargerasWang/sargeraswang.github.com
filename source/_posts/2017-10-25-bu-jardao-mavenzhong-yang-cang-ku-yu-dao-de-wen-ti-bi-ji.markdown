@@ -10,6 +10,8 @@ images: []
 
 最近在处理bug的时候,看到有位朋友[希望作者能把构件上传至Maven中央库中](https://github.com/SargerasWang/ExcelUtil/issues/11),想来为了方便大家,就按照他博客文章[发布构件至Maven中央库](http://www.arccode.net/publish-artifact-to-maven-central-repository.html)中的步骤去做,期间遇到一些问题,在这里记录.
 
+<!-- more -->
+
 ###GPG安装
 
 目前直接安装最新的是`gpg2`所以,执行任何命令都应该是`gpg2`开头
