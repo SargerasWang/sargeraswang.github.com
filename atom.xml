@@ -4,7 +4,7 @@
   <title><![CDATA[程序员小刚]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2017-10-25T21:16:09+08:00</updated>
+  <updated>2017-10-25T21:18:51+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>本来在github上有开源一个java的Excel导入导出工具包(<a href="https://github.com/SargerasWang/ExcelUtil">ExcelUtil</a>)</p>
 
 <p>最近在处理bug的时候,看到有位朋友<a href="https://github.com/SargerasWang/ExcelUtil/issues/11">希望作者能把构件上传至Maven中央库中</a>,想来为了方便大家,就按照他博客文章<a href="http://www.arccode.net/publish-artifact-to-maven-central-repository.html">发布构件至Maven中央库</a>中的步骤去做,期间遇到一些问题,在这里记录.</p>
+
+<!-- more -->
+
 
 <h3>GPG安装</h3>
 
