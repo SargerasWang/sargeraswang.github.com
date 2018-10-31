@@ -96,8 +96,8 @@ google_analytics_tracking_id:
 facebook_like: false
 
 # duoshuo comments
-duoshuo_comments: true
-duoshuo_short_name: sageraswang
+#duoshuo_comments: true
+#duoshuo_short_name: sageraswang
 
 # qq weibo
 qq_weibo: true
