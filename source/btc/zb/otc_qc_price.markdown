@@ -9,17 +9,26 @@ categories: [QC,BTC,zb.com,OTC,QC价格趋势]
 
 > QC币全称为Qcash，是基于量子链智能合约的数字货币，由Qcash基金会发行的独立数字货币。
 
-* 在[https://www.zb.com](https://www.zb.com)可以用于交易各种数字币种.
-* 此价格图标数据为每小时从`zb.com`抓取,可用于投资者判断交易
+####最新价格
+
+卖价<span id='current_price_1' style="color:green;font-size:20px;">获取中...</span>
+买价<span id='current_price_2' style="color:red;font-size:20px;">获取中...</span>
+
+####历史价格
 
 <div id="container" style="width: 100%;height:400px;"></div>
 
-以上价格通常代表着:
-
+* 在[https://www.zb.com](https://www.zb.com)可以用于交易各种数字币种.
+* 此价格图标数据为每小时从`zb.com`抓取,可用于投资者判断交易
 * 价格走低,说明套现离场情绪偏高
-* 价格走高,索命积极入场情绪偏高
+* 价格走高,说明积极入场情绪偏高
 
 <script>
+    $.getJSON('http://107.151.139.189:8888/zb/otc/qc/current', function (data) {
+        $("#current_price_1").text(data.result["1"].price);
+        $("#current_price_2").text(data.result["2"].price);
+    });
+
     var chart = null;
     $.getJSON('http://107.151.139.189:8888/zb/otc/qc/list', function (data) {
         chart = Highcharts.chart('container', {
