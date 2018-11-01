@@ -21,7 +21,7 @@ categories: [QC,BTC,zb.com,OTC,QC价格趋势]
 
 <script>
     var chart = null;
-    $.getJSON('http://107.151.139.189:8888/zb/otc/qc', function (data) {
+    $.getJSON('http://107.151.139.189:8888/zb/otc/qc/list', function (data) {
         chart = Highcharts.chart('container', {
             chart: {
                 zoomType: 'x'
