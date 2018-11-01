@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f920d63-6a52-4c11-a308-8a5a4f85cce6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/btc/zb/otc_qc_price.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/btc/zb/otc_qc_price.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_includes/custom/asides/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/custom/asides/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascripts/octopress.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascripts/octopress.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +23,7 @@
         <counts>
           <entry key="CNAME" value="1" />
           <entry key="html" value="9" />
+          <entry key="js" value="1" />
           <entry key="markdown" value="7" />
           <entry key="xml" value="1" />
         </counts>
@@ -29,6 +31,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="9" />
+          <entry key="JavaScript" value="1" />
           <entry key="Markdown" value="7" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="1" />
@@ -36,13 +39,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="285" />
+          <entry key="html" value="309" />
+          <entry key="js" value="3" />
           <entry key="markdown" value="373" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="285" />
+          <entry key="HTML" value="309" />
+          <entry key="JavaScript" value="3" />
           <entry key="Markdown" value="373" />
         </counts>
       </usages-collector>
@@ -50,15 +55,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_includes/head.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,14 +67,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/btc/zb/otc_qc_price.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="201">
-                <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+              <first_editor relative-caret-position="269">
+                <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/javascripts/octopress.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+              <folding>
+                <element signature="e#25#33#0" expanded="true" />
+                <element signature="e#17#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,11 +116,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_includes/custom/asides/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="68">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -166,6 +175,8 @@
       <find>文章列表</find>
       <find>关于我</find>
       <find>about</find>
+      <find>navigate</find>
+      <find>一个正在追逐梦想的人</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,11 +187,12 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/about/index.markdown" />
-        <option value="$PROJECT_DIR$/_includes/custom/asides/about.html" />
         <option value="$PROJECT_DIR$/zb_otc_qc_price.html" />
         <option value="$PROJECT_DIR$/btc/zb/otc_qc_price.html" />
         <option value="$PROJECT_DIR$/_includes/custom/navigation.html" />
         <option value="$PROJECT_DIR$/btc/zb/otc_qc_price.markdown" />
+        <option value="$PROJECT_DIR$/javascripts/octopress.js" />
+        <option value="$PROJECT_DIR$/_includes/custom/asides/about.html" />
       </list>
     </option>
   </component>
@@ -307,12 +319,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541036444563</updated>
-      <workItem from="1541036478784" duration="12517000" />
+      <workItem from="1541036478784" duration="13649000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12517000" />
+    <option name="totallyTimeSpent" value="13649000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="0" />
@@ -383,13 +395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_includes/custom/asides/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -499,10 +504,28 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="201">
-            <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+          <first_editor relative-caret-position="269">
+            <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/octopress.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+          <folding>
+            <element signature="e#25#33#0" expanded="true" />
+            <element signature="e#17#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_includes/custom/asides/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
