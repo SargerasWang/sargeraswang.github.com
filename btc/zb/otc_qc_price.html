@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ER/Studio for mac 移植版制作教程与下载 - 程序员小刚</title>
+  <title>zb.com QC币OTC价格趋势 - 程序员小刚</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="先上图: 原理 使用Wineskin安装一个Windows的ER/Studio 步骤 下载wineskin,地址http://wineskin.urgesoftware.com/tiki-index.php?page=Downloads
-运行wineskin,点击加号[+],新增一个engine, &hellip;">
+  <meta name="description" content="QC币全称为Qcash，是基于量子链智能合约的数字货币，由Qcash基金会发行的独立数字货币。 在https://www.zb.com可以用于交易各种数字币种.
+此价格图标数据为每小时从zb.com抓取,可用于投资者判断交易 以上价格通常代表着: 价格走低,说明套现离场情绪偏高
+价格走高, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sargeraswang.com/blog/2014/10/14/er-slash-studio-for-mac-yi-zhi-ban-zhi-zuo-jiao-cheng-yu-xia-zai">
+  <link rel="canonical" href="http://sargeraswang.com/btc/zb/otc_qc_price.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="程序员小刚" type="application/atom+xml">
@@ -106,7 +107,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
   <header>
     
-      <h1 class="entry-title">ER/Studio for Mac 移植版制作教程与下载</h1>
+      <h1 class="entry-title">zb.com QC币OTC价格趋势</h1>
     
     
       <p class="meta">
@@ -119,57 +120,121 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 
 
-  
 
 
-<time datetime="2014-10-14T11:24:00+08:00" pubdate data-updated="true">2014-10-14</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>先上图:<br/>
-<img src="/images/blog_img/erstudio/new.png" alt="" /></p>
-
-<h3>原理</h3>
-
-<p>使用<a href="http://wineskin.urgesoftware.com/tiki-index.php">Wineskin</a>安装一个Windows的ER/Studio</p>
-
-<h3>步骤</h3>
-
-<ol>
-<li>下载wineskin,地址<a href="http://wineskin.urgesoftware.com/tiki-index.php?page=Downloads">http://wineskin.urgesoftware.com/tiki-index.php?page=Downloads</a></li>
-<li>运行wineskin,点击加号[+],新增一个engine,我用的是<code>WS9Wine 1.7.28</code>,点击[Download And Install].</li>
-</ol>
+<div class="entry-content"><script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 
 
-<!-- more -->
+<script src="https://cdn.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
 
 
-<p><img src="/images/blog_img/erstudio/wine1.png" alt="" />
-<img src="/images/blog_img/erstudio/wine2.png" alt="" /><br/>
-3. 使用上一步安装的engine创建一个应用,点击<code>Create New Blank Wrapper</code>,输入一个名字,比方说<code>"ERStudio"</code>,<strong>注意不要用<code>"ER/Studio"</code>,貌似斜杠会影响文件的创建</strong>.,创建好后会弹出一个提示,问是否要安装<code>.NET</code>,点取消,又一个提示是否安装<code>HTML</code>,也取消,再稍等一下.会告诉你创建完成了,然后点击<code>View wrapper in Finder</code>.<br/>
-<img src="/images/blog_img/erstudio/alert1.png" alt="" />
-<img src="/images/blog_img/erstudio/alert2.png" alt="" />
-<img src="/images/blog_img/erstudio/alert3.png" alt="" /><br/>
-4. 右键xxxx.app->显示包内容,运行<code>Wineskin.app</code>.点击<code>Install Software</code>&ndash;><code>Choose Setup Executable</code>,选择ER/Studio的EXE安装程序(<a href="http://pan.baidu.com/wap/shareview?&amp;shareid=1817104890&amp;uk=2336093466&amp;dir=%2F%E5%88%86%E4%BA%AB%2Fsoftwave%2FERStudio8&amp;page=1&amp;num=20&amp;fsid=4244204594&amp;third=4">下载地址</a>),下一步..下一步..下一步&hellip;&hellip;安装完成.<br/>
-<img src="/images/blog_img/erstudio/install1.png" alt="" />
-<img src="/images/blog_img/erstudio/install2.png" alt="" /><br/>
-5. 下载破解文件(<a href="http://pan.baidu.com/wap/shareview?&amp;shareid=1817104890&amp;uk=2336093466&amp;dir=%2F%E5%88%86%E4%BA%AB%2Fsoftwave%2FERStudio8&amp;page=1&amp;num=20&amp;fsid=1394660492&amp;third=4">下载地址</a>),把解压出来的破解工具<code>3ddown.com_patch_setup.exe</code>放在ER/Studio的安装目录下<code>ERStudio.app/Contents/Resources/drive_c/Program Files/Embarcadero/ERStudio8.0/3ddown.com_patch_setup.exe</code>.然后到上层找到<code>Wineskin</code>运行,选择<code>Advanced</code>,在<code>Windows EXE</code>选择刚才的<code>3ddown.com_patch_setup.exe</code>文件.点击<code>Test Run</code>,运行破解.
-<img src="/images/blog_img/erstudio/keygen.png" alt="" /><br/>
-6. 还是在上一步的<code>Windows EXE</code>,选择ER/Studio的运行文件<code>/Program Files/Embarcadero/ERStudio8.0/ERSTUDIO.exe</code>.测试一下是否可以运行,点击<code>Test Run</code>.<br/>
-7. 修改图标,我从<code>ERSTUDIO.exe</code>里提取出来的icon.<a href="http://sargeraswang.com/images/blog_img/erstudio/icon.icns">下载地址</a>,替换上即可.</p>
+<blockquote><p>QC币全称为Qcash，是基于量子链智能合约的数字货币，由Qcash基金会发行的独立数字货币。</p></blockquote>
 
-<h3>使用须知</h3>
+<ul>
+<li>在<a href="https://www.zb.com">https://www.zb.com</a>可以用于交易各种数字币种.</li>
+<li>此价格图标数据为每小时从<code>zb.com</code>抓取,可用于投资者判断交易</li>
+</ul>
 
-<p><del>由于这种方式的原理是虚拟了一个windows环境,所以这个应用无法读取到应用之外的文件,想要打开ER图,可以把图放在<code>ERStudio.app/Contents/Resources/drive_c/</code>下面,例如我们ER图放在SVN上,直接把ER图的文件夹CheckOut到这里.</del></p>
 
-<p>应用第一次启动,会在你的<code>文稿</code>目录中创建一个<code>ERStudio8.0</code>文件夹,把ER图放这里就好,其实应用可以访问到整个<code>文稿</code>文件夹.</p>
+<div id="container" style="width: 100%;height:400px;"></div>
 
-<h3>完整版下载</h3>
 
-<p>百度云下载:<a href="http://yun.baidu.com/share/link?shareid=1037072841&amp;uk=1309001135">http://yun.baidu.com/share/link?shareid=1037072841&amp;uk=1309001135</a></p>
+<p>以上价格通常代表着:</p>
+
+<ul>
+<li>价格走低,说明套现离场情绪偏高</li>
+<li>价格走高,索命积极入场情绪偏高</li>
+</ul>
+
+
+<script>
+    var chart = null;
+    $.getJSON('http://107.151.139.189:8888/zb/otc/qc', function (data) {
+        chart = Highcharts.chart('container', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'ZB网QC币OTC交易价格走势图'
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                    '鼠标拖动可以进行缩放' : '手势操作进行缩放'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            tooltip: {
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%Y-%m-%d %H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%Y-%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: '价格(CNY)'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+            series: [{
+                type: 'area',
+                name: '价格',
+                data: data.result
+            }]
+        });
+    });
+</script>
+
 </div>
 
 
@@ -189,11 +254,15 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 
 
-  
 
 
-<time datetime="2014-10-14T11:24:00+08:00" pubdate data-updated="true">2014-10-14</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/btc/'>BTC</a>, <a class='category' href='/blog/categories/otc/'>OTC</a>, <a class='category' href='/blog/categories/qc/'>QC</a>, <a class='category' href='/blog/categories/qcjie-ge-qu-shi/'>QC价格趋势</a>, <a class='category' href='/blog/categories/zb-dot-com/'>zb.com</a>
+  
+</span>
 
 
     </p>
@@ -207,10 +276,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/" title="Previous Post: office for mac word 设置每页行数与每行字数(指定行网格和字符网格)">&laquo; office for mac word 设置每页行数与每行字数(指定行网格和字符网格)</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/12/01/bootbox-dot-js-4-dot-3-0she-zhi-wei-zhong-wen/" title="Next Post: bootbox.js 4.3.0设置为中文">bootbox.js 4.3.0设置为中文 &raquo;</a>
       
     </p>
   </footer>
