@@ -19,9 +19,9 @@ categories: [QC,BTC,zb.com,OTC,QC价格趋势]
 
 <div id="container" style="width: 100%;height:400px;"></div>
 
-
+<br>
 * 在[https://www.zb.com](https://www.zb.com)可以用于交易各种数字币种.
-* 此价格图标数据为每小时从`zb.com`抓取,可用于投资者判断交易
+* 此QC币价格趋势图表线数据为每小时从`zb.com`抓取,可用于投资者判断交易
 * 价格走低,说明套现离场情绪偏高
 * 价格走高,说明积极入场情绪偏高
 

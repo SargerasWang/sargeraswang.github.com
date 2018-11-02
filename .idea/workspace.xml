@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e75914-c506-4514-8122-dc72c01385de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/sitemap_generator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/sitemap_generator.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/source/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/source/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/source/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +25,7 @@
           <entry key="Gemfile" value="1" />
           <entry key="Rakefile" value="3" />
           <entry key="html" value="10" />
+          <entry key="markdown" value="1" />
           <entry key="rb" value="2" />
           <entry key="ru" value="2" />
           <entry key="txt" value="1" />
@@ -39,6 +36,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="10" />
+          <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="XML" value="3" />
           <entry key="YAML" value="1" />
@@ -47,6 +45,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="46" />
+          <entry key="markdown" value="14" />
           <entry key="rb" value="11" />
           <entry key="txt" value="9" />
         </counts>
@@ -54,6 +53,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="46" />
+          <entry key="Markdown" value="14" />
           <entry key="PLAIN_TEXT" value="20" />
         </counts>
       </usages-collector>
@@ -61,11 +61,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/404.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+            <state relative-caret-position="221">
+              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="355">
+                <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -116,6 +128,7 @@
         <option value="$PROJECT_DIR$/plugins/sitemap_generator.rb" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/404.html" />
+        <option value="$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown" />
       </list>
     </option>
   </component>
@@ -229,12 +242,12 @@
       <option name="presentableId" value="Default" />
       <updated>1540952082935</updated>
       <workItem from="1540952086480" duration="1082000" />
-      <workItem from="1541164074062" duration="1422000" />
+      <workItem from="1541164074062" duration="1632000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2504000" />
+    <option name="totallyTimeSpent" value="2714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="0" />
@@ -376,8 +389,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/404.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        <state relative-caret-position="221">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="355">
+            <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
