@@ -45,7 +45,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="46" />
-          <entry key="markdown" value="14" />
+          <entry key="markdown" value="17" />
           <entry key="rb" value="11" />
           <entry key="txt" value="9" />
         </counts>
@@ -53,7 +53,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="46" />
-          <entry key="Markdown" value="14" />
+          <entry key="Markdown" value="17" />
           <entry key="PLAIN_TEXT" value="20" />
         </counts>
       </usages-collector>
@@ -74,8 +74,8 @@
         <entry file="file://$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="355">
-                <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <first_editor relative-caret-position="338">
+                <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
               </first_editor>
               <second_editor />
             </state>
@@ -242,12 +242,12 @@
       <option name="presentableId" value="Default" />
       <updated>1540952082935</updated>
       <workItem from="1540952086480" duration="1082000" />
-      <workItem from="1541164074062" duration="1632000" />
+      <workItem from="1541164074062" duration="1709000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2714000" />
+    <option name="totallyTimeSpent" value="2791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="0" />
@@ -397,8 +397,8 @@
     <entry file="file://$PROJECT_DIR$/source/btc/zb/otc_qc_price.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="355">
-            <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <first_editor relative-caret-position="338">
+            <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           </first_editor>
           <second_editor />
         </state>
