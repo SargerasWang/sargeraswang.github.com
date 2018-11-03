@@ -5,14 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>简单的linux下maven程序自动部署脚本 - SargerasWang's Blog</title>
+  <title>MacOS Mojave 重新安装mysql步骤及连接问题处理 - SargerasWang's Blog</title>
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="vps服务器弄好之后,每次更改完代码都是本地打包,上传war到服务器,再替换数据库配置,重启服务.
-刚开始偶尔一次还好,但频繁操作就受不了了,然后写了以下脚本. 部署流程 1.从github更新 1
-git pull 2.替换数据库配置 1
-cp -f ../db_config/db. &hellip;">
+  <meta name="description" content="卸载并清理原有mysql 1.数据备份,具体请查看mysqldump 的使用,如果不需要备份,直接到下一步 2.查看当前系统是否有mysql进程: 1
+ps -ax|grep mysql 3.如果有,kill掉 4.使用HomeBrew删除 1
+2
+brew remove mysql
+brew &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +22,7 @@ cp -f ../db_config/db. &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sargeraswang.com/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben">
+  <link rel="canonical" href="http://sargeraswang.com/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="SargerasWang's Blog" type="application/atom+xml">
@@ -108,7 +109,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
   <header>
     
-      <h2 class="entry-title">简单的linux下maven程序自动部署脚本</h2>
+      <h2 class="entry-title">MacOS Mojave 重新安装mysql步骤及连接问题处理</h2>
     
     
       <p class="meta">
@@ -124,79 +125,121 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2015-03-05T16:19:00+08:00" pubdate data-updated="true">2015-03-05</time>
+<time datetime="2018-11-03T15:35:00+08:00" pubdate data-updated="true">2018-11-03</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><blockquote><p>vps服务器弄好之后,每次更改完代码都是本地打包,上传war到服务器,再替换数据库配置,重启服务.
-刚开始偶尔一次还好,但频繁操作就受不了了,然后写了以下脚本.</p></blockquote>
+<div class="entry-content"><h3>卸载并清理原有mysql</h3>
 
-<h2>部署流程</h2>
+<p>1.数据备份,具体请查看<a href="https://www.jianshu.com/p/0a82d115d54d">mysqldump 的使用</a>,如果不需要备份,直接到下一步</p>
 
-<h4>1.从github更新</h4>
+<!-- more -->
+
+
+<p>2.查看当前系统是否有<code>mysql</code>进程:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git pull
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ps -ax|grep mysql
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>2.替换数据库配置</h4>
+<p>3.如果有,<code>kill</code>掉</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>cp -f ../db_config/db.properties ./src/main/resources/props/db.properties
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改log4j配置文件的第一行,服务器端有mail,本机没有</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sed -i <span class="s1">&#39;1c log4j.rootLogger=INFO,stdout,stderr,mail&#39;</span> ./src/main/resources/log4j.properties
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>3.打包</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn package
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>4.停止tomcat</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>service tomcat stop
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>5.删除原文件夹</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rm -rf /var/lib/tomcat7/webapps/ROOT
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>6.改名+复制包到tomcat</h4>
+<p>4.使用<code>HomeBrew</code>删除</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mv target/WebManager.war target/ROOT.war
-</span><span class='line'>cp -f target/ROOT.war /var/lib/tomcat7/webapps/
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew remove mysql
+</span><span class='line'>brew cleanup
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>7.启动tomcat</h4>
+<p>5.删除文件:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>service tomcat7 start
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo rm /usr/local/mysql
+</span><span class='line'>sudo rm -rf /usr/local/var/mysql
+</span><span class='line'>sudo rm -rf /usr/local/mysql*
+</span><span class='line'>sudo rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>sudo rm -rf /Library/StartupItems/MySQLCOM
+</span><span class='line'>sudo rm -rf /Library/PreferencePanes/My*
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p></p>
+<p>6.取消MySQL自动启动:</p>
 
-<h3>shell:</h3>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.删除MySQL的设置:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>subl /etc/hostconfig
+</span><span class='line'><span class="c"># 删除这一行 MYSQLCOM=-YES-</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>8.删除MySQL的首选项:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rm -rf ~/Library/PreferencePanes/My*
+</span><span class='line'>sudo rm -rf /Library/Receipts/mysql*
+</span><span class='line'>sudo rm -rf /Library/Receipts/MySQL*
+</span><span class='line'>sudo rm -rf /private/var/db/receipts/*mysql*
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>9.重新启动Mac</p>
+
+<h3>下载并安装新mysql</h3>
+
+<p>1.<a href="https://www.mysql.com/cn/">MySQL官网</a> &ndash;> 下载 &ndash;> 选择最下面的社区版本(MySQL Community Edition) &ndash;> 点第一个 MySQL Community Server (GPL) &ndash;> 选择DMG安装下载 (
+macOS 10.14 (x86, 64-bit), DMG Archive)</p>
+
+<blockquote><p>最终的下载地址是 <a href="https://dev.mysql.com/downloads/file/?id=480768">https://dev.mysql.com/downloads/file/?id=480768</a></p></blockquote>
+
+<p>2.打开DMG,运行安装包,通常都是选择下一步,有一部会问你是使用8.0新版的更强健的安全的方式,还是兼容5.0,我们选择下面的兼容5.0</p>
+
+<p>3.提示输入root密码两次,要记住这里的密码哦</p>
+
+<p>4.安装完成</p>
+
+<p>5.安装程序默认不会添加mysql命令到终端,所以需要自己配置:</p>
+
+<ol>
+<li>打开<code>/.bash_profile</code>文件</li>
+<li>添加一行 <code>export PATH=$PATH:/usr/local/mysql/bin</code></li>
+<li>保存</li>
+<li>执行 <code>source ~/.bash_profile</code></li>
+</ol>
+
+
+<p>6.尝试连接mysql服务,运行 <code>mysql -uroot -p</code>回车</p>
+
+<p>7.输入安装时设置的root密码</p>
+
+<p>8.连接成功,并且控制台会打印出mysql版本 <code>Server version: 8.0.13 MySQL Community Server - GPL</code></p>
+
+<h3>尝试使用数据库工具连接</h3>
+
+<p>1.使用 DbVisualizer 添加新的 connection
+2.像往常一样 <code>Driver</code>选择了<code>MySQL</code>
+3.点击<code>Ping Server</code> 提示正常
+4.点击<code>Connect</code>则无法连接显示如下:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -206,40 +249,55 @@ $(document).bind('DOMNodeInserted', function(event) {
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh                                                                                                                                   </span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;==============================开始部署==============================&quot;</span>
-</span><span class='line'><span class="nb">cd</span> /usr/local/project/csm-framework/
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################更新git##############################&quot;</span>
-</span><span class='line'>git pull
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;########################替换数据库配置#############################&quot;</span>
-</span><span class='line'>cp -f ../db_config/db.properties ./src/main/resources/props/db.properties
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;########################修改Log4j配置#############################&quot;</span>
-</span><span class='line'>sed -i <span class="s1">&#39;1c log4j.rootLogger=INFO,stdout,stderr,mail&#39;</span> ./src/main/resources/log4j.properties
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;############################打包###################################&quot;</span>
-</span><span class='line'>mvn clean package
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;#########################停止tomcat################################&quot;</span>
-</span><span class='line'>service tomcat7 stop
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##########################删除原文件夹#############################&quot;</span>
-</span><span class='line'>rm -rf /var/lib/tomcat7/webapps/*
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##########################解压到webapps############################&quot;</span>
-</span><span class='line'>unzip -o target/WebManager.war -d /var/lib/tomcat7/webapps/ROOT/
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;############################启动tomcat#############################&quot;</span>
-</span><span class='line'>service tomcat7 start
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;==============================部署完成==============================&quot;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>An error occurred <span class="k">while </span>establishing the connection:
+</span><span class='line'>
+</span><span class='line'>Long Message:
+</span><span class='line'>Could not create connection to database server.
+</span><span class='line'>
+</span><span class='line'>Details:
+</span><span class='line'>   Type: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException
+</span><span class='line'>   SQL State: 08001
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>解决办法</h3>
+
+<p>1.原因是新安装的MySQL服务版本过高,老版本jdbc驱动无法连接.</p>
+
+<p>2.解决方式当然有两个:A.退回低版本服务;B.使用高版本驱动</p>
+
+<p>3.我们尝试使用新版本驱动,在选择<code>Driver</code>处,下来选择<code>MySQL(DataDirect)</code>这一项,会弹出让你选择文件</p>
+
+<p>4.去下载最新的驱动文件,例如这里:<a href="http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar">http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar</a></p>
+
+<p>5.<code>Driver</code>选择刚才下载的这个jar文件,再次尝试<code>Connect</code></p>
+
+<p>6.提示错误信息如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>An error occurred <span class="k">while </span>establishing the connection:
+</span><span class='line'>The selected Driver cannot handle the specified Database URL.
+</span><span class='line'>The most common reason <span class="k">for </span>this error is that the database URL
+</span><span class='line'>contains a syntax error preventing the driver from accepting it.
+</span><span class='line'>The error also occurs when trying to connect to a database
+</span><span class='line'>with the wrong driver. Correct this and try again.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.在<code>Settings Format</code>处,选择<code>Database URL</code></p>
+
+<p>8.<code>Database URL</code>填入<code>jdbc:mysql://localhost:3306</code></p>
+
+<p>9.再次尝试<code>Connect</code>,成功!</p>
+
+<p>截图如下:</p>
+
+<p><img src="/images/blog_img/mysql/success.png" alt="" /></p>
 </div>
 
 
@@ -262,7 +320,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2015-03-05T16:19:00+08:00" pubdate data-updated="true">2015-03-05</time>
+<time datetime="2018-11-03T15:35:00+08:00" pubdate data-updated="true">2018-11-03</time>
       
 
 
@@ -277,10 +335,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/02/16/zai-vpsshang-da-jian-tomcat-plus-mysql/" title="Previous Post: 在VPS上搭建tomcat+mysql">&laquo; 在VPS上搭建tomcat+mysql</a>
+        <a class="basic-alignment left" href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/" title="Previous Post: 发布Jar到Maven中央仓库遇到的问题笔记">&laquo; 发布Jar到Maven中央仓库遇到的问题笔记</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/" title="Next Post: mybatis中association查询与主查询在不同数据库的解决方法">mybatis中association查询与主查询在不同数据库的解决方法 &raquo;</a>
       
     </p>
   </footer>

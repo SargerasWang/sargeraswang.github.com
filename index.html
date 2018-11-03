@@ -9,7 +9,7 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="本来在github上有开源一个java的Excel导入导出工具包(ExcelUtil) 最近在处理bug的时候,看到有位朋友希望作者能把构件上传至Maven中央库中,想来为了方便大家,就按照他博客文章发布构件至Maven中央库中的步骤去做,期间遇到一些问题,在这里记录. ">
+  <meta name="description" content="卸载并清理原有mysql 1.数据备份,具体请查看mysqldump 的使用,如果不需要备份,直接到下一步 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,7 +108,50 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/">发布Jar到Maven中央仓库遇到的问题笔记</a></h1>
+      <h2 class="entry-title"><a href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">MacOS Mojave 重新安装mysql步骤及连接问题处理</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-11-03T15:35:00+08:00" pubdate data-updated="true">2018-11-03</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>卸载并清理原有mysql</h3>
+
+<p>1.数据备份,具体请查看<a href="https://www.jianshu.com/p/0a82d115d54d">mysqldump 的使用</a>,如果不需要备份,直接到下一步</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/">发布Jar到Maven中央仓库遇到的问题笔记</a></h2>
     
     
       <p class="meta">
@@ -151,7 +194,7 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2017/04/20/sseemitter-defaulthandlerexceptionresolver-async-timeout-for-get-jie-jue/">SseEmitter DefaultHandlerExceptionResolver : Async Timeout for GET 解决</a></h1>
+      <h2 class="entry-title"><a href="/blog/2017/04/20/sseemitter-defaulthandlerexceptionresolver-async-timeout-for-get-jie-jue/">SseEmitter DefaultHandlerExceptionResolver : Async Timeout for GET 解决</a></h2>
     
     
       <p class="meta">
@@ -253,7 +296,7 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a></h1>
+      <h2 class="entry-title"><a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a></h2>
     
     
       <p class="meta">
@@ -318,7 +361,7 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a></h1>
+      <h2 class="entry-title"><a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a></h2>
     
     
       <p class="meta">
@@ -395,150 +438,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben/">简单的linux下maven程序自动部署脚本</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-03-05T16:19:00+08:00" pubdate data-updated="true">2015-03-05</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>vps服务器弄好之后,每次更改完代码都是本地打包,上传war到服务器,再替换数据库配置,重启服务.
-刚开始偶尔一次还好,但频繁操作就受不了了,然后写了以下脚本.</p></blockquote>
-
-<h2>部署流程</h2>
-
-<h4>1.从github更新</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git pull
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2.替换数据库配置</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>cp -f ../db_config/db.properties ./src/main/resources/props/db.properties
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改log4j配置文件的第一行,服务器端有mail,本机没有</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sed -i <span class="s1">&#39;1c log4j.rootLogger=INFO,stdout,stderr,mail&#39;</span> ./src/main/resources/log4j.properties
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>3.打包</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn package
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>4.停止tomcat</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>service tomcat stop
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>5.删除原文件夹</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rm -rf /var/lib/tomcat7/webapps/ROOT
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>6.改名+复制包到tomcat</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mv target/WebManager.war target/ROOT.war
-</span><span class='line'>cp -f target/ROOT.war /var/lib/tomcat7/webapps/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>7.启动tomcat</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>service tomcat7 start
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h3>shell:</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh                                                                                                                                   </span>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;==============================开始部署==============================&quot;</span>
-</span><span class='line'><span class="nb">cd</span> /usr/local/project/csm-framework/
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##############################更新git##############################&quot;</span>
-</span><span class='line'>git pull
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;########################替换数据库配置#############################&quot;</span>
-</span><span class='line'>cp -f ../db_config/db.properties ./src/main/resources/props/db.properties
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;########################修改Log4j配置#############################&quot;</span>
-</span><span class='line'>sed -i <span class="s1">&#39;1c log4j.rootLogger=INFO,stdout,stderr,mail&#39;</span> ./src/main/resources/log4j.properties
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;############################打包###################################&quot;</span>
-</span><span class='line'>mvn clean package
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;#########################停止tomcat################################&quot;</span>
-</span><span class='line'>service tomcat7 stop
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##########################删除原文件夹#############################&quot;</span>
-</span><span class='line'>rm -rf /var/lib/tomcat7/webapps/*
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;##########################解压到webapps############################&quot;</span>
-</span><span class='line'>unzip -o target/WebManager.war -d /var/lib/tomcat7/webapps/ROOT/
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;############################启动tomcat#############################&quot;</span>
-</span><span class='line'>service tomcat7 start
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;==============================部署完成==============================&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; 更早的</a>
@@ -554,6 +453,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">MacOS Mojave 重新安装mysql步骤及连接问题处理</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/">发布Jar到Maven中央仓库遇到的问题笔记</a>
       </li>
     
@@ -567,10 +470,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/05/jian-dan-de-linuxxia-mavencheng-xu-zi-dong-bu-shu-jiao-ben/">简单的linux下maven程序自动部署脚本</a>
       </li>
     
   </ul>

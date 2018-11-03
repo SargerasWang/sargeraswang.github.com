@@ -4,7 +4,7 @@
   <title><![CDATA[SargerasWang's Blog]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2018-11-02T21:45:28+08:00</updated>
+  <updated>2018-11-03T16:38:50+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MacOS Mojave 重新安装mysql步骤及连接问题处理]]></title>
+    <link href="http://sargeraswang.com/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/"/>
+    <updated>2018-11-03T15:35:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li</id>
+    <content type="html"><![CDATA[<h3>卸载并清理原有mysql</h3>
+
+<p>1.数据备份,具体请查看<a href="https://www.jianshu.com/p/0a82d115d54d">mysqldump 的使用</a>,如果不需要备份,直接到下一步</p>
+
+<!-- more -->
+
+
+<p>2.查看当前系统是否有<code>mysql</code>进程:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ps -ax|grep mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.如果有,<code>kill</code>掉</p>
+
+<p>4.使用<code>HomeBrew</code>删除</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew remove mysql
+</span><span class='line'>brew cleanup
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5.删除文件:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo rm /usr/local/mysql
+</span><span class='line'>sudo rm -rf /usr/local/var/mysql
+</span><span class='line'>sudo rm -rf /usr/local/mysql*
+</span><span class='line'>sudo rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>sudo rm -rf /Library/StartupItems/MySQLCOM
+</span><span class='line'>sudo rm -rf /Library/PreferencePanes/My*
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>6.取消MySQL自动启动:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.删除MySQL的设置:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>subl /etc/hostconfig
+</span><span class='line'><span class="c"># 删除这一行 MYSQLCOM=-YES-</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>8.删除MySQL的首选项:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rm -rf ~/Library/PreferencePanes/My*
+</span><span class='line'>sudo rm -rf /Library/Receipts/mysql*
+</span><span class='line'>sudo rm -rf /Library/Receipts/MySQL*
+</span><span class='line'>sudo rm -rf /private/var/db/receipts/*mysql*
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>9.重新启动Mac</p>
+
+<h3>下载并安装新mysql</h3>
+
+<p>1.<a href="https://www.mysql.com/cn/">MySQL官网</a> &ndash;> 下载 &ndash;> 选择最下面的社区版本(MySQL Community Edition) &ndash;> 点第一个 MySQL Community Server (GPL) &ndash;> 选择DMG安装下载 (
+macOS 10.14 (x86, 64-bit), DMG Archive)</p>
+
+<blockquote><p>最终的下载地址是 <a href="https://dev.mysql.com/downloads/file/?id=480768">https://dev.mysql.com/downloads/file/?id=480768</a></p></blockquote>
+
+<p>2.打开DMG,运行安装包,通常都是选择下一步,有一部会问你是使用8.0新版的更强健的安全的方式,还是兼容5.0,我们选择下面的兼容5.0</p>
+
+<p>3.提示输入root密码两次,要记住这里的密码哦</p>
+
+<p>4.安装完成</p>
+
+<p>5.安装程序默认不会添加mysql命令到终端,所以需要自己配置:</p>
+
+<ol>
+<li>打开<code>/.bash_profile</code>文件</li>
+<li>添加一行 <code>export PATH=$PATH:/usr/local/mysql/bin</code></li>
+<li>保存</li>
+<li>执行 <code>source ~/.bash_profile</code></li>
+</ol>
+
+
+<p>6.尝试连接mysql服务,运行 <code>mysql -uroot -p</code>回车</p>
+
+<p>7.输入安装时设置的root密码</p>
+
+<p>8.连接成功,并且控制台会打印出mysql版本 <code>Server version: 8.0.13 MySQL Community Server - GPL</code></p>
+
+<h3>尝试使用数据库工具连接</h3>
+
+<p>1.使用 DbVisualizer 添加新的 connection
+2.像往常一样 <code>Driver</code>选择了<code>MySQL</code>
+3.点击<code>Ping Server</code> 提示正常
+4.点击<code>Connect</code>则无法连接显示如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>An error occurred <span class="k">while </span>establishing the connection:
+</span><span class='line'>
+</span><span class='line'>Long Message:
+</span><span class='line'>Could not create connection to database server.
+</span><span class='line'>
+</span><span class='line'>Details:
+</span><span class='line'>   Type: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException
+</span><span class='line'>   SQL State: 08001
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>解决办法</h3>
+
+<p>1.原因是新安装的MySQL服务版本过高,老版本jdbc驱动无法连接.</p>
+
+<p>2.解决方式当然有两个:A.退回低版本服务;B.使用高版本驱动</p>
+
+<p>3.我们尝试使用新版本驱动,在选择<code>Driver</code>处,下来选择<code>MySQL(DataDirect)</code>这一项,会弹出让你选择文件</p>
+
+<p>4.去下载最新的驱动文件,例如这里:<a href="http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar">http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar</a></p>
+
+<p>5.<code>Driver</code>选择刚才下载的这个jar文件,再次尝试<code>Connect</code></p>
+
+<p>6.提示错误信息如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>An error occurred <span class="k">while </span>establishing the connection:
+</span><span class='line'>The selected Driver cannot handle the specified Database URL.
+</span><span class='line'>The most common reason <span class="k">for </span>this error is that the database URL
+</span><span class='line'>contains a syntax error preventing the driver from accepting it.
+</span><span class='line'>The error also occurs when trying to connect to a database
+</span><span class='line'>with the wrong driver. Correct this and try again.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.在<code>Settings Format</code>处,选择<code>Database URL</code></p>
+
+<p>8.<code>Database URL</code>填入<code>jdbc:mysql://localhost:3306</code></p>
+
+<p>9.再次尝试<code>Connect</code>,成功!</p>
+
+<p>截图如下:</p>
+
+<p><img src="http://sargeraswang.com/images/blog_img/mysql/success.png" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[发布Jar到Maven中央仓库遇到的问题笔记]]></title>
@@ -2484,88 +2658,6 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 <p>大功告成，shell与Mou互不影响，效果如图：<br/>
 <img src="http://sargeraswang.com/images/blog_img/newpost.png" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress添加腾讯微博分享中图片的问题]]></title>
-    <link href="http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/"/>
-    <updated>2013-12-09T22:44:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti</id>
-    <content type="html"><![CDATA[<blockquote><p>这篇又是来收拾残局的，之前<a href="http://sargeraswang.com/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a>最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。</p></blockquote>
-
-<!-- more -->
-
-
-<h4>在<code>source/_includes/post/sharing.html</code>添加微博分享处添加</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% if page.images %}
-</span><span class='line'>{% capture carriage_return %}
-</span><span class='line'>{% endcapture %}
-</span><span class='line'>  {% capture weiboImg %}
-</span><span class='line'>      {% for item in page.images %}
-</span><span class='line'>          {{ site.url | append: item | append: '|' }}
-</span><span class='line'>      {% endfor %}
-</span><span class='line'>  {% endcapture %}
-</span><span class='line'>{% else %}
-</span><span class='line'>  {% capture weiboImg %}
-</span><span class='line'>      {{site.url}}/images/blog-title.png 【这是备用图片路径，就是当博客图片为空时使用这张】
-</span><span class='line'>  {% endcapture %}
-</span><span class='line'>{% endif %}</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>原先的Div的data-pic修改为</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>data-pic="{{weiboImg| remove: ' ' | remove: '    '| remove: carriage_return }}"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上面那些<code>remove</code>是因为在测试中发现，太多的空格和tab和换行，会导致出现的图片变少</p>
-
-<h4>博客中的图片声明在MarkDown文件的<a href="http://jekyllrb.com/docs/frontmatter/">frontmatter</a>处，如下写法</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>images: [/images/blog_img/naruto/Naruto.jpg,
-</span><span class='line'>      /images/blog_img/naruto/Rin.jpg]</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样的话，<code>images</code>就是一个Array类型对象了</p>
-
-<h4>图片声明方式改为参考式写法，如下</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Raruto]: {{page.images[0]}}
-</span><span class='line'>[Rin]: {{page.images[1]}}
-</span><span class='line'>随便别的文字
-</span><span class='line'>![鸣人][Raruto]
-</span><span class='line'>![琳][Rin]</span></code></pre></td></tr></table></div></figure>
-
-
-<p>效果如：<br/>
-<img src="http://sargeraswang.com/images/blog_img/naruto/Naruto.jpg" alt="鸣人" />
-<img src="http://sargeraswang.com/images/blog_img/naruto/Rin.jpg" alt="琳" /></p>
-
-<p>点击【转播】按钮，后的效果图如：</p>
-
-<p><img src="http://sargeraswang.com/images/blog_img/naruto/success.png" alt="" /></p>
 ]]></content>
   </entry>
   
