@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f920d63-6a52-4c11-a308-8a5a4f85cce6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_includes/article.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/article.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/page.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../publish.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../publish.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +14,7 @@
     <session id="-1363469447">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.37" value="1" />
@@ -104,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/stylesheets/screen.css">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="9957" lean-forward="true" selection-start-column="9957" selection-end-column="9957" />
+              <caret column="9944" selection-start-column="9930" selection-end-column="9944" />
               <folding>
                 <element signature="e#15375#15536#1" expanded="true" />
                 <element signature="e#15908#16069#1" expanded="true" />
@@ -185,6 +181,7 @@
       <find>href=</find>
       <find>role=&quot;banner&quot;</find>
       <find>body&gt;header h1</find>
+      <find>body&gt;header h2</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -250,6 +247,11 @@
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_includes" type="462c0819:PsiDirectoryNode" />
               <item name="custom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="source" type="b2602c69:ProjectViewProjectNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -326,7 +328,7 @@
       <workItem from="1541036478784" duration="15241000" />
       <workItem from="1541164016714" duration="43000" />
       <workItem from="1541233224786" duration="34000" />
-      <workItem from="1541233294585" duration="309000" />
+      <workItem from="1541233294585" duration="789000" />
     </task>
     <task id="LOCAL-00001" summary="汉化">
       <created>1541061981692</created>
@@ -339,7 +341,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15627000" />
+    <option name="totallyTimeSpent" value="16107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1005" extended-state="6" />
@@ -577,7 +579,7 @@
     <entry file="file://$PROJECT_DIR$/stylesheets/screen.css">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="9957" lean-forward="true" selection-start-column="9957" selection-end-column="9957" />
+          <caret column="9944" selection-start-column="9930" selection-end-column="9944" />
           <folding>
             <element signature="e#15375#15536#1" expanded="true" />
             <element signature="e#15908#16069#1" expanded="true" />
