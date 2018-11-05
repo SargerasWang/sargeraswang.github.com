@@ -80,10 +80,10 @@ macOS 10.14 (x86, 64-bit), DMG Archive)
 8.连接成功,并且控制台会打印出mysql版本 `Server version: 8.0.13 MySQL Community Server - GPL`
 
 ###尝试使用数据库工具连接
-1.使用 DbVisualizer 添加新的 connection
-2.像往常一样 `Driver`选择了`MySQL`
-3.点击`Ping Server` 提示正常
-4.点击`Connect`则无法连接显示如下:
+1. 使用 DbVisualizer 添加新的 connection
+2. 像往常一样 `Driver`选择了`MySQL`
+3. 点击`Ping Server` 提示正常
+4. 点击`Connect`则无法连接显示如下:
 
 ```
 An error occurred while establishing the connection:
