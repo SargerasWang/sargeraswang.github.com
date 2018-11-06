@@ -9,7 +9,9 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="卸载并清理原有mysql 1.数据备份,具体请查看mysqldump 的使用,如果不需要备份,直接到下一步 ">
+  <meta name="description" content="java.security.spec.InvalidKeySpecException: java.security.InvalidKeyException: invalid key format 异常解决 私钥是直接生成的pkcs8格式,类似如下: 1
+2
+3 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +104,59 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-11-06T18:11:00+08:00" pubdate data-updated="true">2018-11-06</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>java.security.spec.InvalidKeySpecException: java.security.InvalidKeyException: invalid key format 异常解决</p></blockquote>
+
+<p>私钥是直接生成的<code>pkcs8</code>格式,类似如下:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL21hi3tyVA2ILrk
+</span><span class='line'>...
+</span><span class='line'>+bojB4QWBQi9zg==</span></code></pre></td></tr></table></div></figure>
+
+
+<p>直接在代码中使用<code>String</code>存储,利用类似如下代码进行签名:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/11/06/generateprivate-exception-jie-jue/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -356,88 +411,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-04-10T19:44:00+08:00" pubdate data-updated="true">2015-04-10</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>问题描述</h2>
-
-<p>Mybatis 关联的嵌套查询 官方的例子:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&quot;blogResult&quot;</span> <span class="na">type=</span><span class="s">&quot;Blog&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&quot;author&quot;</span> <span class="na">column=</span><span class="s">&quot;author_id&quot;</span> <span class="na">javaType=</span><span class="s">&quot;Author&quot;</span> <span class="na">select=</span><span class="s">&quot;selectAuthor&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/resultMap&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectBlog&quot;</span> <span class="na">resultMap=</span><span class="s">&quot;blogResult&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  SELECT * FROM BLOG WHERE ID = #{id}
-</span><span class='line'><span class="nt">&lt;/select&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectAuthor&quot;</span> <span class="na">resultType=</span><span class="s">&quot;Author&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  SELECT * FROM AUTHOR WHERE ID = #{id}
-</span><span class='line'><span class="nt">&lt;/select&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这个时候,如果<code>AUTHOR</code>表与<code>BLOG</code>在两个不同的数据库中,执行会报找不到<code>AUTHOR</code>表.</p>
-
-<h2>解决思路</h2>
-
-<p>新建一个Mybatis的<code>Plugins插件</code>,在第二次查询也就是<code>selectAuthor</code>执行之前,切换数据源为另一个数据库.看一下Plugins都可以用于哪些地方:</p>
-
-<ul>
-<li>Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)</li>
-<li>ParameterHandler (getParameterObject, setParameters)</li>
-<li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
-<li>StatementHandler (prepare, parameterize, batch, update, query)</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; 更早的</a>
@@ -453,6 +426,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">MacOS Mojave 重新安装mysql步骤及连接问题处理</a>
       </li>
     
@@ -466,10 +443,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a>
       </li>
     
   </ul>

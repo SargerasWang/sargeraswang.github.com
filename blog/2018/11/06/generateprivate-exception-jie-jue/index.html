@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>generatePrivate Exception 解决 - SargerasWang's Blog</title>
+  <meta name="author" content="SargerasWang">
+
+  
+  <meta name="description" content="java.security.spec.InvalidKeySpecException: java.security.InvalidKeyException: invalid key format 异常解决 私钥是直接生成的pkcs8格式,类似如下: 1
+2
+3 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sargeraswang.com/blog/2018/11/06/generateprivate-exception-jie-jue">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="SargerasWang's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+
+<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3675487720774599",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+<!--   <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">Hack</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div> -->
+  <h1><a href="/">SargerasWang's Blog</a></h1>
+  
+    <h2>我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sargeraswang.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="搜索..."/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/btc/zb/otc_qc_price.html" style="color:red;">QC币价格趋势</a></li>
+  <li><a href="/about">关于我</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h2 class="entry-title">generatePrivate Exception 解决</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-11-06T18:11:00+08:00" pubdate data-updated="true">2018-11-06</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>java.security.spec.InvalidKeySpecException: java.security.InvalidKeyException: invalid key format 异常解决</p></blockquote>
+
+<p>私钥是直接生成的<code>pkcs8</code>格式,类似如下:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL21hi3tyVA2ILrk
+</span><span class='line'>...
+</span><span class='line'>+bojB4QWBQi9zg==</span></code></pre></td></tr></table></div></figure>
+
+
+<p>直接在代码中使用<code>String</code>存储,利用类似如下代码进行签名:</p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PKCS8EncodedKeySpec</span> <span class="n">priPKCS8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="n">prikeyvalue</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span><span class='line'><span class="n">KeyFactory</span> <span class="n">keyf</span> <span class="o">=</span> <span class="n">KeyFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&quot;RSA&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">PrivateKey</span> <span class="n">myprikey</span> <span class="o">=</span> <span class="n">keyf</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">priPKCS8</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中第三行报错,如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">spec</span><span class="o">.</span><span class="na">InvalidKeySpecException</span><span class="o">:</span> <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">InvalidKeyException</span><span class="o">:</span> <span class="n">invalid</span> <span class="n">key</span> <span class="n">format</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAKeyFactory</span><span class="o">.</span><span class="na">engineGeneratePrivate</span><span class="o">(</span><span class="n">RSAKeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">217</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">KeyFactory</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">KeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">372</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="o">...</span>
+</span><span class='line'><span class="n">Caused</span> <span class="nl">by:</span> <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">InvalidKeyException</span><span class="o">:</span> <span class="n">invalid</span> <span class="n">key</span> <span class="n">format</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">pkcs</span><span class="o">.</span><span class="na">PKCS8Key</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">PKCS8Key</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">330</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">pkcs</span><span class="o">.</span><span class="na">PKCS8Key</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">PKCS8Key</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">356</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAPrivateCrtKeyImpl</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">RSAPrivateCrtKeyImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">91</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAPrivateCrtKeyImpl</span><span class="o">.</span><span class="na">newKey</span><span class="o">(</span><span class="n">RSAPrivateCrtKeyImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">75</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAKeyFactory</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">RSAKeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">316</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAKeyFactory</span><span class="o">.</span><span class="na">engineGeneratePrivate</span><span class="o">(</span><span class="n">RSAKeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">213</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">...</span> <span class="mi">77</span> <span class="n">more</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>解决方式,秘钥<code>String</code>要先经过<code>Base64 Decode</code>,如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PKCS8EncodedKeySpec</span> <span class="n">priPKCS8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="n">prikeyvalue</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span><span class='line'><span class="c1">//改成如下</span>
+</span><span class='line'><span class="n">PKCS8EncodedKeySpec</span> <span class="n">priPKCS8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="k">new</span> <span class="n">Base64</span><span class="o">().</span><span class="na">decode</span><span class="o">(</span><span class="n">prikeyvalue</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里的<code>Base64</code>类是指<code>org.apache.commons.codec.binary.Base64</code>.</p>
+
+<p>问题解决</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">SargerasWang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-11-06T18:11:00+08:00" pubdate data-updated="true">2018-11-06</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/" title="Previous Post: MacOS Mojave 重新安装mysql步骤及连接问题处理">&laquo; MacOS Mojave 重新安装mysql步骤及连接问题处理</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>历史文章</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">MacOS Mojave 重新安装mysql步骤及连接问题处理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/">发布Jar到Maven中央仓库遇到的问题笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/20/sseemitter-defaulthandlerexceptionresolver-async-timeout-for-get-jie-jue/">SseEmitter DefaultHandlerExceptionResolver : Async Timeout for GET 解决</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>关于我</h1>
+  <p>一个正在追逐梦想的人.</p>
+  <p>
+      Github: <a href="https://github.com/sargeraswang">SargerasWang</a><br/>
+      E-mail: <a href="mailto:sargeraswang@gmail.com">sargeraswang@gmail.com</a><br/>
+      VPS服务器租用推荐: <a href="https://billing.50kvm.com/aff.php?aff=96">https://50kvm.com</a>
+  </p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - SargerasWang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

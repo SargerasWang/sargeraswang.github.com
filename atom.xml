@@ -4,7 +4,7 @@
   <title><![CDATA[SargerasWang's Blog]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2018-11-05T10:46:25+08:00</updated>
+  <updated>2018-11-06T18:21:39+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,85 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[generatePrivate Exception 解决]]></title>
+    <link href="http://sargeraswang.com/blog/2018/11/06/generateprivate-exception-jie-jue/"/>
+    <updated>2018-11-06T18:11:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2018/11/06/generateprivate-exception-jie-jue</id>
+    <content type="html"><![CDATA[<blockquote><p>java.security.spec.InvalidKeySpecException: java.security.InvalidKeyException: invalid key format 异常解决</p></blockquote>
+
+<p>私钥是直接生成的<code>pkcs8</code>格式,类似如下:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL21hi3tyVA2ILrk
+</span><span class='line'>...
+</span><span class='line'>+bojB4QWBQi9zg==</span></code></pre></td></tr></table></div></figure>
+
+
+<p>直接在代码中使用<code>String</code>存储,利用类似如下代码进行签名:</p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PKCS8EncodedKeySpec</span> <span class="n">priPKCS8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="n">prikeyvalue</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span><span class='line'><span class="n">KeyFactory</span> <span class="n">keyf</span> <span class="o">=</span> <span class="n">KeyFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&quot;RSA&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">PrivateKey</span> <span class="n">myprikey</span> <span class="o">=</span> <span class="n">keyf</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">priPKCS8</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中第三行报错,如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">spec</span><span class="o">.</span><span class="na">InvalidKeySpecException</span><span class="o">:</span> <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">InvalidKeyException</span><span class="o">:</span> <span class="n">invalid</span> <span class="n">key</span> <span class="n">format</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAKeyFactory</span><span class="o">.</span><span class="na">engineGeneratePrivate</span><span class="o">(</span><span class="n">RSAKeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">217</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">KeyFactory</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">KeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">372</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="o">...</span>
+</span><span class='line'><span class="n">Caused</span> <span class="nl">by:</span> <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">InvalidKeyException</span><span class="o">:</span> <span class="n">invalid</span> <span class="n">key</span> <span class="n">format</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">pkcs</span><span class="o">.</span><span class="na">PKCS8Key</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">PKCS8Key</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">330</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">pkcs</span><span class="o">.</span><span class="na">PKCS8Key</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">PKCS8Key</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">356</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAPrivateCrtKeyImpl</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">RSAPrivateCrtKeyImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">91</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAPrivateCrtKeyImpl</span><span class="o">.</span><span class="na">newKey</span><span class="o">(</span><span class="n">RSAPrivateCrtKeyImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">75</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAKeyFactory</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">RSAKeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">316</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">rsa</span><span class="o">.</span><span class="na">RSAKeyFactory</span><span class="o">.</span><span class="na">engineGeneratePrivate</span><span class="o">(</span><span class="n">RSAKeyFactory</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">213</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">...</span> <span class="mi">77</span> <span class="n">more</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>解决方式,秘钥<code>String</code>要先经过<code>Base64 Decode</code>,如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">PKCS8EncodedKeySpec</span> <span class="n">priPKCS8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="n">prikeyvalue</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+</span><span class='line'><span class="c1">//改成如下</span>
+</span><span class='line'><span class="n">PKCS8EncodedKeySpec</span> <span class="n">priPKCS8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="k">new</span> <span class="n">Base64</span><span class="o">().</span><span class="na">decode</span><span class="o">(</span><span class="n">prikeyvalue</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里的<code>Base64</code>类是指<code>org.apache.commons.codec.binary.Base64</code>.</p>
+
+<p>问题解决</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MacOS Mojave 重新安装mysql步骤及连接问题处理]]></title>
@@ -2617,50 +2696,6 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 
 <p>奔跑吧，少年！！！<br/>
 <img src="http://sargeraswang.com/images/blog_img/benpao.jpg" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[配置每次new_post后自动用Mou打开文章(续)]]></title>
-    <link href="http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/"/>
-    <updated>2013-12-19T22:13:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu</id>
-    <content type="html"><![CDATA[<blockquote><p>已经有超过10天没有写过博客了，最近读完了Linux发明者<a href="http://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。</p></blockquote>
-
-<!-- more -->
-
-
-<p>这篇还是来擦屁股的，之前一篇<a href="http://sargeraswang.com/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>,用了几次之后发现一个小问题，就是当我使用了<code>rake new_post['xxx']</code>之后，确实帮我使用Mou打开Markdown文件了，但是当前shell就没法用了，只有退出Mou后才可以使用。</p>
-
-<p>最近一直在找解决办法，今天终于找到了，就是<code>open</code>命令加上<code>-a</code>参数，官方是这样描述的：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>-a                Opens with the specified application.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>那么，单独在shell中使用的代码就是：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>open -a /Applications/Mou.app/Contents/MacOS/Mou xxx.markdown
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>测试成功，修改<code>Rakefile</code>文件中的：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">editor</span>   <span class="o">=</span> <span class="s2">&quot;/Applications/Mou.app/Contents/MacOS/Mou&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>为：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">editor</span>   <span class="o">=</span> <span class="s2">&quot;open -a /Applications/Mou.app/Contents/MacOS/Mou&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>大功告成，shell与Mou互不影响，效果如图：<br/>
-<img src="http://sargeraswang.com/images/blog_img/newpost.png" alt="" /></p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="这篇又是来收拾残局的，之前在Octopress中添加腾讯微博一键分享功能最后，说有两点不尽人意之处，第二点是居中的手段太低劣，这个我放弃调试了，第一点是image应该可以取文章中的所有图片才对，搞了两天，终于搞了一个像样的解决方式。 ">
+  <meta name="description" content="已经有超过10天没有写过博客了，最近读完了Linux发明者林纳斯·托瓦兹的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +102,47 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">配置每次new_post后自动用Mou打开文章(续)</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-19T22:13:00+08:00" pubdate data-updated="true">2013-12-19</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>已经有超过10天没有写过博客了，最近读完了Linux发明者<a href="http://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>的自传《Just For Fun》，受益匪浅。但我还是不想以读后感的形式写在这里，我想没有必要专门写一整篇，何时想起来何时写出来就好了。</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -277,72 +318,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-25T20:14:00+08:00" pubdate data-updated="true">2013-11-25</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li>Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase: test-compile)
-
-<ul>
-<li>解决方法：在<code>&lt;plugins&gt;</code>外面套上<code>&lt;pluginManagement&gt;</code></li>
-</ul>
-</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;pluginManagement&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;&lt;/plugin&gt;</span>
-</span><span class='line'>      ...
-</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/pluginManagement&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; 更早的</a>
@@ -360,6 +335,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">MacOS Mojave 重新安装mysql步骤及连接问题处理</a>
       </li>
     
@@ -373,10 +352,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2017/04/19/netty-org-dot-msgpack-dot-messagetypeexception-expected-array-but-got-not-array-value/">Netty org.msgpack.MessageTypeException: Expected Array but Got Not Array Value</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a>
       </li>
     
   </ul>
