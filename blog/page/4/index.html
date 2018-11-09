@@ -9,7 +9,8 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content=" 来填坑了，当初自己写下的文字果然力量非凡，原先就是因为不喜欢在编码时，总是需要右手离开主键盘区，找方向键来控制光标而烦恼，所以学了emacs。但是eclipse的emacs键位并不怎么好用，所以本文是记录如何设置eclipse的光标控制。好吧，主要是填坑10篇vs19天博客撰写小结 ">
+  <meta name="description" content="为了修改mysql默认字符集,按照网上的方式,修改了my.cnf,之后启动mysql报错: 1
+2 [ERROR] /usr/local/mysql/bin/mysqld: unknown variable 'default-character-set=utf8' ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +103,54 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">Mysql /usr/local/mysql/bin/mysqld: Unknown Variable Default-character-set=utf8 解决办法</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-20T20:21:00+08:00" pubdate data-updated="true">2014-08-20</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>为了修改mysql默认字符集,按照网上的方式,修改了<code>my.cnf</code>,之后启动mysql报错:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> [ERROR] /usr/local/mysql/bin/mysqld: unknown variable
+</span><span class='line'> 'default-character-set=utf8'
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/20/mysql-slash-usr-slash-local-slash-mysql-slash-bin-slash-mysqld-unknown-variable-default-character-set-equals-utf8-jie-jue-ban-fa/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -282,67 +331,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">第2章 Java内存区域与内存溢出异常</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-28T14:31:00+08:00" pubdate data-updated="true">2014-01-28</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>最近在学习周志明的《深入理解Java虚拟机》，写下学习笔记。<br/>
-<a href="http://item.jd.com/11252778.html"><img src="/images/blog_img/jvmbook.jpg" alt="" /></a></p></blockquote>
-
-<h1>运行时数据区</h1>
-
-<ol>
-<li>线程共享
-
-<ol>
-<li>方法区（Method Area）</li>
-<li>（Java）堆（Heap）</li>
-</ol>
-</li>
-<li>线程私有
-
-<ol>
-<li>虚拟机栈（VM Stack）</li>
-<li>本地方法栈（Native Method Stack）</li>
-<li>程序计数器（Program Counter Register）</li>
-</ol>
-
-
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/28/javanei-cun-qu-yu-yu-nei-cun-yi-chu-yi-chang/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; 更早的</a>
@@ -360,6 +348,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/10/jdk8dao-jdk11-springboot-cai-keng-zhi-nan/">Jdk8到jdk11 Springboot 踩坑指南</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/11/09/java-lian-shi-diao-yong-de-zi-shi/">Java 链式调用的正确姿势</a>
       </li>
     
@@ -373,10 +365,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/">发布Jar到Maven中央仓库遇到的问题笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/04/20/sseemitter-defaulthandlerexceptionresolver-async-timeout-for-get-jie-jue/">SseEmitter DefaultHandlerExceptionResolver : Async Timeout for GET 解决</a>
       </li>
     
   </ul>
