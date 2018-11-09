@@ -4,7 +4,7 @@
   <title><![CDATA[SargerasWang's Blog]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2018-11-06T21:31:21+08:00</updated>
+  <updated>2018-11-09T16:57:04+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,105 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[java 链式调用的正确姿势]]></title>
+    <link href="http://sargeraswang.com/blog/2018/11/09/java-lian-shi-diao-yong-de-zi-shi/"/>
+    <updated>2018-11-09T16:43:00+08:00</updated>
+    <id>http://sargeraswang.com/blog/2018/11/09/java-lian-shi-diao-yong-de-zi-shi</id>
+    <content type="html"><![CDATA[<p>Google 上搜索&#8221;java链式调用&#8221;前两名的大哥用的例子是一样的,并且不正确.</p>
+
+<p>他们代码中<code>build</code>出来的并不是<code>Student</code>,而是一个<code>Builder</code>.</p>
+
+<p>这里的链式调用(链式编程),是设计模式中的<code>Builder模式</code>,要点就是通过一个代理来完成对象的构建过程。这个代理职责就是完成构建的各个步骤，同时它也是易扩展的。</p>
+
+<p>如下类似代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Response</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">status</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Object</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">Response</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">status</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="na">status</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">message</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="na">message</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">result</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="na">result</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Builder</span><span class="o">{</span>
+</span><span class='line'>        <span class="kd">private</span> <span class="n">Integer</span> <span class="n">status</span><span class="o">;</span>
+</span><span class='line'>        <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+</span><span class='line'>        <span class="kd">private</span> <span class="n">Object</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">Response</span> <span class="nf">build</span><span class="o">(){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">new</span> <span class="nf">Response</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">withStatus</span><span class="o">(</span><span class="n">Integer</span> <span class="n">status</span><span class="o">){</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">status</span><span class="o">=</span><span class="n">status</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">withMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">){</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">Object</span> <span class="nf">withResult</span><span class="o">(</span><span class="n">String</span> <span class="n">result</span><span class="o">){</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>调用时如下方式:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Response</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">withStatus</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">withMessage</span><span class="o">(</span><span class="s">&quot;请求成功&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">withResult</span><span class="o">(</span><span class="n">XXX</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[generatePrivate Exception 解决]]></title>
@@ -2597,105 +2696,6 @@ Major GC(老年代GC)的速度一般会比MinorGC慢10倍以上</p></blockquote>
 <p><font color='red'>运行10分钟，没有出现异常，待解决。</font></p>
 
 <blockquote><p>由DirectMemory导致的内存溢出，Heap Dump 文件没有明显的异常</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[总结和展望]]></title>
-    <link href="http://sargeraswang.com/blog/2014/01/04/zong-jie-he-zhan-wang/"/>
-    <updated>2014-01-04T12:06:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2014/01/04/zong-jie-he-zhan-wang</id>
-    <content type="html"><![CDATA[<p>新年到，很多大牛都在blog上写下自己的2013总结。回想一下自己，13年的变化还蛮大的，写下来激励自己往前走。</p>
-
-<!-- more -->
-
-
-<h1>总结2013</h1>
-
-<h3>读书</h3>
-
-<ul>
-<li>《记事本圆梦计划》，严格来说，这本书是在2012.12.15读完的，但是它（书中关于人生目标规划的部分）对我13年的影响极大。</li>
-<li>《你所不了解的德国人》</li>
-<li>《自控力》，这本书可以评为年度影响力最大（对我来说）的书，戒烟，吃素，读书，学习……等等都离不开此书教给我的知识。</li>
-<li>《Getting more》</li>
-<li><a href="http://cnborn.net/docs/getting_real/">《Getting Real》</a></li>
-<li>《反常识经济学》</li>
-<li>《在你身边，为你设计》</li>
-<li>《专业主义》</li>
-<li>《动物庄园》</li>
-<li>《just for fun》</li>
-<li>《禅与摩托车维修艺术》，被无数大牛推荐过的必读书目，读了四个多月了，还差20%，被我选为‘轻轨书’了，须长时间坐轻轨时看。</li>
-</ul>
-
-
-<h3>习惯</h3>
-
-<ul>
-<li>戒烟：长达8年的吸烟史终结了，多亏《自控力》一书。</li>
-<li>骑自行车上班：每天来回17公里，雪天除外。</li>
-<li>吃素：是因为在youtube上看到一个视频，小女孩问妈妈“我们为什么要杀死动物，他们也是有生命的”，后决定不吃肉了，到目前持续了半年。</li>
-<li>blog：无数大牛说了程序员写blog的重要性，遂决定开始写，从去年的光棍节开始的。</li>
-</ul>
-
-
-<h3>工作</h3>
-
-<ul>
-<li>有不到半年时间去支援测试部门，现在回想起来，这段时光对我是极为有益的，一是换个角色看软件，知道测试部门看我开发的东西是什么感觉；二是由于测试工作机械单调，业余时间有很多的精力去读书，给改变自己打好基础。</li>
-<li>从测试部门回来之后的开发中，已经能感觉到自己的变化，对公用原件的提取，对自己不会的技术的学习能力有提高</li>
-<li>与同事共同开发的一个功能，bug非常多，之后分析原因，我想应该是测试不足，那为什么测试不足呢？我想是因为责任不清，我负责前台，他负责后台，任何功能都是我直接调用他的方法，所以我没有去测试调用之后的结果是否正确；他呢，既然提供了接口，那么使用方一定会测试的，自己就没有测试。这就是典型的两个人都是认为对方会去做，结果都没有做的问题。而且因为这是第一次这么分工，吸取教训，下次尽量不要这样分工，如果分了，那就要提前说好，负责前台部分的人要负责功能测试正确。</li>
-</ul>
-
-
-<h1>展望2014</h1>
-
-<h3>读书</h3>
-
-<ul>
-<li>技术类
-
-<ul>
-<li>《Linux/Unix设计思想》</li>
-<li>《Spring技术内幕》</li>
-<li>《Struts2技术内幕》</li>
-<li>《JQuery权威指南》</li>
-<li>《Effective Java》</li>
-</ul>
-</li>
-<li>其他
-
-<ul>
-<li>《如何阅读一本书》</li>
-<li>《暗时间》</li>
-</ul>
-</li>
-</ul>
-
-
-<p>目前已经买了还没有读的书就这些，很有可能会因为各种需要优先读其他书，但总体上要多读一些技术类的。</p>
-
-<h3>习惯</h3>
-
-<ul>
-<li>已有的戒烟、骑车上班、吃素、写博客要继续保持。</li>
-<li>改善作息时间：这个确实很难做到，之前本来已经做到早睡早起了，但是连续加班几天，每天都23点回家，直接就毁掉了好不容易养成的习惯。新的一年，要尽量避免各种原因影响到作息时间。</li>
-<li>提高吃的质量，多年来将就着吃，随便吃点儿便宜的，这种做法的影响已经逐渐显现，偶尔的胃痛，食欲不振，精神萎靡。新的一年，保护好胃，只有一个钢铁侠般的身躯才能实现我事业上的梦想。</li>
-</ul>
-
-
-<h3>工作</h3>
-
-<ul>
-<li>在前面的博客中我也写到过：目前项目处于最后拼杀的阶段，我不能做逃兵。</li>
-<li>这个项目做完之后，要出去闯一闯了，这个公司，从我刚毕业到现在一待就是三年多，就像这个博客最上方写的那样“我常常思考为什么鸟儿拥有整片天空，却常常停留在一个地方。然后我问了自己同样的问题。”，多出去闯一闯，才知道这个世界有多大。</li>
-</ul>
-
-
-<hr />
-
-<p>奔跑吧，少年！！！<br/>
-<img src="http://sargeraswang.com/images/blog_img/benpao.jpg" alt="" /></p>
 ]]></content>
   </entry>
   
