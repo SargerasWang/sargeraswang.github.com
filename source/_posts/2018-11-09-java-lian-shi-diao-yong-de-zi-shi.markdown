@@ -43,7 +43,7 @@ public class Response {
             this.message = message;
             return this;
         }
-        public Object withResult(String result){
+        public Builder withResult(Object result){
             this.result = result;
             return this;
         }
