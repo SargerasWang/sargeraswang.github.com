@@ -121,6 +121,8 @@ Error:java:无效的源发行版:11
 ```
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile (default-compile) on project xxx: Fatal error compiling: 无效的目标发行版: 11 -> [Help 1]
 ```
+或者是`Fatal error compiling: 无效的标记: --release`
+
 这个`Fatal error compiling: 无效的目标发行版: 11`坑的突破天际!
 
 ###别的问题
