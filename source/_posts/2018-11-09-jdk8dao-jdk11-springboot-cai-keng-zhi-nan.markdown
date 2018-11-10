@@ -123,6 +123,19 @@ Error:java:无效的源发行版:11
 ```
 这个`Fatal error compiling: 无效的目标发行版: 11`坑的突破天际!
 
+###别的问题
+如果你的项目使用了`mybatis`,那可能会在启动时看到如下日志
+
+```
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.ibatis.reflection.Reflector (file:/.../org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar) to method java.lang.Integer.getChars(int,int,byte[])
+WARNING: Please consider reporting this to the maintainers of org.apache.ibatis.reflection.Reflector
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+```
+这个问题mybatis团队在修复了,`3.5.0`中应该能修复,但目前还没有release,所以暂时先忍着吧,详情见github答复:
+[MyBatis and JDK 9: Illegal reflective access](https://github.com/mybatis/mybatis-3/issues/1156)
+
 ###完成
 至此,坑已踩完,可以愉快的使用java11开发啦,比方说使用`Map.of`来快速的创建`Map`.
 
