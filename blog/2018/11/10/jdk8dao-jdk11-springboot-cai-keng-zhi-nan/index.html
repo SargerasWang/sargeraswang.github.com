@@ -274,9 +274,12 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <p>这个<code>Fatal error compiling: 无效的目标发行版: 11</code>坑的突破天际!</p>
 
-<h3>别的问题</h3>
+<h3>别的问题:mybatis警告</h3>
 
-<p>如果你的项目使用了<code>mybatis</code>,那可能会在启动时看到如下日志</p>
+<ul>
+<li>如果你的项目使用了<code>mybatis</code>,那可能会在启动时看到如下日志</li>
+</ul>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -293,6 +296,134 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <p>这个问题mybatis团队在修复了,<code>3.5.0</code>中应该能修复,但目前还没有release,所以暂时先忍着吧,详情见github答复:
 <a href="https://github.com/mybatis/mybatis-3/issues/1156">MyBatis and JDK 9: Illegal reflective access</a></p>
+
+<h3>别的问题:Unable to import maven project: See logs for details</h3>
+
+<p>当你对pom.xml 做修改保存,IDEA右下角会有提示 <code>Unable to import maven project: See logs for details</code>,提示让我们去看日志.</p>
+
+<p>点击[Help]&ndash;>[Show Log in Finder],可以看到错误信息如下:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>2018-11-10 14:55:54,580 [58702502]   WARN - ution.rmi.RemoteProcessSupport - Unrecognized option: -d64
+</span><span class='line'>2018-11-10 14:55:54,580 [58702502]   WARN - ution.rmi.RemoteProcessSupport - Error: Could not create the Java Virtual Machine.
+</span><span class='line'>2018-11-10 14:55:54,580 [58702502]   WARN - ution.rmi.RemoteProcessSupport - Error: A fatal exception has occurred. Program will exit.
+</span><span class='line'>2018-11-10 14:55:54,656 [58702578]   WARN - ution.rmi.RemoteProcessSupport - Unrecognized option: -d64
+</span><span class='line'>2018-11-10 14:55:54,656 [58702578]   WARN - ution.rmi.RemoteProcessSupport - Error: Could not create the Java Virtual Machine.
+</span><span class='line'>2018-11-10 14:55:54,656 [58702578]   WARN - ution.rmi.RemoteProcessSupport - Error: A fatal exception has occurred. Program will exit.
+</span><span class='line'>2018-11-10 14:55:54,657 [58702579]  ERROR -      #org.jetbrains.idea.maven - Cannot reconnect.
+</span><span class='line'>java.lang.RuntimeException: Cannot reconnect.
+</span><span class='line'>        at ...
+</span><span class='line'>Caused by: java.rmi.RemoteException: Cannot start maven service; nested exception is:
+</span><span class='line'>        com.intellij.execution.ExecutionException: Unrecognized option: -d64
+</span><span class='line'>Error: Could not create the Java Virtual Machine.
+</span><span class='line'>Error: A fatal exception has occurred. Program will exit.
+</span><span class='line'>
+</span><span class='line'>        at ...
+</span><span class='line'>Caused by: com.intellij.execution.ExecutionException: Unrecognized option: -d64
+</span><span class='line'>Error: Could not create the Java Virtual Machine.
+</span><span class='line'>Error: A fatal exception has occurred. Program will exit.
+</span><span class='line'>
+</span><span class='line'>        at com.intellij.execution.rmi.RemoteProcessSupport.acquire(RemoteProcessSupport.java:159)
+</span><span class='line'>        at org.jetbrains.idea.maven.server.MavenServerManager.create(MavenServerManager.java:158)
+</span><span class='line'>        ... 37 more
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>关键是其中的 <code>com.intellij.execution.ExecutionException: Unrecognized option: -d64</code>,这是由于<code>-d64</code>在java10中已经被移除了.</p>
+
+<h5>下面关于这个问题的解决步骤,不要照着做,直接看最后的正确解决办法就好.</h5>
+
+<h5>下面关于这个问题的解决步骤,不要照着做,直接看最后的正确解决办法就好.</h5>
+
+<h5>下面关于这个问题的解决步骤,不要照着做,直接看最后的正确解决办法就好.</h5>
+
+<ul>
+<li>我们先修改IDEA使用java11.</li>
+</ul>
+
+
+<p>修改方法:点击[Help]&ndash;>[Find Action&hellip;]&ndash;>输入[Switch],选中[Switch Boot JDK &hellip;],选择jdk11,点击[Save and restart],如下图所示:</p>
+
+<p><img src="/images/blog_img/java8-java11/idea-switch-boot.png" alt="" /></p>
+
+<p><img src="/images/blog_img/java8-java11/idea-switch-boot2.png" alt="" /></p>
+
+<p>重启完成,发现问题依旧,怀疑是这个<code>-d64</code>在项目中有配置,搜索后并没有发现.</p>
+
+<ul>
+<li><p>试一下删除IDEA的缓存文件夹,目录在<code>~/Library/Caches/产品名称(比方说我的是IntelliJIdea2018.2)</code>,病情没有好转 .</p></li>
+<li><p>删除掉配置信息:<code>rm -rf ~/Library/Preferences/IntelliJIdea*</code></p></li>
+</ul>
+
+
+<p>然后,奇迹发生了,重置之后的IDEA已经无法导入我的项目了,生无可恋&hellip;</p>
+
+<p><img src="/images/blog_img/java8-java11/want-die.jpg" alt="" /></p>
+
+<p>再仔细看下日志,发现后面几行:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>2018-11-10 15:40:28,342 [  38826]  ERROR - llij.ide.plugins.PluginManager - IntelliJ IDEA 2018.2.5  Build #IU-182.4892.20
+</span><span class='line'>2018-11-10 15:40:28,342 [  38826]  ERROR - llij.ide.plugins.PluginManager - JDK: 1.8.0_152-release
+</span><span class='line'>2018-11-10 15:40:28,342 [  38826]  ERROR - llij.ide.plugins.PluginManager - VM: OpenJDK 64-Bit Server VM
+</span><span class='line'>2018-11-10 15:40:28,343 [  38827]  ERROR - llij.ide.plugins.PluginManager - Vendor: JetBrains s.r.o
+</span><span class='line'>2018-11-10 15:40:28,343 [  38827]  ERROR - llij.ide.plugins.PluginManager - OS: Mac OS X
+</span><span class='line'>2018-11-10 15:40:28,343 [  38827]  ERROR - llij.ide.plugins.PluginManager - Last Action:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>好,按照官方所说,修改一下IDEA的启动jdk,在 <code>~/Library/Preferences/IntelliJIdea2018.2</code>下创建一个<code>idea.jdk</code>文件,内容是<code>/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk</code></li>
+</ul>
+
+
+<p>再启动加载项目试试,日志中虽然jdk版本是11了,可是依旧报错.绝望中,google到这么一个网页,里面也是同样的问题,答复是:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>Hi.
+</span><span class='line'>
+</span><span class='line'>It should be fixed in 2018.3:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What ? 2018.3目前还是EAP版本,下载一个试试吧
+<a href="https://www.jetbrains.com/idea/nextversion/">https://www.jetbrains.com/idea/nextversion/</a></p>
+
+<p>下载完成打开拖拽到<code>应用程序</code>,运行<code>IntelliJ IDEA 2018.3 EAP.app</code>,导入我的项目,惊喜来了,成功了!!!<code>JetBrains</code>诚不欺我!</p>
+
+<h3>总结就是:解决</h3>
+
+<p><code>com.intellij.execution.ExecutionException: Unrecognized option: -d64</code></p>
+
+<h3>办法就是使用<code>2018.3</code>及更新版本.</h3>
 
 <h3>完成</h3>
 
