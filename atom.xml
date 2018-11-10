@@ -4,7 +4,7 @@
   <title><![CDATA[SargerasWang's Blog]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2018-11-10T00:37:32+08:00</updated>
+  <updated>2018-11-10T11:41:09+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -161,6 +161,26 @@
 
 
 <p>这个<code>Fatal error compiling: 无效的目标发行版: 11</code>坑的突破天际!</p>
+
+<h3>别的问题</h3>
+
+<p>如果你的项目使用了<code>mybatis</code>,那可能会在启动时看到如下日志</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>WARNING: An illegal reflective access operation has occurred
+</span><span class='line'>WARNING: Illegal reflective access by org.apache.ibatis.reflection.Reflector (file:/.../org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar) to method java.lang.Integer.getChars(int,int,byte[])
+</span><span class='line'>WARNING: Please consider reporting this to the maintainers of org.apache.ibatis.reflection.Reflector
+</span><span class='line'>WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+</span><span class='line'>WARNING: All illegal access operations will be denied in a future release
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个问题mybatis团队在修复了,<code>3.5.0</code>中应该能修复,但目前还没有release,所以暂时先忍着吧,详情见github答复:
+<a href="https://github.com/mybatis/mybatis-3/issues/1156">MyBatis and JDK 9: Illegal reflective access</a></p>
 
 <h3>完成</h3>
 
