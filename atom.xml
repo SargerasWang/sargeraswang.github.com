@@ -4,7 +4,7 @@
   <title><![CDATA[SargerasWang's Blog]]></title>
   <link href="http://sargeraswang.com/atom.xml" rel="self"/>
   <link href="http://sargeraswang.com/"/>
-  <updated>2018-11-10T11:41:09+08:00</updated>
+  <updated>2018-11-10T14:49:00+08:00</updated>
   <id>http://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -159,6 +159,8 @@
 </pre></td><td class='code'><pre><code class='xml'><span class='line'>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile (default-compile) on project xxx: Fatal error compiling: 无效的目标发行版: 11 -&gt; [Help 1]
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>或者是<code>Fatal error compiling: 无效的标记: --release</code></p>
 
 <p>这个<code>Fatal error compiling: 无效的目标发行版: 11</code>坑的突破天际!</p>
 
