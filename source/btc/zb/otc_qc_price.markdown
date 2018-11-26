@@ -26,7 +26,7 @@ categories: [QC,BTC,zb.com,OTC,QC价格趋势]
 * 价格走高,说明积极入场情绪偏高
 
 <script>
-    var domain = "http://btc.api.sargeraswang.com";
+    var domain = "https://btc.api.sargeraswang.com";
     $.getJSON(domain+'/zb/otc/qc/current', function (data) {
         $("#current_price_1").text(data.result["1"].price);
         $("#current_price_2").text(data.result["2"].price);
