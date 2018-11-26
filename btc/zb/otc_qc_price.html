@@ -160,7 +160,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 
 <script>
-    var domain = "http://btc.api.sargeraswang.com";
+    var domain = "https://btc.api.sargeraswang.com";
     $.getJSON(domain+'/zb/otc/qc/current', function (data) {
         $("#current_price_1").text(data.result["1"].price);
         $("#current_price_2").text(data.result["2"].price);
