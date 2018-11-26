@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 博客 | SargerasWang's Blog]]></title>
-  <link href="http://sargeraswang.com/blog/categories/bo-ke/atom.xml" rel="self"/>
-  <link href="http://sargeraswang.com/"/>
-  <updated>2018-11-11T15:46:44+08:00</updated>
-  <id>http://sargeraswang.com/</id>
+  <link href="https://sargeraswang.com/blog/categories/bo-ke/atom.xml" rel="self"/>
+  <link href="https://sargeraswang.com/"/>
+  <updated>2018-11-26T14:49:04+08:00</updated>
+  <id>https://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
     <email><![CDATA[sargeraswang@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[10篇vs19天博客撰写小结]]></title>
-    <link href="http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/"/>
+    <link href="https://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie/"/>
     <updated>2013-11-29T22:07:00+08:00</updated>
-    <id>http://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie</id>
+    <id>https://sargeraswang.com/blog/2013/11/29/10pian-vs19tian-bo-ke-zhuan-xie-xiao-jie</id>
     <content type="html"><![CDATA[<blockquote><p>刚才看了<a href="http://www.read.org.cn/html/2314-wo-de-zhan-tuo-ce-lue.html">战隼的学习探索-我的战拖策略</a>,想想自己距上一篇博文也有3天了，回想在博客搭建好的第二天，我曾说<a href="/blog/2013/11/12/guan-yu-wo-yu-dao-de-wen-ti/">频率暂定最少3天一篇</a>。</p></blockquote>
 
 <p>如果用除法，10篇/19天，平均2天一篇，应该算合格。<br/>
@@ -59,17 +59,17 @@
 
 <ul>
 <li><p>在写完<a href="/blog/2013/11/16/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang/">配置每次new_post后自动用Mou打开文章</a>之后，我一直用到现在，问题也就出现了，自动用Mou打开文章后，终端就一直在等Mou关闭才能继续；而且一旦关闭终端，Mou也会被关闭，
-<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">链接</a></font>。<br/>
+<font color="green">这个已解决<a href="https://sargeraswang.com/blog/2013/12/19/pei-zhi-mei-ci-new-posthou-zi-dong-yong-mouda-kai-wen-zhang-xu/">链接</a></font>。<br/>
 <img src="/images/blog_img/shellWaitMou.png"></p></li>
 <li><p>在<a href="/blog/2013/11/16/markdown-yu-fa-shuo-ming/">MarkDown 语法说明</a>一文中，有说道“表格(在Octopress中并没有画出线，后续解决)”,后来有查过解决方案，是修改css，但是一直没有动手改，
-<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">链接</a></font>。</p></li>
+<font color="green">这个已解决<a href="https://sargeraswang.com/blog/2013/12/09/jie-jue-octopressde-biao-ge-yang-shi-wen-ti/">链接</a></font>。</p></li>
 <li><p>关于在<a href="/blog/2013/11/17/emacsshi-yong-shou-ce/">Emacs使用手册(一) 基本操作</a>中我说要学习Emacs的原因是eclipse有这个键位支持方案，后来我有坚持使用一周这个方案，最终放弃了，原因是eclipse的默认emacs方案并没有支持所有按键（我最不能忍受的是系统自动提示的时候，Ctrl+N并不能当做↓来使用），Google了一下，发现一个eclipse的emacs插件（<a href="http://www.mulgasoft.com/">Emacs+ Eclipse Plug-in</a>）,但是作者已经不维护了，新版Eclipse中使用会报错，所以现在我还忍受着手要离开主键盘去按上下左右的痛苦，
-<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">链接</a></font>。<br/>
+<font color="green">这个已解决<a href="https://sargeraswang.com/blog/2014/05/09/mac-xia-eclipse-shi-yong-emacan-jian-de-she-zhi/">链接</a></font>。<br/>
 <img src="/images/blog_img/emacsPlus.png"></p></li>
 <li><p>既然是叫做“Emacs使用手册(一) 基本操作”，就说明至少还应该有“二”，不能假装忘记，
-<font color="green">这个已解决<a href="http://sargeraswang.comhttp://127.0.0.1:4000/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">链接</a></font>。</p></li>
+<font color="green">这个已解决<a href="https://sargeraswang.comhttp://127.0.0.1:4000/blog/2014/03/18/emacsshi-yong-shou-ce-er-shi-yong-jin-jie/">链接</a></font>。</p></li>
 <li><p>在<a href="/blog/2013/11/22/zai-octopresszhong-tian-jia-teng-xun-wei-bo-yi-jian-fen-xiang-gong-neng/">在Octopress中添加腾讯微博一键分享功能</a> 最后，有提出两点"不尽人意之处"，
-<font color="green">2013-12-10 这个已解决<a href="http://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font>。</p></li>
+<font color="green">2013-12-10 这个已解决<a href="https://sargeraswang.com/blog/2013/12/09/octopresstian-jia-teng-xun-wei-bo-fen-xiang-zhong-tu-pian-de-wen-ti/">链接</a></font>。</p></li>
 <li><p>在<a href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a>写完之后，我有大概看过整个生成的项目，其中除了我想要的Spring+Struts2+Hibernate之外，有太多太多的其他东西。所以不适用，后来我又试了简易版的Light版，好像有好一些，但总是觉得不如从头自己搭建一个来的舒心，吃的放心，就这么定了，自己搭建一个，然后过程记录在博客里，
 <font color="red">这个待解决</font>。</p></li>
 </ul>
@@ -81,7 +81,7 @@
 
 <ul>
 <li>还有一个才对，搜索引擎收录的问题，百度已经解决了，但是Google为何没有收录，还没有找到原因，
-<font color="green">这个已解决<a href="http://sargeraswang.com/blog/2013/12/06/googleyi-jing-shou-lu-liao/">链接</a></font>。</li>
+<font color="green">这个已解决<a href="https://sargeraswang.com/blog/2013/12/06/googleyi-jing-shou-lu-liao/">链接</a></font>。</li>
 </ul>
 
 

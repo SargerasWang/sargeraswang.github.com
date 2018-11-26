@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /404.html
 
-Sitemap: http://sargeraswang.com/sitemap.xml 
+Sitemap: https://sargeraswang.com/sitemap.xml 
