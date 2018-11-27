@@ -9,8 +9,8 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="环境 Mac OSX 10.9 (已安装XCode 5.0.1) 流程 我是按照这篇文章来操作的。 安装ruby 这里打上命令试了好久都不行，最后发现，原来系统里已经有ruby了，不知道是OSX10.9自带的还是XCode带的。利用 1
-$ ruby -v 就可以看到，目前使用的ruby版本号。 &hellip;">
+  <meta name="description" content=" 1.把图片copy到/source/images 下,例如我这张图片叫做tenten.jpg 2.添加代码 1
+{% img /images/blog_img/tenten.jpg %} 以下摘自octopress的官网中关于Image Tag 的介绍 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,114 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2013/11/13/tian-jia-tu-pian/">在Octopress中添加图片</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-13T22:43:00+08:00" pubdate data-updated="true">2013-11-13</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/blog_img/tenten.jpg"></p>
+
+<p>1.把图片copy到/source/images 下,例如我这张图片叫做tenten.jpg</p>
+
+<p>2.添加代码</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% img /images/blog_img/tenten.jpg %}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下摘自<a href="http://octopress.org/docs/plugins/image-tag/">octopress的官网</a>中关于Image Tag 的介绍</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/13/tian-jia-tu-pian/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2013/11/13/tian-jia-ping-lun-gong-neng/">添加评论功能</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-13T21:01:00+08:00" pubdate data-updated="true">2013-11-13</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天同事听说我有博客了，表示要上来评论一番，我才想起来还没有这个功能，遂加了一个，过程记录在这里，整个过程以<strong>破船</strong>的<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">这篇文章</a>为基础，我只是稍作改动。</p>
+
+<h3>一. 多说网注册账号</h3>
+
+<p>去<a href="http://duoshuo.com/">多说网</a>,点[我要安装],选一个账号登陆，我直接选的QQ登陆。</p>
+
+<p>授权后，进入[创建站点]的页面，站点名称填一下</p>
+
+<p>站点地址，像我就是<a href="http://sageraswang.github.com">http://sageraswang.github.com</a></p>
+
+<p>多说域名，应该就是shortname，我用的是 sageraswang</p>
+
+<p>电子邮箱等自己填。</p>
+
+<p>之后点击[创建].</p>
+
+<h3>二. 添加代码</h3>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/13/tian-jia-ping-lun-gong-neng/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -222,6 +330,14 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/27/shu-dong-app-yin-si-sheng-ming/">树洞App 隐私政策</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/11/27/treehole-readme/">树洞APP</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/11/10/jdk8dao-jdk11-springboot-cai-keng-zhi-nan/">Jdk8到jdk11 Springboot 踩坑指南</a>
       </li>
     
@@ -231,14 +347,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/11/03/macos-mojave-zhong-xin-an-zhuang-mysqlbu-zou-ji-lian-jie-wen-ti-chu-li/">MacOS Mojave 重新安装mysql步骤及连接问题处理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/10/25/bu-jardao-mavenzhong-yang-cang-ku-yu-dao-de-wen-ti-bi-ji/">发布Jar到Maven中央仓库遇到的问题笔记</a>
       </li>
     
   </ul>
