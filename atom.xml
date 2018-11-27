@@ -4,7 +4,7 @@
   <title><![CDATA[SargerasWang's Blog]]></title>
   <link href="https://sargeraswang.com/atom.xml" rel="self"/>
   <link href="https://sargeraswang.com/"/>
-  <updated>2018-11-27T13:10:40+08:00</updated>
+  <updated>2018-11-27T17:16:49+08:00</updated>
   <id>https://sargeraswang.com/</id>
   <author>
     <name><![CDATA[SargerasWang]]></name>
@@ -12,6 +12,226 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ExcelUtil 1.2.1 doc]]></title>
+    <link href="https://sargeraswang.com/blog/2018/11/27/excelutil-1-dot-2-1-doc/"/>
+    <updated>2018-11-27T17:08:00+08:00</updated>
+    <id>https://sargeraswang.com/blog/2018/11/27/excelutil-1-dot-2-1-doc</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/SargerasWang/ExcelUtil">GitHub地址</a></p>
+
+<p>事实上,使用方式在 <code>test</code> 中有,因为有这个Issue,所以贴到这里来.</p>
+
+<h4>数据模型</h4>
+
+<p>通常可以使用你的数据表bean,当然如果需要导入/导出的字段与数据表差异很大,可以新增bean,当然也可以跳过bean,直接使用<code>Map</code>,下面是示例Bean:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@ExcelCell</span><span class="o">(</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">)</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">a</span><span class="o">;</span>
+</span><span class='line'>    <span class="nd">@ExcelCell</span><span class="o">(</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">b</span><span class="o">;</span>
+</span><span class='line'>    <span class="nd">@ExcelCell</span><span class="o">(</span><span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="o">)</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="n">c</span><span class="o">;</span>
+</span><span class='line'>    <span class="nd">@ExcelCell</span><span class="o">(</span><span class="n">index</span> <span class="o">=</span> <span class="mi">3</span><span class="o">)</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Date</span> <span class="n">d</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getD</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">d</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setD</span><span class="o">(</span><span class="n">Date</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">Model</span><span class="o">(</span><span class="n">String</span> <span class="n">a</span><span class="o">,</span> <span class="n">String</span> <span class="n">b</span><span class="o">,</span> <span class="n">String</span> <span class="n">c</span><span class="o">,</span><span class="n">Date</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">//setter and getter 省略...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>导出-Bean方式</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="c1">//用排序的Map且Map的键应与ExcelCell注解的index对应</span>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">,</span><span class="s">&quot;姓名&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;b&quot;</span><span class="o">,</span><span class="s">&quot;年龄&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;c&quot;</span><span class="o">,</span><span class="s">&quot;性别&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;d&quot;</span><span class="o">,</span><span class="s">&quot;出生日期&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">dataset</span><span class="o">=</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span>
+</span><span class='line'>    <span class="n">dataset</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Model</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">dataset</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Model</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span><span class="kc">null</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">dataset</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Model</span><span class="o">(</span><span class="s">&quot;王五&quot;</span><span class="o">,</span> <span class="s">&quot;34&quot;</span><span class="o">,</span> <span class="s">&quot;男&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">Date</span><span class="o">()));</span>
+</span><span class='line'>    <span class="n">File</span> <span class="n">f</span><span class="o">=</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;test.xls&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">ExcelUtil</span><span class="o">.</span><span class="na">exportExcel</span><span class="o">(</span><span class="n">map</span><span class="o">,</span> <span class="n">dataset</span><span class="o">,</span> <span class="n">out</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>导出-Map方式</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span><span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;birthday&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;sex&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">map2</span> <span class="o">=</span><span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="n">map2</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;测试是否是中文长度不能自动宽度.测试是否是中文长度不能自动宽度.&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map2</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">map2</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;sex&quot;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;birthday&quot;</span><span class="o">,</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">map3</span> <span class="o">=</span><span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="n">map3</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;张三&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map3</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+</span><span class='line'><span class="n">map3</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;sex&quot;</span><span class="o">,</span> <span class="s">&quot;男&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map3</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;birthday&quot;</span><span class="o">,</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span><span class='line'><span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+</span><span class='line'><span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">map2</span><span class="o">);</span>
+</span><span class='line'><span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">map3</span><span class="o">);</span>
+</span><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">map1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'><span class="n">map1</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span><span class="s">&quot;姓名&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map1</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span><span class="s">&quot;年龄&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map1</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;birthday&quot;</span><span class="o">,</span><span class="s">&quot;出生日期&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">map1</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;sex&quot;</span><span class="o">,</span><span class="s">&quot;性别&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">File</span> <span class="n">f</span><span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;test.xls&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span><span class='line'><span class="n">ExcelUtil</span><span class="o">.</span><span class="na">exportExcel</span><span class="o">(</span><span class="n">map1</span><span class="o">,</span><span class="n">list</span><span class="o">,</span> <span class="n">out</span> <span class="o">);</span>
+</span><span class='line'><span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>导入</h4>
+
+<p><code>ExcelUtil.importExcel</code> 方法的第一个参数,是个<code>Class</code>,如果你有<code>Bean</code>,就写Bean的Class,反之,直接<code>Map.class</code></p>
+
+<h5>XLS 文件</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">File</span> <span class="n">f</span><span class="o">=</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;src/test/resources/test.xls&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">InputStream</span> <span class="n">inputStream</span><span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ExcelLogs</span> <span class="n">logs</span> <span class="o">=</span><span class="k">new</span> <span class="n">ExcelLogs</span><span class="o">();</span>
+</span><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">importExcel</span> <span class="o">=</span> <span class="n">ExcelUtil</span><span class="o">.</span><span class="na">importExcel</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">,</span> <span class="s">&quot;yyyy/MM/dd HH:mm:ss&quot;</span><span class="o">,</span> <span class="n">logs</span> <span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Map</span> <span class="n">m</span> <span class="o">:</span> <span class="n">importExcel</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>XLSX 文件</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">File</span> <span class="n">f</span><span class="o">=</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;src/test/resources/test.xlsx&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">InputStream</span> <span class="n">inputStream</span><span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ExcelLogs</span> <span class="n">logs</span> <span class="o">=</span><span class="k">new</span> <span class="n">ExcelLogs</span><span class="o">();</span>
+</span><span class='line'><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">importExcel</span> <span class="o">=</span> <span class="n">ExcelUtil</span><span class="o">.</span><span class="na">importExcel</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">,</span> <span class="s">&quot;yyyy/MM/dd HH:mm:ss&quot;</span><span class="o">,</span> <span class="n">logs</span> <span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">Map</span> <span class="n">m</span> <span class="o">:</span> <span class="n">importExcel</span><span class="o">){</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[树洞App 隐私政策]]></title>
@@ -154,7 +374,7 @@ f) 在树洞app平台上创建的某一交易中,如交易任何一方履行或�
 
 <h3>联系我们</h3>
 
-<p>Email: <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x73;&#x61;&#114;&#103;&#x65;&#114;&#97;&#x73;&#x77;&#97;&#110;&#x67;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x73;&#97;&#x72;&#x67;&#x65;&#114;&#x61;&#115;&#x77;&#x61;&#x6e;&#x67;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a></p>
+<p>Email: <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#115;&#97;&#114;&#103;&#x65;&#x72;&#x61;&#x73;&#119;&#97;&#x6e;&#x67;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#115;&#97;&#114;&#x67;&#x65;&#x72;&#x61;&#x73;&#119;&#x61;&#x6e;&#x67;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;</a></p>
 ]]></content>
   </entry>
   
@@ -1926,60 +2146,6 @@ was removed in v5.5.3.</code></p>
 <p><img src="https://sargeraswang.com/images/blog_img/eclipse_keys3.png" alt="" /></p>
 
 <blockquote><p>哈，到现在，当初的坑就剩下最后一个了 <strong>使用maven搭建SSH框架</strong></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[花信之年-二十四岁]]></title>
-    <link href="https://sargeraswang.com/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui/"/>
-    <updated>2014-03-25T21:00:00+08:00</updated>
-    <id>https://sargeraswang.com/blog/2014/03/25/hua-xin-zhi-nian-er-shi-si-sui</id>
-    <content type="html"><![CDATA[<blockquote><p>有人问过我在外边闯荡会有孤单的感觉吗，我说不会，现在，我要证明这一点！
-就像过24岁生日这天，我也并不孤单，有QQ邮箱和招商银行惦记着我！</p></blockquote>
-
-<p>上班听了一天的水手，与十年前初次听的时候，感觉完全不同，当时更在意“风雨中这点痛算什么，至少我们还有
-梦”，而现在更能理解“总是拿着微不足道的成就来骗自己，总是莫名其妙感到一阵的空虚”&hellip;</p>
-
-<!-- more -->
-
-
-<p><img src="https://sargeraswang.com/images/blog_img/24.jpg" alt="" /></p>
-
-<h3>你变态了！</h3>
-
-<p>“人总是在追逐稳定的同时追求刺激”，忘记是哪位名人说过的。而像我这个年纪，或许追逐刺激更多一些。回想近几年，自己在各方面都有成长，但总是嫌弃自己成长的太慢了。前同事说“你跟我们不是一类人，你已经变态了”，这应该就是快速成长的负面效果。当绝大部分的时间和精力都放在思考如何提高自己的专业能力，然后按照计划去做时，旁边的人会感觉你越来越没有“人性”，也就是“变态了”。</p>
-
-<p>在我看来，这也是无法避免的，假设从程度1到程度8需要学习1000个小时，我的目标又是最短时间内达到程度8，那就抛弃其他时间，全心全意投入到学习中。人这一生中就是不断地做选择，而选择就是一个取舍的问题，既然取了技术，就要舍去那些能让你保持“正常”的能力。</p>
-
-<h3>宣布目标的魔力</h3>
-
-<p>路飞的梦想是成为海贼王，鸣人的目标是成为火影，东方不败的目标是成为天下第一。向身边的人宣传自己的梦想和目标，有着非凡的魔力，有一种自外而内能量在影响着自己。再加上发自内心的对梦想的向往，两种能量融会贯通。</p>
-
-<p>最直接的就是，身边总是有人在你做事不够完美时会说“你不是要成为XXX的男人吗，这事怎么都做不好？”，这绝对不是挖苦，不是讽刺；而是赤裸裸的鼓励啊有木有，监督啊有木有。而我面对这样的鼓励时，总是报以感谢，然后把事情做好。再接下来，对方看到了你有听他的话，感受到了你对他的建议的重视程度，下次才会继续提出你的不足。如此下去，良性循环，皆大欢喜。</p>
-
-<h3>你是否会后悔</h3>
-
-<p>上面说到人生就是不断地做出选择，那我平时又是如何做出选择的呢。</p>
-
-<ol>
-<li>列出目前的选择，排除一轮不靠谱的，就是白给你都不选的.</li>
-<li>把每个选择的成本、风险、收益列出来比较</li>
-<li>当第二点做完后，还是无法抉择，那就使出杀手锏：<strong>哪个选择在几十年以后，回想起来，才不会后悔</strong>。</li>
-<li>没有第四了，丢硬币吧骚年。</li>
-</ol>
-
-
-<p>当你七老八十，坐在摇椅上看《火影忍者》第20000话的时候，想到自己随时都可能老死，再回想自己的一生，无怨无悔，为自己的梦想计划了，努力了，坚持了&hellip;就可以闭上眼睛，心想“我操，火影的结局到底是啥！”</p>
-
-<h3>直面内心的自己</h3>
-
-<p>《自控力》对我的影响，从外层看是自控力的提升，从内在讲，更多的是不要欺骗自己，不要逃避自己，要直面自己内心深处。人天生就有欺骗自己的能力，因为生存下去是第一目标，所以可以骗自己没有看到受伤的同伴，骗自己明天可以打到更多的猎物。</p>
-
-<p>没错，这些能力可以让你活下去的概率大大的提高，但是现在，你的目标就只是活着吗？如果不能分析自己的大脑，只能被自己骗。就像减肥一样，人天生就有对脂肪的渴望，当你靠近它们的时候，大脑会骗你“你现在很需要这块蛋糕，它可以提高你活下去的几率”，如果认识不到自己被自己的大脑骗了，那永远都无法减肥；戒烟同理。</p>
-
-<p>上班时，自己已经提前完成了预定任务，看到别的同事在闲玩。你的大脑就会告诉你“你现在很累了，要劳逸结合，再说了，别人都在休息，你还那么努力，就吃亏了”，这个时候，你应该做的是告诉你的大脑：”草！老子怎么会就这点儿能耐，这TM能叫努力吗？比别人少休息哪能叫吃亏，真是被门挤了！“，如此长久，你就战胜了那个骗子.</p>
-
-<blockquote><p>花信：开花时期，花期。指女子的年龄到了二十四岁。也泛指女子正处年轻貌美之时。高阳《胡雪岩全传·平步青云》上册：“而且正当花信年华，就如秋月将满，春花方盛，令人一见便觉不可错过。”</p></blockquote>
 ]]></content>
   </entry>
   

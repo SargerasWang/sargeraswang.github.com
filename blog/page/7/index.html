@@ -9,9 +9,7 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="前两天为我的博客添加了腾讯微博的一键分享功能，过程记录在这里。
-Emacs使用手册系列要过几天才能写了。
-接下来的首要任务是要研究一下用maven的archetype搭建一个SSH。 ">
+  <meta name="description" content="Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +102,72 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">Appfuse搭建SSH的问题与解决</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-25T20:14:00+08:00" pubdate data-updated="true">2013-11-25</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:dbunit-maven-plugin:1.0-beta-3:operation (execution: test-compile, phase: test-compile)
+
+<ul>
+<li>解决方法：在<code>&lt;plugins&gt;</code>外面套上<code>&lt;pluginManagement&gt;</code></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;pluginManagement&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;&lt;/plugin&gt;</span>
+</span><span class='line'>      ...
+</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/pluginManagement&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/25/appfuseda-jian-sshde-wen-ti-yu-jie-jue/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -331,63 +395,6 @@ Emacs使用手册系列要过几天才能写了。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa/">Rake Deploy 出现Could Not Resolve Host: github.com 的解决方法</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-14T22:15:00+08:00" pubdate data-updated="true">2013-11-14</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/blog_img/gfw.jpg"></p>
-
-<p>今天上午看自己的博客，发现昨晚好像没有deploy，博客好多地方都有问题。</p>
-
-<p>晚上回来，检查，确实有错误，修改完，打算提交，就执行了</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>reke deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>看到最后显示的是</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>## Github Pages deploy complete</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就以为成功了，遂上博客观察，还是没有改变，又去清浏览器缓存，还是没有改变。再次执行</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/11/14/rake-deploy-chu-xian-could-not-resolve-host-github-dot-com-de-jie-jue-fang-fa/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; 更早的</a>
@@ -405,6 +412,10 @@ Emacs使用手册系列要过几天才能写了。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/27/excelutil-1-dot-2-1-doc/">ExcelUtil 1.2.1 Doc</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/11/27/shu-dong-app-yin-si-sheng-ming/">树洞App 隐私政策</a>
       </li>
     
@@ -418,10 +429,6 @@ Emacs使用手册系列要过几天才能写了。
     
       <li class="post">
         <a href="/blog/2018/11/09/java-lian-shi-diao-yong-de-zi-shi/">Java 链式调用的正确姿势</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a>
       </li>
     
   </ul>

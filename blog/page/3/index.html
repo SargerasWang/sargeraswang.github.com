@@ -9,10 +9,18 @@
   <meta name="author" content="SargerasWang">
 
   
-  <meta name="description" content="vps服务器弄好之后,每次更改完代码都是本地打包,上传war到服务器,再替换数据库配置,重启服务.
-刚开始偶尔一次还好,但频繁操作就受不了了,然后写了以下脚本. 部署流程 1.从github更新 1
-git pull 2.替换数据库配置 1
-cp -f ../db_config/db. &hellip;">
+  <meta name="description" content="问题描述 Mybatis 关联的嵌套查询 官方的例子: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;resultMap id=&quot;blogResult&quot; type=&quot;Blog&quot;&gt; &lt;association property=&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +113,88 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">Mybatis中association查询与主查询在不同数据库的解决方法</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-10T19:44:00+08:00" pubdate data-updated="true">2015-04-10</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>问题描述</h2>
+
+<p>Mybatis 关联的嵌套查询 官方的例子:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&quot;blogResult&quot;</span> <span class="na">type=</span><span class="s">&quot;Blog&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&quot;author&quot;</span> <span class="na">column=</span><span class="s">&quot;author_id&quot;</span> <span class="na">javaType=</span><span class="s">&quot;Author&quot;</span> <span class="na">select=</span><span class="s">&quot;selectAuthor&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/resultMap&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectBlog&quot;</span> <span class="na">resultMap=</span><span class="s">&quot;blogResult&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  SELECT * FROM BLOG WHERE ID = #{id}
+</span><span class='line'><span class="nt">&lt;/select&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&quot;selectAuthor&quot;</span> <span class="na">resultType=</span><span class="s">&quot;Author&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  SELECT * FROM AUTHOR WHERE ID = #{id}
+</span><span class='line'><span class="nt">&lt;/select&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个时候,如果<code>AUTHOR</code>表与<code>BLOG</code>在两个不同的数据库中,执行会报找不到<code>AUTHOR</code>表.</p>
+
+<h2>解决思路</h2>
+
+<p>新建一个Mybatis的<code>Plugins插件</code>,在第二次查询也就是<code>selectAuthor</code>执行之前,切换数据源为另一个数据库.看一下Plugins都可以用于哪些地方:</p>
+
+<ul>
+<li>Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)</li>
+<li>ParameterHandler (getParameterObject, setParameters)</li>
+<li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
+<li>StatementHandler (prepare, parameterize, batch, update, query)</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/04/10/mybatiszhong-associationcha-xun-yu-zhu-cha-xun-zai-bu-tong-shu-ju-ku-de-jie-jue-fang-fa/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -413,47 +503,6 @@ bootbox.js 最后位置</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/">Office for Mac Word 设置每页行数与每行字数(指定行网格和字符网格)</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-09T09:35:00+08:00" pubdate data-updated="true">2014-10-09</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>毕业论文要求格式之一是,每行30字,每页25行.查到windows下word中的设置在<code>文件</code>——<code>页面设置</code>——<code>在网格选择“指定行和字符网络”</code>,可mac版中没有这个选项,经过挨个排查,找到这项设置在<code>文件</code>&ndash;><code>页面设置</code>&ndash;><code>[设置]下拉选择[Microsoft Word]</code>&ndash;><code>页边距</code>&ndash;><code>文档网格</code>&ndash;><code>指定行网格和字符网格</code>,然后在下方输入每页多少行,每行多少字.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/09/office-for-mac-word-she-zhi-mei-ye-xing-shu-yu-mei-xing-zi-shu-zhi-ding-xing-wang-ge-he-zi-fu-wang-ge/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; 更早的</a>
@@ -471,6 +520,10 @@ bootbox.js 最后位置</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/11/27/excelutil-1-dot-2-1-doc/">ExcelUtil 1.2.1 Doc</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/11/27/shu-dong-app-yin-si-sheng-ming/">树洞App 隐私政策</a>
       </li>
     
@@ -484,10 +537,6 @@ bootbox.js 最后位置</p>
     
       <li class="post">
         <a href="/blog/2018/11/09/java-lian-shi-diao-yong-de-zi-shi/">Java 链式调用的正确姿势</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/11/06/generateprivate-exception-jie-jue/">generatePrivate Exception 解决</a>
       </li>
     
   </ul>
